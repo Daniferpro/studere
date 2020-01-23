@@ -1,0 +1,3 @@
+http://www.studere.uy/
+http://www.studere.uy/login
+http://www.studere.uy/usuarios/plataforma/estudiando/register.php

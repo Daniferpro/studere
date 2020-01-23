@@ -1,0 +1,123 @@
+{% comment %} 
+
+aqui se redactarán las modificaciones en la plataforma con la siguiente estructuracion de datos:
+
+1 -> Fecha 
+2 -> Nombre de quien modifica
+3 -> ruta del archivo modificado
+4 -> modificación explicación + código
+5 -> nunca borrar el código anterior sin antes ser testeado y sacado un respaldo del archivo origial, sino que las líneas de codigo
+     a modificar sean comentadas en el mismo archivo.
+
+     
+ {% endcomment %}
+
+
+14/10/2019
+Daniel Ferreira
+-> usuarios\plataforma\estudiando\confirmacion_email.php  linea 40
+-> he modificado la función mail() creando un archivo aparte que contenga la función de enviar email y el código html a enviar.
+    para luego solo llamar la funcion en la linea 40 de este confnirmacion_email.php:40 
+    el archivo nuevo tendrá como nombre. email.php estará en usuarios\plataforma\estudiando\procesos\email.php
+    en el archivo usuarios\plataforma\estudiando\confirmacion_email.php:40 llamaremos a la funcion de nombre enviar_email($email, $token)
+    la cual tendrá como entrada dos parámetros email (destinatario) y token (llave de seguridad para activación de la cuenta)email.php
+
+{% comment %} nota: Funciona Ok! {% endcomment %}
+
+15/10/2019
+Daniel Ferreira
+-> php.ini
+-> he modificado configuracines avanzadas para habilitar el envio de emails desde el server de xampp modificando 2 archivos importantes
+    ->php.ini se ha modificado esto:                                 
+                                    [mail function]
+                                    ; For Win32 only.
+                                    ; http://php.net/smtp
+                                    SMTP=smtp.gmail.com
+                                    ; http://php.net/smtp-port
+                                    smtp_port=587
+
+                                    ; For Win32 only.
+                                    ; http://php.net/sendmail-from
+                                    sendmail_from = daniferpro3@gmail.com
+
+                                    ; For Unix only.  You may supply arguments as well (default: "sendmail -t -i").
+                                    ; http://php.net/sendmail-path
+                                    ;sendmail_path =  MODIFIQUE ESTO
+                                    sendmail_path = "\"C:\xampp\sendmail\sendmail.exe\" -t"
+
+                                    ; Force the addition of the specified parameters to be passed as extra parameters
+                                    ; to the sendmail binary. These parameters will always replace the value of
+                                    ; the 5th parameter to mail().
+                                    ;mail.force_extra_parameters =
+
+                                    ; Add X-PHP-Originating-Script: that will include uid of the script followed by the filename
+                                    mail.add_x_header=Off
+
+                                    ; The path to a log file that will log all mail() calls. Log entries include
+                                    ; the full path of the script, line number, To address and headers.
+                                    ;mail.log =
+                                    ; Log mail to syslog (Event Log on Windows).
+                                    ;mail.log = syslog
+                                    ;mail.log = "C:\xampp\php\logs\php_mail.log"
+    ->C:\xampp\sendmail/sendmail.ini
+    -> se ha modificado esto:
+                            
+                            smtp_server=smtp.gmail.com
+                            smtp_port=587
+                            error_logfile=error.log
+                            debug_logfile=debug.log
+                            auth_username= daniferpro3@gmail.com
+                            auth_password= daniferpro2016
+                            force_sender=daniferpro3@gmail.com
+
+{% comment %} nota: Funciona ok!. realizar los mismos cambios en el server de studere.uy {% endcomment %}
+
+15/10/2019
+Daniel Ferreira
+-> usuarios\plataforma\estudiando\confirmacion_email.php
+-> se ha agregado la funcion de mensajes atravez de api de whatsapp
+-> se han añadido estas líneas de código: líneas de 45 a 50.
+    
+  $whatsmsapi = new WhatsmsApi();
+  $celular ="$_GET[celular]";
+  $numero_destino ="+598" . $celular;
+  $mensaje_detino = "Hola ". " " . $nombre ." " . " este es tu link para activar tu cuenta en studere http://www.studere.uy/usuarios/plataforma/estudiando/confirmacion_email.php?token=$token&&id=$email";
+  $whatsmsapi->setApiKey("5da53cab6ca02");
+  $whatsmsapi->sendSms($numero_destino, $mensaje_detino);
+
+-> también se ha creado la conexion a la api de WhatsApp en el archivo -> usuarios\plataforma\estudiando\procesos\whatsapp.php
+    éste es incluido en el archivo confirmacion_email.php.
+    require "./procesos/whatsapp.php";
+
+    
+{% comment %} Funciona ok! {% endcomment %}
+
+
+22/10/2019
+Daniel Ferreira->admin/
+-> se ha creado esta carpeta con funcionalidades unicamente para los administradores de la plataforma;
+
+31/10/2019
+Daniel Ferreira->//www.studere.uy/usuarios/plataforma/estudiando/confirmacion_email.php
+->se ha modificado el script de envio de emails de confirmacion_email.php.
+->Anteriiormente se enviaba por medio de SMTP pero desde la la funcion $mail que nos da integrada php. 
+->ésto nos brindo un error enorme al mudar la plataforma desde un servidor propio a un hosting porque no podemos acceder
+  a modificar las variables en el archivo php.ini y phpMailer.ini
+->He optado por utilizar desde Github el repositorio original de PHPMailer descargado y agregandolo a la plataforma
+->he aqui la siguiente modificacion:
+
+    ->1) se creo la carpeta email dentro de ./procesos/
+        -> la misma contiene los archivos de phpMailer y el archivo envioDeEmailConfirmacion.php
+    ->2) en envioDeEmailConfirmacion.php se encuentra la conf de envio email mendiante SMTP de gmail.com
+    ->3) modificamos el envio anterior que era atravez de una funcion que requeria dos parametros:
+        ->email = $email
+        ->token = $token}
+    ->4) ahora el envio se hace instanciando el objeto de phpmailer en el archivo envioDeEmailConfirmacion.php
+         el cual obtiene éstos datos directamente en el archivo confirmacion_email.php puesto que
+         envioDeEmailConfirmacion.php es Incluido en confirmacion_email.php.
+          
+->El mensaje final es el mismo sin modificaciones, sólo que he cambiado el proceso de envio satisfactoriamente para no depender del hosting 
+    o servidor en el cual se encuentra alojada la plataforma en cualquier momento.
+->subo por ftp:
+    ->la carpeta mail dentro de procesos de estudiando 
+    ->este archivo.

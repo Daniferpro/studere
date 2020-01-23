@@ -1,0 +1,9 @@
+.oculto {
+  display: none;
+}
+progress {
+  text-align: center;
+}
+progress:after {
+  content: attr(value)'%';
+}

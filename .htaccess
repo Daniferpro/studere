@@ -1,0 +1,15 @@
+Options -Indexes
+
+<ifModule mod_rewrite.c>
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+RewriteEngine on
+RewriteBase /prueba/
+RewriteCond %{SCRIPT_FILENAME}  !-d
+RewriteCond %{SCRIPT_FILENAME}  !-f
+
+RewriteRule ^(.*)$ $1.php
+
+
+</ifModule>
+
