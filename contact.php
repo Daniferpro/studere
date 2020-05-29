@@ -272,7 +272,7 @@ $mailAdmin->isHTML(true);
 									</li>
 									<li>
 										<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										<div>contacto@studere.com.uy</div>
+										<div>studereplataforma@gmail.com</div>
 									</li>
 								</ul>
 								<div class="top_bar_login ml-auto">
@@ -398,7 +398,7 @@ $mailAdmin->isHTML(true);
 					<!-- Contact Form -->
 					<div class="col-lg-6">
 						<div class="contact_form">
-							<div class="contact_info_title">Formulario de Contcto</div>
+							<div class="contact_info_title">Formulario de Contacto</div>
 							<form action="#" class="comment_form" method="POST" >
 								<div>
 									<div class="form_title">Nombre</div>
@@ -483,7 +483,7 @@ $mailAdmin->isHTML(true);
 									<li>Para obtener mas información, detalles y muestras, puedes escibirnos en el formulario.</li>
 									<li>También puedes registrate para ver su funcionamiento</li>
 									<li>Te dejamos más detalles en siguiente archivo pdf.</li>
-									<li> <a download="Info para profesores" href="./info_profesor.pdf">Información Para Profesores.pdf (aun no se ha cargado el archivo pdf)</a> </li>
+									<li> <a download="Acuerdo de Responsabilidad Studere-Docente" href="documentos/Acuerdo.pdf">Acuerdo de Responsabilidades.pdf </a> </li>
 								</ul>
 							</div>
 						</div>
@@ -612,6 +612,7 @@ $mailAdmin->isHTML(true);
 
 <?php
 
+if($_POST):
 	if($mailAdmin->send()):
 		
 
@@ -641,6 +642,7 @@ toastr.info('Hemos recibido correctamente el mensaje! Muchas Gracias por querer 
 </script>
 
 <?php
+endif;
 endif;
 ?>
 

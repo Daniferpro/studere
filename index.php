@@ -41,11 +41,11 @@
 									</li>
 									<li>
 										<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										<div>contacto@studere.com.uy</div>
+										<div>studerepletaforma@gmail.com</div>
 									</li>
 								</ul>
 								<div class="top_bar_login ml-auto">
-									<div class="login_button"><a href="./login">Iniciar sesión </a></div>
+									<div class="login_button"><a href="./login.php">Iniciar sesión </a></div>
 								</div>
                                 
 							</div>
@@ -123,7 +123,7 @@
 		</div>
 		<nav class="menu_nav">
 			<ul class="menu_mm">
-				<li class="menu_mm"><a href="./login">Iniciar Sesion</a></li>
+				<li class="menu_mm"><a href="./login.php">Iniciar Sesion</a></li>
 				<li class="menu_mm"><a href="./contact.php">Eres docente? clic aquí</a></li>
 				<li class="menu_mm"><a href="./cursos.php">Cursos</a></li>
 				<li class="menu_mm"><a href="./usuarios/plataforma/estudiando/register.php?nuevo_registro">Registrarse!</a></li>
@@ -376,8 +376,7 @@
                         <div class="section_title_container text-center">
                             <h2 class="section_title">Enfoque Grupal</h2>
                             <div class="section_subtitle">
-                                <p>Nuestro enfoque es ayudar a terminar bachillerato a personas que trabajan y por falta de tiempo o razones externas han dejado y quieren continuar, aquí lo pueden hacer, no hay límite de edad para estudiar; es a tu ritmo!!
-                                    prepárate estudia y rinde esos exámenes para seguir adelante!!! también puedes ser un alumno actual de Secuandaria; pues a que esperas! Anótate en un curso y te ayudaremos a mejorar! </p>
+                                <p>Estamos enfocados en crear una rama paralela a la educación, para que TÚ puedas tener CLASES PARTICULARES atravez de internet y en la comodidad de TU CASA!!!</p>
                             </div>
                             <!-- <embed src="./plataforma.pdf" type="application/pdf" width="100%" height="600px" /> -->
 

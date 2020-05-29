@@ -5,7 +5,7 @@ include "./procesos/email/SMTP.php";
 include "./procesos/email/Exception.php";
 include "./procesos/email/OAuth.php";
 
-  require "./procesos/whatsapp.php";
+  require "./procesos/WhatsmsApi.php";
   require "./procesos/conecciones.php"; //importamos la coneecion a la bd.
   $email = $_GET['id'];                 // email enviado por get
   $nombre = $_GET['nombre'];
@@ -57,12 +57,12 @@ $mail->send();
 
 //comentamos para evitar el envio de wpp SOLO EN CASO DE DEBUG
   // envio de mensje de whatsapp
-  // $whatsmsapi = new WhatsmsApi();
-  // $celular ="$_GET[celular]";
-  // $numero_destino ="+598" . $celular;
-  // $mensaje_detino = "Hola ". " " . $nombre ." " . " este es tu link para activar tu cuenta en studere http://www.studere.uy/usuarios/plataforma/estudiando/confirmacion_email.php?token=$token&&id=$email";
-  // $whatsmsapi->setApiKey("5da53cab6ca02");
-  // $whatsmsapi->sendSms($numero_destino, $mensaje_detino);
+  $whatsmsapi = new WhatsmsApi();
+  $celular ="$_GET[celular]";
+  $numero_destino ="+598" . $celular;
+  $mensaje_detino = "Hola ". " " . $nombre ." " . " este es tu link para activar tu cuenta en studere http://www.studere.uy/usuarios/plataforma/estudiando/confirmacion_email.php?token=$token&&id=$email";
+  $whatsmsapi->setApiKey("5da53cab6ca02");
+  $whatsmsapi->sendSms($numero_destino, $mensaje_detino);
 
 
 

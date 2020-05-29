@@ -46,7 +46,7 @@ if($consulta2->num_rows>=1){
         break;
       
       default:
-        header ("Location: ./profe/");
+        header ("Location: ./profe/?materia=$usuario[materias]&id=$usuario[id]");
         break;
     }
     
