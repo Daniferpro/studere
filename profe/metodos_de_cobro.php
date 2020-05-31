@@ -7,7 +7,7 @@ include "./includes/usuarios_objeto.php";
 
 $email = $_SESSION['email'];
 $id=$_GET['id'];
-$consulta = "SELECT * FROM usuario WHERE email='$email'";
+$consulta = "SELECT * FROM usuario WHERE id='$id'";
 $usuario = mysqli_fetch_assoc( consultarSQL($consulta) );
 
 //contamos los usuarios en línea
@@ -43,12 +43,20 @@ if($email == "danielferreira@studere.com.uy"){
 }else{ $admin_form = 'disabled="disabled"'; }
 
 $User = New Usuario($usuario['id']);
+$apellido = $User->apellido;
+$nombre = $User->nombre;
+$materia = $User->materia;
 
 if(profesoresSQL("SELECT * FROM profesores WHERE id_profe='$id'")){
   $datos_profe = profesoresSQL("SELECT * FROM profesores WHERE id_profe='$id'");
   
   $datos_profe=mysqli_fetch_assoc($datos_profe);
-}else{$datos_profe="No Registrado";}
+};
+if(!$datos_profe){
+  profesoresSQL("INSERT INTO `profesores` (`id`, `id_profe`, `Nombre`, `Apellido`,`Materia`, `Cuenta`, `Tipo_de_cuenta`) 
+  VALUES (NULL, '$id', '$nombre', '$apellido', '$materia', '0', '' )");
+  $datos_profe = mysqli_fetch_assoc(profesoresSQL("SELECT * FROM profesores WHERE id_profe='$id'"));
+  };
 
 
 
@@ -653,6 +661,9 @@ if(profesoresSQL("SELECT * FROM profesores WHERE id_profe='$id'")){
                 Los Número de cuentas Bancarias y Números de Cédula son tratados como datos sensibles,
                 Los mismos son encriptados antes de ser guardados por cuestiones de seguridad.
               </p>
+              <p >
+                  <b>Su numero de cuenta se almacena de esta forma:: </b> <a>AS¿3-ojO>IS0=j!h2a34</a>
+  </p>
 
               
 
@@ -685,7 +696,7 @@ if(profesoresSQL("SELECT * FROM profesores WHERE id_profe='$id'")){
                     <label for="inputEmail" class="col-sm-2 control-label">Tipo de Cuenta</label>
 
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" name="tipo_de_cuenta" id="inputEmail" placeholder="Ej: BROU - MI DINERO - Scotia Bank - Santander">
+                      <input type="text" class="form-control" name="tipo_de_cuenta" id="inputEmail" placeholder="Ej: BROU - MI DINERO - Scotia Bank - Santander">
                     </div>
                   </div>
                   
@@ -693,9 +704,11 @@ if(profesoresSQL("SELECT * FROM profesores WHERE id_profe='$id'")){
                     <label for="inputEmail" class="col-sm-2 control-label">Numero de Cuenta</label>
 
                     <div class="col-sm-10">
-                      <input type="password" class="form-control" name="pass1" id="inputEmail" placeholder="Número actual : <?php echo base64_decode($datos_profe['Cuenta']);?>">
+                      <input type="password" class="form-control" name="numero" id="inputEmail" placeholder="Número actual : <?php echo base64_decode($datos_profe['Cuenta']);?>">
                     </div>
                   </div>
+                  
+                  
                   <!-- <div class="form-group">
                     <label for="inputEmail" class="col-sm-2 control-label">Contraseña</label>
 
@@ -948,26 +961,22 @@ if(isset($_POST['oculto']))
   //probamos el metodo de User para actualizar informacion de usuario
 
   
-  if(isset($_POST['email_nuevo'])){
-    if(!empty($_POST['email_nuevo'])){
-      $valor = $_POST['email_nuevo'];
-      $campo = "Email";
-      $User->actualizar($campo, $valor);
+  if(isset($_POST['tipo_de_cuenta'])){
+    if(!empty($_POST['tipo_de_cuenta'])){
+
+      profesoresSQL(" UPDATE profesores SET Tipo_de_cuenta='$_POST[tipo_de_cuenta]' WHERE id_profe='$id' ");
 
     }
   }
 
-  if(isset($_POST['pass1']) && isset($_POST['pass2'])){
+  if(isset($_POST['numero'])){
 
-    if(!empty($_POST['pass1']) && !empty($_POST['pass2'])){
+    if(!empty($_POST['numero'])){
 
-      if($_POST['pass1'] == $_POST['pass2']){
+        $valor = base64_encode($_POST['numero']);
+        $update = profesoresSQL("UPDATE profesores SET Cuenta='$valor' WHERE id_profe='$id' ");
 
-        $valor = base64_encode($_POST['pass1']);
-        $campo = "Contraseña";
-        $User->actualizar($campo, $valor);
-
-      }
+      
       echo '
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
       <script
@@ -979,7 +988,7 @@ if(isset($_POST['oculto']))
        
      <script type="text/javascript">
     
-    toastr.error("Las Contraseñas Ingresadas No Coinciden", "ALERTA:", {
+    toastr.succsess("Se ha modificado su Numero de Cuenta", "Mensaje:", {
       "closeButton": true,
       "debug": false,
       "newestOnTop": true,
@@ -998,40 +1007,7 @@ if(isset($_POST['oculto']))
     });
     
     </script>
-    ';  
-    }else{
-
-      echo '
-      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-      <script
-     src="https://code.jquery.com/jquery-3.4.1.min.js"
-     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-     crossorigin="anonymous"></script>
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-       
-     <script type="text/javascript">
-    
-    toastr.error("Mensaje : :  ' . 'Falta Algun Dato' . ' ' . ' Complete Los Datos", "ALERTA:", {
-      "closeButton": true,
-      "debug": false,
-      "newestOnTop": true,
-      "progressBar": true,
-      "positionClass": "toast-top-right",
-      "preventDuplicates": true,
-      "onclick": null,
-      "showDuration": "300",
-      "hideDuration": "1000",
-      "timeOut": "15000",
-      "extendedTimeOut": "1000",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
-    });
-    
-    </script>
-    ';
+    '; 
 
     }
   }

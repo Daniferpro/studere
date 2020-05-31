@@ -7,7 +7,7 @@ include "./includes/usuarios_objeto.php";
 
 $email = $_SESSION['email'];
 $id=$_GET['id'];
-$consulta = "SELECT * FROM usuario WHERE email='$email'";
+$consulta = "SELECT * FROM usuario WHERE id='$id'";
 $usuario = mysqli_fetch_assoc( consultarSQL($consulta) );
 
 //contamos los usuarios en línea

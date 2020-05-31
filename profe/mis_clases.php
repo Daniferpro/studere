@@ -6,7 +6,7 @@ include "../admin/includes/seguridad.php";
 
 $email = $_SESSION['email'];
 $id=$_GET['id'];
-$consulta = "SELECT * FROM usuario WHERE email='$email'";
+$consulta = "SELECT * FROM usuario WHERE id='$id'";
 $usuario = mysqli_fetch_assoc( consultarSQL($consulta) );
 
 //contamos los usuarios en línea
@@ -433,22 +433,21 @@ if($email == "danielferreira@studere.com.uy"){
             <li><a href="./index.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> General</a></li>
             <li><a href="./users.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Mis Alumnos</a></li>
             <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Mis Clases </a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Mis Asignatura </a></li>
-            <li><a href="./mis_grupos.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Mis Grupos </a></li>
+            <li><a href="./mis_grupos.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Video Conferencias </a></li>
           </ul>
         </li>
          
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
-            <span>Mis Video Conferencias</span>
+            <span>Op Video Conferencias</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Fechas y Horas</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Software a utilizar</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Fechas y Horas</a></li>
+            <li><a href="./software_vc.php?id=<?php echo $id;?>s"><i class="fa fa-circle-o"></i> Software a utilizar</a></li>
             </ul>
         </li>
         <!-- <li class="treeview">
@@ -555,8 +554,8 @@ if($email == "danielferreira@studere.com.uy"){
                     </span>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Datos de Contacto</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Usuario & Contraseña</a></li>
+                    <li><a href="./datos_de_contacto.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Datos de Contacto</a></li>
+                    <li><a href="./usuario_contraseña.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Usuario & Contraseña</a></li>
                   </ul>
                 </li>
                 <li class="treeview">
@@ -566,7 +565,7 @@ if($email == "danielferreira@studere.com.uy"){
                     </span>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Métodos de Cobro</a></li>
+                    <li><a href="./metodo_de_cobro.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Métodos de Cobro</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Fechas de cobro</a></li>
                   </ul>
                 </li>
@@ -706,7 +705,8 @@ if($email == "danielferreira@studere.com.uy"){
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-              <a href="#"><button type="" class="btn btn-info pull-right">Lista completa</button></a>
+            <a  class="btn btn-success" href="./mis_clases.php?id=<?php echo $id; ?>">refrescar</a>
+
               </div>
             <!-- /.box-footer -->
           </div>
@@ -768,9 +768,12 @@ if($email == "danielferreira@studere.com.uy"){
                 
                   <div class="col-sm-offset-2 col-sm-10">
                     <div class="checkbox">
+                      
                     <div class="box-footer">
+                      
                     <button type="" class="btn btn-sm btn-default btn-flat pull-left">La nueva Clase quedará Actia Luego de Revision de Admin</button>
                 <button type="submit" class="btn btn-info pull-right">Crear Clase</button>
+                
                 </div>
                     </div>
                   </div>

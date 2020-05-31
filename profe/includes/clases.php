@@ -2,7 +2,7 @@
 
     $materia_prof = $usuario['materias'];
     $consulta_clases_prof = ciclobasicoSQL(" SELECT * FROM $materia_prof ");
-    if($consulta_clases_prof->num_rows > 0):
+    if($consulta_clases_prof->num_rows>0):
         while($clases = mysqli_fetch_assoc($consulta_clases_prof)):
 
 

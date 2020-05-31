@@ -6,7 +6,7 @@ include "../admin/includes/seguridad.php";
 
 $email = $_SESSION['email'];
 $id=$_GET['id'];
-$consulta = "SELECT * FROM usuario WHERE email='$email'";
+$consulta = "SELECT * FROM usuario WHERE id='$id'";
 $usuario = mysqli_fetch_assoc( consultarSQL($consulta) );
 
 //contamos los usuarios en línea
@@ -433,8 +433,7 @@ if($email == "danielferreira@studere.com.uy"){
             <li><a href="./index.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> General</a></li>
             <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Mis Alumnos</a></li>
             <li><a href="./mis_clases.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Mis Clases </a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Mis Asignatura </a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Mis Grupos </a></li>
+            <li><a href="./mis_grupos.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Video Conferencias </a></li>
           </ul>
         </li>
          
@@ -447,8 +446,8 @@ if($email == "danielferreira@studere.com.uy"){
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Fechas y Horas</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Software a utilizar</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Fechas y Horas</a></li>
+            <li><a href="./software_vc.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Software a utilizar</a></li>
             </ul>
         </li>
         <!-- <li class="treeview">
@@ -548,15 +547,15 @@ if($email == "danielferreira@studere.com.uy"){
               </a>
               <ul class="treeview-menu">
                 
-                <li class="treeview">
+              <li class="treeview">
                   <a href="#"><i class="fa fa-circle-o"></i> Datos Personales
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Datos de Contacto</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Usuario & Contraseña</a></li>
+                    <li><a href="./datos_de_contacto.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Datos de Contacto</a></li>
+                    <li><a href="./usuario_contraseña.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Usuario & Contraseña</a></li>
                   </ul>
                 </li>
                 <li class="treeview">
@@ -566,7 +565,7 @@ if($email == "danielferreira@studere.com.uy"){
                     </span>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Métodos de Cobro</a></li>
+                    <li><a href="./metodos_de_cobro.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Métodos de Cobro</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Fechas de cobro</a></li>
                   </ul>
                 </li>
@@ -590,13 +589,13 @@ if($email == "danielferreira@studere.com.uy"){
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Usurios Registrados
+        Mis Alumnos
         <small>Panel de Control</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
         <li class="">panel</li>
-        <li class="active">Usuarios</li>
+        <li class="active">Alumnos</li>
       </ol>
     </section>
 

@@ -16,7 +16,7 @@ while($post = mysqli_fetch_assoc($comentarios)): ?>
 <html>
 <!-- chat item -->
 <div class="item">
-                <img src="logo.png" alt="user image" class="online">
+                <img src="../images\images\logoterminado.png" alt="user image" class="online">
 
                 <p class="message">
                   <a href="#" class="name">
@@ -41,7 +41,7 @@ if($comentarios->num_rows<=0):?>
 <html>
 <!-- chat item -->
 <div class="item">
-                <img src="dist/img/avatar6.jfif" alt="user image" class="online">
+                <img src="../images\images\logoterminado.png" alt="user image 2" class="online">
 
                 <p class="message">
                   <a href="#" class="name">

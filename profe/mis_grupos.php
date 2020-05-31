@@ -433,7 +433,7 @@ if($email == "danielferreira@studere.com.uy"){
             <li><a href="./index.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> General</a></li>
             <li><a href="./users.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Mis Alumnos</a></li>
             <li><a href="./mis_clases.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Mis Clases </a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Mis Asignatura </a></li>
+           
             <li  class="active"><a href="#"><i class="fa fa-circle-o"></i> Video Conferencias</a></li>
           </ul>
         </li>
@@ -548,15 +548,15 @@ if($email == "danielferreira@studere.com.uy"){
               </a>
               <ul class="treeview-menu">
                 
-                <li class="treeview">
+              <li class="treeview">
                   <a href="#"><i class="fa fa-circle-o"></i> Datos Personales
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Datos de Contacto</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Usuario & Contraseña</a></li>
+                    <li><a href="./datos_de_contacto.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Datos de Contacto</a></li>
+                    <li><a href="./usuario_contraseña.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Usuario & Contraseña</a></li>
                   </ul>
                 </li>
                 <li class="treeview">
@@ -566,7 +566,7 @@ if($email == "danielferreira@studere.com.uy"){
                     </span>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Métodos de Cobro</a></li>
+                    <li><a href="./metodos_de_cobro.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Métodos de Cobro</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Fechas de cobro</a></li>
                   </ul>
                 </li>

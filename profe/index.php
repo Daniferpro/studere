@@ -5,7 +5,7 @@ include "../admin/includes/seguridad.php";
 $id = $_GET['id'];
 $email = $_SESSION['email'];
 
-$consulta = "SELECT * FROM usuario WHERE email='$email' AND id='$id' ";
+$consulta = "SELECT * FROM usuario WHERE id='$id' ";
 $usuario = mysqli_fetch_assoc( consultarSQL($consulta) );
 
 //contamos los usuarios en línea
@@ -21,7 +21,17 @@ $registros_totales = consultarSQL(" SELECT * FROM clases WHERE Profesor='$id' ")
 $numeroVentasTotales = consultarSQL(" SELECT * FROM fatura WHERE status='Aprovado' AND data='$id'") ->num_rows;
 
 $numeroVentasIntento = consultarSQL(" SELECT * FROM fatura WHERE status!='Aprovado' ") ->num_rows;
+$consulta1 = consultarSQL("SELECT * FROM fatura WHERE data='$id' ");
+$dinero_generado_hasta_hoy_bruto = 0;
 
+  while($facturas_alumnos = mysqli_fetch_assoc($consulta1)){
+
+    $dinero_generado_hasta_hoy_bruto += $facturas_alumnos['valor'];
+  }
+if($consulta1->num_rows >=1){
+  $porcentaje_plataforma = $dinero_generado_hasta_hoy_bruto * 30 / 100;
+  $dinero_generado_hasta_hoy = $dinero_generado_hasta_hoy_bruto - $porcentaje_plataforma ;
+}else{ $dinero_generado_hasta_hoy = 0;}
 
 
 ?>
@@ -76,7 +86,7 @@ $numeroVentasIntento = consultarSQL(" SELECT * FROM fatura WHERE status!='Aprova
 				}
 			}
 
-			req.open('GET', '../admin/includes/comentarios.php', true);
+			req.open('GET', './includes/comentarios.php', true);
 			req.send();
 		}
 
@@ -390,22 +400,22 @@ $numeroVentasIntento = consultarSQL(" SELECT * FROM fatura WHERE status!='Aprova
           <ul class="treeview-menu">
             <li class="active"><a href="./index.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> General</a></li>
             <li><a href="./users.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Mis Alumnos</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Mis Clases </a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Mis Asignatura </a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Mis Grupos </a></li>
+            <li><a href="./mis_clases.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Mis Clases </a></li>
+            
+            <li><a href="./mis_grupos.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Video Conferencias </a></li>
           </ul>
         </li>
          
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
-            <span>Mis Video Conferencias</span>
+            <span>Op Video Conferencias</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Fechas y Horas</a></li>
+            <li><a href="./grabaciones_vc.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Grabaciones VC</a></li>
             <li><a href="./software_vc.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Software a utilizar</a></li>
             </ul>
         </li>
@@ -513,8 +523,8 @@ $numeroVentasIntento = consultarSQL(" SELECT * FROM fatura WHERE status!='Aprova
                     </span>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Datos de Contacto</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Usuario & Contraseña</a></li>
+                    <li><a href="./datos_de_contacto.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Datos de Contacto</a></li>
+                    <li><a href="./usuario_contraseña.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Usuario & Contraseña</a></li>
                   </ul>
                 </li>
                 <li class="treeview">
@@ -524,7 +534,7 @@ $numeroVentasIntento = consultarSQL(" SELECT * FROM fatura WHERE status!='Aprova
                     </span>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Métodos de Cobro</a></li>
+                    <li><a href="./metodos_de_cobro.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Métodos de Cobro</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Fechas de cobro</a></li>
                   </ul>
                 </li>
@@ -580,9 +590,9 @@ $numeroVentasIntento = consultarSQL(" SELECT * FROM fatura WHERE status!='Aprova
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3><?php echo $numeroVentasIntento; ?><sup style="font-size: 20px"></sup></h3>
+              <h3>$<?php echo $dinero_generado_hasta_hoy; ?><sup style="font-size: 20px"></sup></h3>
 
-              <p>Ventas sin Confirmar</p>
+              <p>Dinero generado hasta hoy</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
