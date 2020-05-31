@@ -482,23 +482,7 @@
                 <div class="row team_row">
 
                     <!-- Team Item -->
-                    <div class="col-lg-3 col-md-6 team_col">
-                        <div class="team_item">
-                            <div class="team_image"><img src="images/team_1.jpg" alt=""></div>
-                            <div class="team_body">
-                                <div class="team_title"><a href="#">Aalguna mujer</a></div>
-                                <div class="team_subtitle">Algún puesto</div>
-                                <div class="social_list">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    
                     <!-- Team Item -->
                     <div class="col-lg-3 col-md-6 team_col">
                         <div class="team_item">
@@ -536,22 +520,7 @@
                     </div>
 
                     <!-- Team Item -->
-                    <div class="col-lg-3 col-md-6 team_col">
-                        <div class="team_item">
-                            <div class="team_image"><img src="images/team_4.jpg" alt=""></div>
-                            <div class="team_body">
-                                <div class="team_title"><a href="#">Sergio Machado</a></div>
-                                <div class="team_subtitle">Servidores & Redes</div>
-                                <div class="social_list">
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                 </div>
             </div>
