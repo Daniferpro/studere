@@ -484,7 +484,7 @@
                     <!-- Team Item -->
                     
                     <!-- Team Item -->
-                    <div class="col-lg-3 col-md-6 team_col">
+                    <div class="col-lg-6 col-md-6 team_col">
                         <div class="team_item">
                             <div class="team_image"><img src="images/team_2.jpg" alt=""></div>
                             <div class="team_body">
@@ -502,7 +502,7 @@
                     </div>
 
                     <!-- Team Item -->
-                    <div class="col-lg-3 col-md-6 team_col">
+                    <div class="col-lg-6 col-md-6 team_col">
                         <div class="team_item">
                             <div class="team_image"><img src="images/team_2.jpg" alt=""></div>
                             <div class="team_body">
