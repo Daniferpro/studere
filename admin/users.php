@@ -765,11 +765,15 @@ if($email == "danielferreira@studere.com.uy"){
                   <select name="tipo" class="form-control select2" style="width: 50%;" >
                     <option selected="selected" value="">Estudiante</option>
                     <option value="matematica">Profesor de Matemática</option>
+                    <option value="matematica1">Profesor de Matemática 1</option>
                     <option value="quimica">Profesor de Química</option>
                     <option value="fisica">Profesor de Física</option>
+                    <option value="fisica1">Profesor de Física 1</option>
                     <option value="ingles">Profesor de Inglés</option>
                     <option value="biologia">Profesor de Biología</option>
                     <option value="historia">Profesor de Historia</option>
+                    <option value="derecho">Profesor de Derecho</option>
+                    <option value="derecho1">Profesor de Derecho 1</option>
                     <option <?php echo $admin_form;?> value="admin">Administrador</option>
                     
                   
