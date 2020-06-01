@@ -7,26 +7,32 @@ class Grupo{
 
     public $identificador;
     public $link_vc;
-    public $link_vc_grabada;
     public $horario;
-    public $dia;
     public $contraseña_vc;
-    public $contraseña_vc_grabada;
-    public $grupo;
+    public $nombre;
+    public $dia_inicio;
+    public $dia_fin;
+    public $descripcion;
+    public $precio;
+ 
+   
     
     
     //construc
-    public function __construct($grupo,$materia){
+    public function __construct($id_grupo,$materia){
        
-        $dato = mysqli_fetch_assoc(gruposSQL(" SELECT * FROM $materia WHERE grupo='$grupo' "));
+        $dato = mysqli_fetch_assoc(gruposSQL(" SELECT * FROM $materia WHERE id='$id_grupo' "));
         $this->identificador = $dato['id'];
         $this->link_vc = $dato['link_vc'];
-        $this->link_vc_grabada = $dato['link_vc_grabada'];
         $this->horario = $dato['Horario'];
-        $this->dia = $dato['Dia'];
         $this->contraseña_vc = $dato['Contraseña_vc'];
-        $this->contraseña_vc_grabada = $dato['Contraseña_vc_grabada'];
-        $this->grupo = $dato['grupo'];
+        $this->nombre = $dato['Nombre'];
+        $this->dia_inicio = $dato['dia_inicio'];
+        $this->dia_fin = $dato['dia_fin'];
+        $this->descripcion = $dato['descripcion'];
+        $this->precio = $dato['Precio'];
+
+       
         $this->materia = $materia;
         
         
@@ -51,10 +57,7 @@ class Grupo{
         $materia = $this->materia;
         gruposSQL("DELETE FROM $materia WHERE id='$id'");
 
-       echo '<script type="text/javascript"> 
-       alert("Usted ha eliminado al USUARIO")
-       
-       </script>';
+      
 
 
     }

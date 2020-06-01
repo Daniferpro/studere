@@ -693,11 +693,13 @@ $Grupo = New Grupo($grupo_id_get,$materia);
                   <thead>
                   <tr>
                     
-                    <th>Grupo</th>
+                  <th>Nombre</th>
                     <th>Horario de VC</th>
                     <th>Día Inicio</th>
+                    <th>Día Fin</th>
                     <th>Link</th>
                     <th>contraseña</th>
+                    <th>Descripcion</th>
                     <th>Opciones</th>
                     
                     
@@ -712,8 +714,13 @@ $Grupo = New Grupo($grupo_id_get,$materia);
               </div>
               <!-- /.table-responsive -->
             </div>
+            
             <!-- /.box-body -->
             <div class="box-footer clearfix">
+            
+            <a  class="btn btn-success" href="./modificar_grupo.php?id=<?php echo $id .'&grupo='.$Grupo->identificador ?>">refrescar</a>
+
+              
               <a href="./mis_grupos.php?id=<?php echo $id;?>"><button type="" class="btn btn-info pull-right">Agregar Nueva</button></a>
               </div>
             <!-- /.box-footer -->
@@ -721,7 +728,7 @@ $Grupo = New Grupo($grupo_id_get,$materia);
           <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Modificar Grupo N° <?php echo $_GET['grupo'];?></h3>
+              <h3 class="box-title">Modificar Clase: <?php echo $Grupo->nombre;?></h3>
             </div>
             <!-- /.box-header -->
             <!-- form NUEVA CLASEEEE start -->
@@ -730,17 +737,28 @@ $Grupo = New Grupo($grupo_id_get,$materia);
               <div class="box-body">
 
               <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Nuevo Nombre de VC</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" name="nuevo_nombre" class="form-control" id="text" placeholder="Nombre Actual: <?php echo $Grupo->nombre;?> " >
+                  </div>
                   <label for="inputEmail3" class="col-sm-2 control-label">Nuevo Horario VC</label>
 
                   <div class="col-sm-10">
                     <input type="text" name="nuevo_horario" class="form-control" id="text" placeholder="Horario Actual: <?php echo $Grupo->horario;?> " >
                   </div>
-                  <label for="inputEmail3" class="col-sm-2 control-label">Dia de Inicio</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Dia Inicio</label>
 
                   <div class="col-sm-10">
                     <input type="date" name="nuevo_dia" class="form-control" id="text" placeholder="Selecciones dia de inicio " >
                   </div>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Dia Final</label>
+
+                  <div class="col-sm-10">
+                    <input type="date" name="nuevo_dia_final" class="form-control" id="text" placeholder="Selecciones dia de inicio " >
+                  </div>
                 </div>
+
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Link Nuevo</label>
 
@@ -752,7 +770,7 @@ $Grupo = New Grupo($grupo_id_get,$materia);
                   <label for="inputEmail3" class="col-sm-2 control-label">Nueva Contraseña VC</label>
 
                   <div class="col-sm-10">
-                    <input type="text"name="contraseña_nueva"  class="form-control" id="telphone" placeholder="Contraseña Actual: <?php echo $Grupo->contraseña_vc;?> ">
+                    <input type="text"name="nueva_contraseña"  class="form-control" id="telphone" placeholder="Contraseña Actual: <?php echo $Grupo->contraseña_vc;?> ">
                   </div> 
                   <input type="text" value="<?php echo $materia_prof?>" name="oculto" hidden>
                   <input type="text" value="<?php echo $id?>" name="id_profe" hidden>
@@ -760,10 +778,10 @@ $Grupo = New Grupo($grupo_id_get,$materia);
                 
   
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">N° Grupo</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Descripción</label>
 
                   <div class="col-sm-10">
-                    <input type="text" name="grupo_nuevo" class="form-control" id="text" placeholder="Numero Asignado Actualmente: <?php echo $Grupo->grupo;?> " >
+                    <input type="text-area" name="nueva_descripcion" class="form-control" id="text" placeholder= "<?php echo $Grupo->descripcion;?> " >
                   </div>
                 </div>
                 
@@ -782,13 +800,17 @@ $Grupo = New Grupo($grupo_id_get,$materia);
                   <div class="col-sm-offset-2 col-sm-10">
                     <div class="checkbox">
                     <div class="box-footer">
-                    <button type="" class="btn btn-sm btn-default btn-flat pull-left">Los Datos Ingresados serán Visualizados por los Alumnos</button>
+                    
+                <input type="button" class="btn btn-danger pull-left" onclick="pregunta()" value="Eliminar" >
                 <button type="submit" class="btn btn-info pull-right">Modificar Gurpo DE VC</button>
+           
                 </div>
+
                     </div>
                   </div>
                 </div>
               </div>
+              
               <!-- /.box-body -->
               
               <!-- /.box-footer -->
@@ -800,6 +822,9 @@ $Grupo = New Grupo($grupo_id_get,$materia);
           <!-- quick email widget -->
           
         </section>
+        <form name=eliminarr id="eliminarr" action="#" method="post">
+                <input type="hidden" name="eliminar">
+                </form>
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
         <section class="col-lg-5 connectedSortable">
@@ -1096,7 +1121,14 @@ if(isset($_POST['oculto']))
   
   //probamos el metodo de User para actualizar informacion de grupo de vc
 
+  if(isset($_POST['nuevo_nombre'])){
+    if(!empty($_POST['nuevo_nombre'])){
+      $valor = $_POST['nuevo_nombre'];
+      $campo = "Nombre";
+      $Grupo->actualizar($campo, $valor);
 
+    }
+  }
   if(isset($_POST['nuevo_horario'])){
     if(!empty($_POST['nuevo_horario'])){
       $valor = $_POST['nuevo_horario'];
@@ -1108,45 +1140,81 @@ if(isset($_POST['oculto']))
   if(isset($_POST['nuevo_dia'])){
     if(!empty($_POST['nuevo_dia'])){
       $valor = $_POST['nuevo_dia'];
-      $campo = "Dia";
+      $campo = "dia_inicio";
       $Grupo->actualizar($campo, $valor);
 
     }
   }
-  if(isset($_POST['link_nuevo'])){
-    if(!empty($_POST['link_nuevo'])){
-      $valor = $_POST['link_nuevo'];
-      $campo = "link_vc ";
+  if(isset($_POST['nuevo_dia_final'])){
+    if(!empty($_POST['nuevo_dia_final'])){
+      $valor = $_POST['nuevo_dia_final'];
+      $campo = "dia_fin";
       $Grupo->actualizar($campo, $valor);
 
     }
   }
-  if(isset($_POST['email'])){
-    if(!empty($_POST['email'])){
-      $valor = $_POST['email'];
-      $campo = "Email";
-      $Grupo->actualizar($campo, $valor);
-
-    }
-  }
-  if(isset($_POST['contraseña_nueva'])){
-    if(!empty($_POST['contraseña_nueva'])){
-      $valor = $_POST['contraseña_nueva'];
+  
+  if(isset($_POST['nueva_contraseña'])){
+    if(!empty($_POST['nueva_contraseña'])){
+      $valor = $_POST['nueva_contraseña'];
       $campo = "Contraseña_vc";
       $Grupo->actualizar($campo, $valor);
 
     }
   }
-  if(isset($_POST['grupo_nuevo'])){
-    if(!empty($_POST['grupo_nuevo'])){
-      $valor = $_POST['grupo_nuevo'];
-      $campo = "grupo";
+  if(isset($_POST['nuevo_link'])){
+    if(!empty($_POST['nuevo_link'])){
+      $valor = $_POST['nuevo_link'];
+      $campo = "link_vc ";
+      $Grupo->actualizar($campo, $valor);
+
+    }
+  }
+  if(isset($_POST['nueva_descripcion'])){
+    if(!empty($_POST['nueva_descripcion'])){
+      $valor = $_POST['nueva_descripcion'];
+      $campo = "descripcion";
       $Grupo->actualizar($campo, $valor);
 
     }
   }
 
+  echo ' <script
+     src="https://code.jquery.com/jquery-3.4.1.min.js"
+     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+     crossorigin="anonymous"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+       
+     <script type="text/javascript">
+    
+     toastr["success"]("EL Grupo se Modifico Exitosamente!", "Genial")
 
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
+</script>';
+
+
+}
+
+if(isset($_POST['eliminar'])){
+  $Grupo->eliminar();
 }
 ?>
 
@@ -1185,7 +1253,44 @@ if(isset($_POST['oculto']))
 <script src="../admin/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../admin/dist/js/pages/dashboard.js"></script>
+
 <!-- AdminLTE for demo purposes -->
 <script src="../admin/dist/js/demo.js"></script>
+<script
+     src="https://code.jquery.com/jquery-3.4.1.min.js"
+     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+     crossorigin="anonymous"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+       
+     
+
+<script language="JavaScript">
+
+function pregunta(){
+    if (confirm('¿Estas seguro de eliminar?')){
+       document.eliminarr.submit()
+       toastr["info"]("Usted Eliminó el Grupo de Video Conferencias !", "Información")
+
+      toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
+          }
+}
+</script>
 </body>
 </html>

@@ -691,6 +691,7 @@ if($email == "danielferreira@studere.com.uy"){
                     <th>Precio</th>
                     <th>Alumnos</th>
                     <th>Dias</th>
+                    <th>Opciones</th>
                     
                     
                   </tr>
@@ -711,82 +712,7 @@ if($email == "danielferreira@studere.com.uy"){
             <!-- /.box-footer -->
           </div>
           <!-- Horizontal Form -->
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Crear Nueva Clase</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form NUEVA CLASEEEE start -->
-
-            <form class="form-horizontal" method="post" action="#">
-              <div class="box-body">
-
-              <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" name="nombre_clase" class="form-control" id="text" placeholder="Nombre y especificar año, ej: 3ero Ciclo basico" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Precio</label>
-
-                  <div class="col-sm-10">
-                    <input type="number" name="precio" class="form-control" id="text" placeholder="Precio de la Clase" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                 
-                  <input type="text" value="<?php echo $materia_prof?>" name="materia" hidden>
-                  <input type="text" value="<?php echo $id?>" name="id_profe" hidden>
-                </div>  
-                
-  
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Dias</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" name="dias" class="form-control" id="text" placeholder="Ejemplo: Lunes Martes y Viernes" required>
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Plataforma</label>
-
-                  <select name="plataforma" class="form-control select2" style="width: 50%;" >
-                    <option selected="selected" value="Zoom">Zoom</option>
-                    <option value="Webex Cisco">Webex Cisco</option>
-                    
-                    
-                  
-                  </select>
-                
-              </div>
-                </div>
-                
-                <div class="form-group">
-                
-                  <div class="col-sm-offset-2 col-sm-10">
-                    <div class="checkbox">
-                      
-                    <div class="box-footer">
-                      
-                    <button type="" class="btn btn-sm btn-default btn-flat pull-left">La nueva Clase quedará Actia Luego de Revision de Admin</button>
-                <button type="submit" class="btn btn-info pull-right">Crear Clase</button>
-                
-                </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.box-body -->
-              
-              <!-- /.box-footer -->
-            </form>
-
-          <!-- TO DO List -->
-          <!-- /.box -->
-
+          
           <!-- quick email widget -->
           
         </section>

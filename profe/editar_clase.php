@@ -2,11 +2,12 @@
 //incluimos conecciones a las ases ded datos  
 include "./includes/conecciones.php";
 include "../admin/includes/seguridad.php";
+include "./includes/objetos.php";
 
 
 $email = $_SESSION['email'];
 $id=$_GET['id'];
-$consulta = "SELECT * FROM usuario WHERE email='$email'";
+$consulta = "SELECT * FROM usuario WHERE id='$id'";
 $usuario = mysqli_fetch_assoc( consultarSQL($consulta) );
 
 //contamos los usuarios en línea
@@ -40,6 +41,9 @@ if($consulta1->num_rows >=1){
 if($email == "danielferreira@studere.com.uy"){
   $admin_form = '';
 }else{ $admin_form = 'disabled="disabled"'; }
+$materia = $usuario['materias'];
+$id_grupo = $_GET['clase'];
+$Grupo = New Grupo($id_grupo,$materia);
 
 
 
@@ -432,9 +436,8 @@ if($email == "danielferreira@studere.com.uy"){
           <ul class="treeview-menu">
             <li><a href="./index.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> General</a></li>
             <li><a href="./users.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Mis Alumnos</a></li>
-            <li><a href="./mis_clases.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Mis Clases </a></li>
-           
-            <li  class="active"><a href="#"><i class="fa fa-circle-o"></i> Video Conferencias</a></li>
+            <li class="active"><a href="./mis_clases.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Mis Clases </a></li>
+            <li><a href="./mis_grupos.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Video Conferencias </a></li>
           </ul>
         </li>
          
@@ -447,8 +450,8 @@ if($email == "danielferreira@studere.com.uy"){
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="./grabaciones_vc.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Grabaciones VC</a></li>
-            <li><a href="./software_vc.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Software a utilizar</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Fechas y Horas</a></li>
+            <li><a href="./software_vc.php?id=<?php echo $id;?>s"><i class="fa fa-circle-o"></i> Software a utilizar</a></li>
             </ul>
         </li>
         <!-- <li class="treeview">
@@ -548,7 +551,7 @@ if($email == "danielferreira@studere.com.uy"){
               </a>
               <ul class="treeview-menu">
                 
-              <li class="treeview">
+                <li class="treeview">
                   <a href="#"><i class="fa fa-circle-o"></i> Datos Personales
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
@@ -566,7 +569,7 @@ if($email == "danielferreira@studere.com.uy"){
                     </span>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="./metodos_de_cobro.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Métodos de Cobro</a></li>
+                    <li><a href="./metodo_de_cobro.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Métodos de Cobro</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Fechas de cobro</a></li>
                   </ul>
                 </li>
@@ -590,13 +593,13 @@ if($email == "danielferreira@studere.com.uy"){
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Mis GRUPOS
-        <small>Grupos y Datos</small>
+        EDITAR Mis Clases
+        <small>Lista de Mis Clases</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
         <li class="">panel</li>
-        <li class="active">Mis Grupos</li>
+        <li class="active">Mis Clases</li>
       </ol>
     </section>
 
@@ -669,11 +672,11 @@ if($email == "danielferreira@studere.com.uy"){
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
-        <section class="col-lg-12 connectedSortable">
+        <section class="col-lg-7 connectedSortable">
          <!-- TABLE: LATEST ORDERS -->
          <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Lista de Mis Grupos y Video Conferencias</h3>
+              <h3 class="box-title">Lista de Mis Clases Creadas</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -689,21 +692,17 @@ if($email == "danielferreira@studere.com.uy"){
                   <tr>
                     
                     <th>Nombre</th>
-                    <th>Horario de VC</th>
-                    <th>Día Inicio</th>
-                    <th>Día Fin</th>
-                    <th>Link</th>
-                    <th>contraseña</th>
-                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Alumnos</th>
+                    <th>Dias</th>
                     <th>Opciones</th>
-                    
                     
                     
                   </tr>
                   </thead>
                   <tbody name="usuarios" id="usuarios_total">
                   
-                 <?php include "./includes/grupos.php";  ?>
+                 <?php include "./includes/clases.php";  ?>
                    </tbody>
                 </table>
               </div>
@@ -711,7 +710,7 @@ if($email == "danielferreira@studere.com.uy"){
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-            <a  class="btn btn-success" href="./mis_grupos.php?id=<?php echo $id; ?>">refrescar</a>
+            <a  class="btn btn-success" href="./editar_clase.php?id=<?php echo $id.'&clase='.$id_grupo; ?>">refrescar</a>
 
               </div>
             <!-- /.box-footer -->
@@ -719,7 +718,7 @@ if($email == "danielferreira@studere.com.uy"){
           <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Crear Nuevo Grupo de VC</h3>
+              <h3 class="box-title">Editar Clase <?php echo $Grupo->nombre;?></h3>
             </div>
             <!-- /.box-header -->
             <!-- form NUEVA CLASEEEE start -->
@@ -728,80 +727,46 @@ if($email == "danielferreira@studere.com.uy"){
               <div class="box-body">
 
               <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Nombre de VC</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Editar Precio </label>
 
                   <div class="col-sm-10">
-                    <input type="text" name="nombre" class="form-control" id="text" placeholder="EJEMPLO: 20 clases 5 dias x semana, 3ero Ciclo Básico" >
-                  </div>
-                  <label for="inputEmail3" class="col-sm-2 control-label">Horario VC</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" name="horario" class="form-control" id="text" placeholder="EJEMPLO: de 19:00 a 19:40" >
-                  </div>
-                  <label for="inputEmail3" class="col-sm-2 control-label">Dia Inicio</label>
-
-                  <div class="col-sm-10">
-                    <input type="date" name="dia_inicio" class="form-control" id="text" placeholder="Selecciones dia de inicio " >
-                  </div>
-                    <label for="inputEmail3" class="col-sm-2 control-label">Dia Final</label>
-
-                  <div class="col-sm-10">
-                    <input type="date" name="dia_fin" class="form-control" id="text" placeholder="Selecciones dia de inicio " >
+                    <input type="number" name="precio" class="form-control" id="text" placeholder="Agregar o editar precio del Pack." >
                   </div>
                 </div>
-
+                
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Link VC</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" name="link" class="form-control" id="text" placeholder="Link Vc" >
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Contraseña VC</label>
-
-                  <div class="col-sm-10">
-                    <input type="text"name="contraseña"  class="form-control" id="telphone" placeholder="Contraseña Vc">
-                  </div> 
-                  <input type="text" value="<?php echo $materia_prof?>" name="materia" hidden>
-                  <input type="text" value="<?php echo $id?>" name="id_profe" hidden>
+                 
+                  
+                  <input type="text" value="<?php echo $id?>" name="oculto" hidden>
                 </div>  
                 
   
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Descripción</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Dias</label>
 
                   <div class="col-sm-10">
-                    <input type="text-area" name="descripcion" class="form-control" id="text" placeholder= "Pequeña descripción de la orientación de las clases o lista de los temas a dar en las mismas" >
+                    <input type="text" name="dias" class="form-control" id="text" placeholder="Ejemplo: Lunes Martes y Viernes" >
                   </div>
                 </div>
                 
-                <div class="form-group">
-                  
-                    
-                    
-                  
-                  </select>
                 
-              </div>
                 </div>
                 
                 <div class="form-group">
                 
                   <div class="col-sm-offset-2 col-sm-10">
                     <div class="checkbox">
+                      
                     <div class="box-footer">
-                    
-                    
-                <button type="submit" class="btn btn-info pull-right">Crear Gurpo DE VC</button>
-               
+                      
+                    <button type="" class="btn btn-sm btn-default btn-flat pull-left">La nueva Clase quedará Activa Luego de Revision de Admin</button>
+                <button type="submit" class="btn btn-info pull-right">Modificar Clase</button>
+                
                 </div>
-
                     </div>
                   </div>
                 </div>
               </div>
-              
               <!-- /.box-body -->
               
               <!-- /.box-footer -->
@@ -820,11 +785,11 @@ if($email == "danielferreira@studere.com.uy"){
           <!-- /.box -->
 
           <!-- Calendar -->
-          <div class="box box-solid bg-green-gradient">
+          <div class="box box-solid bg-blue-gradient">
             <div class="box-header">
-              <i class="fa fa-calendar"></i>
+              <i class="fa fa-dollar"></i>
 
-              <h3 class="box-title">Calendario</h3>
+              <h3 class="box-title">Precios Sugeridos</h3>
               <!-- tools box -->
               <div class="pull-right box-tools">
                 <!-- button with a dropdown -->
@@ -833,54 +798,63 @@ if($email == "danielferreira@studere.com.uy"){
                 </div>
                 <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
-                <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                </button>
+                
               </div>
               <!-- /. tools -->
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
               <!--The calendar -->
-              <div id="calendar" style="width: 100%"></div>
-            </div>
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                  <tr>
+                    
+                    <th>N° de Clases</th>
+                    <th>$ Básico</th>
+                    <th>$ Especificas</th>
+                    <th>Ganancia</th>
+                    
+                    
+                    
+                  </tr>
+                  </thead>
+                  <tbody name="usuarios" id="usuarios_total">
+                 <tr>
+                   <td>20 Clases</td>
+                   <td>$4000</td>
+                   <td>$4500</td>
+                   <td>70 %</td>
+                 </tr>
+
+                 <tr>
+                   <td>12 Clases</td>
+                   <td>$3000</td>
+                   <td>$3600</td>
+                   <td>70 %</td>
+                 </tr>
+
+                 <tr>
+                   <td>8 Clases</td>
+                   <td>$2600</td>
+                   <td>$3000</td>
+                   <td>70 %</td>
+                 </tr>
+                 <tr>
+                   <td>1 Clase</td>
+                   <td>$350</td>
+                   <td>$500</td>
+                   <td>70 %</td>
+                 </tr>
+                   </tbody>
+                </table>
+              </div>
             <!-- /.box-body -->
             <div class="box-footer text-black">
               <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                   <!-- Progress bars -->
-                  <div class="clearfix">
-                    <span class="pull-left">Tecnología</span>
-                    <small class="pull-right">90%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
-                  </div>
-
-                  <div class="clearfix">
-                    <span class="pull-left">Ventas</span>
-                    <small class="pull-right">70%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-6">
-                  <div class="clearfix">
-                    <span class="pull-left">Publicidad</span>
-                    <small class="pull-right">60%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                  </div>
-
-                  <div class="clearfix">
-                    <span class="pull-left">Registros</span>
-                    <small class="pull-right">40%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                  </div>
+                  <span class="">Estos son precios sugeridos para trabajar dentro de un Margen de costos acorde para cada asignatura</span>
                 </div>
                 <!-- /.col -->
               </div>
@@ -1102,8 +1076,27 @@ if($email == "danielferreira@studere.com.uy"){
 </div>
 <!-- ./wrapper -->
 <?php
-if(isset($_POST['id_profe']))
-{include "./includes/nuevo_grupo.php";}
+if(isset($_POST['oculto'])){
+
+  if(isset($_POST['dias'])){
+    if(!empty($_POST['dias'])){
+      $valor = $_POST['dias'];
+      $campo = "Dias ";
+      $Grupo->actualizar($campo, $valor);
+
+    }
+  }
+  if(isset($_POST['precio'])){
+    if(!empty($_POST['precio'])){
+      $valor = $_POST['precio'];
+      $campo = "Precio ";
+      $Grupo->actualizar($campo, $valor);
+
+    }
+  }
+
+
+}
 ?>
 <!-- jQuery 3 -->
 <script src="../admin/bower_components/jquery/dist/jquery.min.js"></script>
@@ -1142,7 +1135,5 @@ if(isset($_POST['id_profe']))
 <script src="../admin/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../admin/dist/js/demo.js"></script>
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
 </body>
 </html>

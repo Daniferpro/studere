@@ -1,21 +1,22 @@
 <?php
+$nombre= $_POST['nombre'];
 $horario = $_POST['horario'];
-$dia = $_POST['dia'];
+$dia_inicio = $_POST['dia_inicio'];
+$dia_fin = $_POST['dia_fin'];
 $link = $_POST['link'];
-$pass = $_POST['pass'];
-$grupo = $_POST['grupo'];
+$pass = $_POST['contraseña'];
+$descripcion = $_POST['descripcion'];
 
 $materia = $_POST['materia'];#materia del profesor que creala clase
 $id_profe = $_POST['id_profe'];
 
 
-    $nuevo_registro = "INSERT INTO `$materia` (`id`, `link_vc`, `Contraseña_vc`, `Horario`,`grupo`, `link_vc_grabada` , `Contraseña_vc_grabada`, `Dia`) 
-                        VALUES (NULL, '$link', '$pass', '$horario', '$grupo', '', '','$dia' )";
+    $nuevo_registro = "INSERT INTO `$materia` (`id`, `Nombre`,`link_vc`, `Contraseña_vc`, `Horario`,`descripcion`, `dia_inicio` , `dia_fin`, `Precio`) 
+                        VALUES (NULL, '$nombre', '$link', '$pass', '$horario', '$descripcion', '$dia_inicio', '$dia_fin','0' )";
    
     if( gruposSQL($nuevo_registro)){
 
       echo '
-      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
       <script
      src="https://code.jquery.com/jquery-3.4.1.min.js"
      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -25,24 +26,25 @@ $id_profe = $_POST['id_profe'];
        
      <script type="text/javascript">
     
-    toastr.error("Mensaje : :  El Grupo' . $grupo . ' ' . ' A quedado Registrado en la plataforma", {
-      "closeButton": true,
-      "debug": false,
-      "newestOnTop": true,
-      "progressBar": true,
-      "positionClass": "toast-top-right",
-      "preventDuplicates": true,
-      "onclick": null,
-      "showDuration": "300",
-      "hideDuration": "1000",
-      "timeOut": "15000",
-      "extendedTimeOut": "1000",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
-    });
-    
+    toastr["success"]("EL Grupo a quedado Registrado Exitosamente!", "Genial")
+
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
     </script>
     ';}
     
