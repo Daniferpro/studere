@@ -10,10 +10,11 @@ for ($i=0; $i <$cantidad_materias ; $i++) {
     $materia = $materias[$i];
     if(gruposSQL("SELECT * FROM $materia[0] ")){
         $consulta2 = gruposSQL("SELECT * FROM $materia[0]");
+        $mi_variable = 0;
         while($materia_detalle = mysqli_fetch_assoc($consulta2)){
-            $mi_variable = 0;
-            if($materia_detalle['nivel'] == 4 | $materia_detalle['nivel'] == 5 | $materia_detalle['nivel'] == 6){
             
+            if($materia_detalle['nivel'] == 4 | $materia_detalle['nivel'] == 5 | $materia_detalle['nivel'] == 6){
+                
                 if($mi_variable == 0){
                     $profesor = mysqli_fetch_assoc(consultarSQL("SELECT * FROM usuario WHERE materias='$materia[0]' "));
                 echo '
