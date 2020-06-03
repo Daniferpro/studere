@@ -227,27 +227,20 @@ endif;
 		<div class="courses">
 			<div class="section_background parallax-window" data-parallax="scroll" data-image-src="images/courses_background.jpg" data-speed="0.8"></div>
 			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="section_title_container text-center">
-							<br>
-							<h2 class="section_title">Selecciona tu Bachillerato</h2>
-							
-						</div>
-					</div>
-				</div>
+				
 				<div class="row courses_row">
 					
-					
+				<div class="col-lg-1 course_col">
+				</div>
 					<!-- Course -->
 					<div class="col-lg-4 course_col">
 						<div class="course">
-							<div class="course_image"><img src="images/clase_1.jpg" alt=""></div>
+							<div class="course_image"><img src="images/blog_2.jpg" alt=""></div>
 							<div class="course_body">
-								<h3 class="course_title"><a href="./clases/1bc/index.php">1°ero Bachillerato</a></h3>
-								<div class="course_teacher">4°to año</div>
+								<h3 class="course_title"><a href="">3°ero Ciclo Básico</a></h3>
+								<div class="course_teacher">3°er año</div>
 								<div class="course_text">
-									<p>Todas Las Materias del año de la mano de Actuales Profesores de CES</p>
+									<p>Todas Las Materias de 3er año</p>
 									<li>Activo</li>
 								</div>
 							</div>
@@ -268,75 +261,49 @@ endif;
 					</div>
 	
 					<!-- Course -->
-				
+					<div class="col-lg-2 course_col">
+				</div>
 					<div class="col-lg-4 course_col">
 						<div class="course">
-							<div class="course_image" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')"><img src="images/clase_2.jpg"></div>
+							<div class="course_image" ><img src="images/video.jpg"></div>
 							<div class="course_body">
-								<h3 class="course_title"><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">2°do Bachillerato</a></h3>
-								<div class="course_teacher">En Proceso de Creación</div>
+								<h3 class="course_title"><a href="./clases/bachillerato/index.php">Bachilleratos</a></h3>
+								<div class="course_teacher">4°  -  5°  -  6°</div>
 								<div class="course_text">
-									<p>Todas las Materias de 5to Año
-										<li>Deshabilitado</li>
+									<p>Todas las Materias de Bachilleratos</p>
+										<li>Activo</li>
 										
-											</p>
+											
 								</div>
 							</div>
 							<div class="course_footer">
 								<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
 									<div class="course_info">
 										<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-										<span>0 Estudiantes</span>
+										<span>236 Estudiantes</span>
 									</div>
 									<div class="course_info">
 										<i class="fa fa-star" aria-hidden="true"></i>
-										<span>0 Estrellas</span>
+										<span>5 Estrellas</span>
 									</div>
-									<div class="course_price ml-auto">$00000</div>
+									<div class="course_price ml-auto"></div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<div class="col-lg-1 course_col">
+				</div>
 	
 					<!-- Course -->
-					<div class="col-lg-4 course_col">
-						<div class="course">
-							<div class="course_image"><img src="images/clase_2.jpg" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')" alt=""></div>
-							<div class="course_body">
-								<h3 class="course_title"><a href="#"  onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">3°ero Bachillerato</a></h3>
-								<div class="course_teacher">En Proceso de Creación</div>
-								<div class="course_text">
-									<p>Todas las materias de 6to año 
-										<li>Deshabilitado</li>
-																	</p>
-								</div>
-							</div>
-							<div class="course_footer">
-								<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-									<div class="course_info">
-										<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-										<span>0 Estudiantes</span>
-									</div>
-									<div class="course_info">
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<span>0 Estrellas</span>
-									</div>
-									<div class="course_price ml-auto"><span>$0000</span></div>
-								</div>
-								
-							</div>
-							
-						</div>
-					</div>
 					
-	
+					</div>
 				</div>
-				<br>
-				<br>	
 			</div>
+			
 		</div>
-		
-		</div>
+	</div>
+
+			
 <!-- Features -->
 
 	
@@ -345,7 +312,8 @@ endif;
 	<footer class="footer">
 		<?php include_once "./includes/footer.php"; ?>
 	</footer>
-</div>
+	</div>
+
 
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="styles/bootstrap4/popper.js"></script>
