@@ -3,17 +3,17 @@
 // Solucionar problema con el resultado donde muestra el acceso solo ala primera clase comprada de la bd, si hay mas de una muestra solo la primera
 
 
-include_once "../../../../includes/seguro.php";
-include_once "../../../../includes/conectar.php";
-include_once "../../includes/coneccionbdclases.php";
+include_once "../../includes/seguro.php";
+include_once "../../includes/conectar.php";
+include_once "./clases/bachillerato/conn/conecciones.php";
 
 $palabra = $_POST['palabra'];
 $palabramayus = strtoupper($palabra);
 $materia = $_POST['seleccion'];
 
 
-$query="SELECT * FROM $materia WHERE nombre_clase LIKE '%$palabra%' OR temas LIKE '%$palabra%' ";
-$consulta=consultar3SQL($query);
+$query="SELECT * FROM $materia WHERE descripcion LIKE '%$palabra%'";
+$consulta=gruposSQL($query);
 
 
 if($consulta->num_rows>=1){
@@ -25,7 +25,7 @@ if($consulta->num_rows>=1){
         <thead class='courses_search_input'>
             <th class='courses_search_input'>Nombre Clase</th>
             <th class='courses_search_input'>Alumnos actuales</th>
-            <th class='courses_search_input'>Profesor Referente</th>
+            <th class='courses_search_input'>Dias</th>
  
         </thead>
         <tbody>";
@@ -46,36 +46,21 @@ if($consulta->num_rows>=1){
                 $y=mysqli_fetch_array($consulta2);
                 
 
-            if($fila['nombre_clase']==$s['Nombre_clase']){
+            
                     
 
-                    echo " <tr>
-                    <td class='courses_search_input'> <a  href='materias/$materia/temas/$fila[nombre_clase]/'>$fila[nombre_clase]</a></td>
-                        <td  class='courses_search_input'>$fila[alumnos] alumnos actuales</td>
-                        <td class='courses_search_input'>$fila[profesor]</td>
-                    </tr>";
-
-            }else{
                             // lo enviamos a la pagina de procesos/pago_clase y por get el nombre de clase como referencia. 
                     echo " <tr>                                  
-                    <td class='courses_search_input'> <a  href='registra_fatc.php?id=$fila[nombre_clase]&materia=$materia&usuario=$a[id]&precio=$fila[precio],00&id2=$fila[id]'>$fila[nombre_clase].</a></td>
+                    <td class='courses_search_input'> <a  href='registra_fatc.php?id=$fila[Nombre]&materia=$materia&usuario=$a[id]&precio=$fila[Precio],00&id2=$fila[id]'>$fila[Nombre].</a></td>
                         <td  class='courses_search_input'>$fila[alumnos] alumnos actuales</td>
-                        <td class='courses_search_input'>$fila[profesor]</td>
+                        <td class='courses_search_input'>$fila[Dias]</td>
                         
                     </tr>";
-
-            }
-
-
-            
-
-        }
-
-        echo " </tbody>
-                </table>
-                <br>
-                <br>
-                </div>";
+                    echo " </tbody>
+                            </table>
+                            <br>
+                            <br>
+                            </div>";}
        
 }else{
 
