@@ -31,7 +31,7 @@ else
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>1° Bachillerato</title>
+<title>Studere.uy</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Somos una plataforma de Estudios Online dónde puedes obtener apoyo para terminar los e´xamenes o directamente el año completo">
@@ -39,6 +39,7 @@ else
 <link rel="stylesheet" type="text/css" href="../../styles/bootstrap4/bootstrap.min.css">
 <link href="../../plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="../../plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/ico" href="../../images/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="../../plugins/OwlCarousel2-2.2.1/owl.carousel.css">
 <link rel="stylesheet" type="text/css" href="../../plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="../../plugins/OwlCarousel2-2.2.1/animate.css">
@@ -215,7 +216,7 @@ else
 			<div class="row">
 			
 				<!-- Courses Main Content -->
-				<div class="col-lg-8">
+				<div class="col-lg-10">
 					<div class="courses_search_container">
                     <form action="#" id="courses_search_form" method="post" autocomplete="off" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
 							<input type="search" class="courses_search_input" name="palabra" placeholder="Buscar Clase o Tema" required="required">
@@ -332,14 +333,16 @@ else
 				</div>
 
 				<!-- Courses Sidebar -->
-				<div class="col-lg-4">
+				<div class="col-lg-2">
 					<div class="sidebar">
 						
 						<!-- Categories -->
 						<div class="sidebar_section">
-							<div class="sidebar_section_title">Categories</div>
-							<div class="sidebar_categories">
-								<ul>
+							<div class="sidebar_section_title">ALERTA !!!</div>
+							<br>
+							<div class="tags_list">
+								<li>Estamos Realizando tareas de mantenimiento hasta el Viernes 5 de Junio</li>
+								<!-- <ul>
 									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Matemática</a></li>
 									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Física</a></li>
 									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Química</a></li>
@@ -352,15 +355,15 @@ else
                                     <li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Literatura</a></li>
                                     
 									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Biología</a></li>
-								</ul>
+								</ul> -->
 							</div>
 						</div>
 
 						<!-- Latest Course -->
-						<iframe src="https://www.mercadopago.com.uy/descuentos?campaign_id=59410&show_legals_link=true&dont_show_legals=true&iframe=true" width="100%" height="400" seamless="" frameborder="0" scrolling="no"></iframe>
+						<!-- <iframe src="https://www.mercadopago.com.uy/descuentos?campaign_id=59410&show_legals_link=true&dont_show_legals=true&iframe=true" width="100%" height="400" seamless="" frameborder="0" scrolling="no"></iframe>
 					
 
-						<!-- Tags -->
+						
 						<div class="sidebar_section">
 							<div class="sidebar_section_title">Etiquetas</div>
 							<div class="sidebar_tags">
@@ -373,7 +376,7 @@ else
 									<li><a href="#">Ejercicios</a></li>
 								</ul>
 							</div>
-						</div>
+						</div> -->
 
 						<!-- Banner -->
 						<!-- <div class="sidebar_section">
