@@ -1,6 +1,7 @@
 <?php
 include_once "../../../../../includes/seguro.php";
 include_once "../../../../../includes/conectar.php";
+include "../conn/conecciones.php";
 include_once "../../../includes/coneccionbdclases.php";
 
 $id=$_GET['ref'];
@@ -14,17 +15,20 @@ $alumno = $a['Nombre'].$a['Apellido']." ".$a['Email'];
 $clase = $_GET['id'];
 $materia = $_GET['materia'];
 
-$query2="SELECT * FROM clases WHERE Alumno='$alumno' AND Nombre_clase='$clase'";
-$consulta3=consultarSQL($query2);
-$b=mysqli_fetch_assoc($consulta3);
+$profe = consultarSQL("SELECT * FROM usuario WHERE materias='$materia'");
+$profe = mysqli_fetch_assoc($profe);
+
+// $query2="SELECT * FROM clases WHERE Alumno='$alumno' AND Nombre_clase='$clase'";
+// $consulta3=consultarSQL($query2);
+// $b=mysqli_fetch_assoc($consulta3);
 
  
-$query3="SELECT * FROM $materia WHERE nombre_clase='$clase'";
-$consulta1=consultar3SQL($query3);
+$query3="SELECT * FROM $materia WHERE Nombre='$clase'";
+$consulta1=gruposSQL($query3);
 $clases = mysqli_fetch_assoc($consulta1);
 
 
-require_once '../conn/conn.php';
+require_once '../conn/conn.php';    
 require __DIR__  . '../../../../../../vendor/autoload.php';
 
 
@@ -35,17 +39,17 @@ MercadoPago\SDK::setPublicKey("APP_USR-812c544c-9c4d-4cd9-81e2-33d73f8d6f28");
 
 $preference = new MercadoPago\Preference();
 
-  $produto = [$clase, 1, $clases['precio'], $id];
+  $produto = [$clase, 1, $clases['Precio'], $id];
 
   $item2 = new MercadoPago\Item();
   $item2->currency_id = "UYU";
   $item2->id = $produto[3];
   $item2->collection_id = $produto[3];
-  $item2->title = $produto[0]; 
+  $item2->title = $produto[0]." ".$materia; 
   $item2->quantity = $produto[1];
   $item2->unit_price = str_replace(',', '.', $produto[2]);
   $item2->collection_id = $id;
-  $item2->picture_url = "localhost\plataforma\images\images\logo4.png";
+  $item2->picture_url = "https://studere.uy/usuarios/plataforma/images/images/logo4.png";
   $item2->description = "Studere Platform Tacuarembó Uruguay";
   
 
@@ -57,9 +61,9 @@ $preference = new MercadoPago\Preference();
 
   # url de retorno segun resultado de la compra
   $preference->back_urls = array(
-    "success" => "localhost/prueba/usuarios/plataforma/clases/1bc/procesos/actualizaciondatos.php?aprovado",
-    "failure" => "localhost/prueba/usuarios/plataforma/clases/1bc/procesos/actualizaciondatos.php?fallo",
-    "pending" => "localhost/prueba/usuarios/plataforma/clases/1bc/procesos/actualizaciondatos.php?pendiente"
+    "success" => "localhost/usuarios/plataforma/clases/bachillerato/procesos/actualizaciondatos.php?aprovado",
+    "failure" => "localhost/usuarios/plataforma/clases/bachillerato/procesos/actualizaciondatos.php?fallo",
+    "pending" => "localhost/usuarios/plataforma/clases/bachillerato/procesos/actualizaciondatos.php?pendiente"
 );
 
 
@@ -320,22 +324,22 @@ $fat   = mysqli_fetch_assoc($query);
 									
 									<div class="course_body">
 										<h3 class="course_title"><a href="#"><?php echo "$clase";  ?></a></h3>
-										<div class="course_teacher">Profesor: <?php echo $clases['profesor'];?></div>
+										<div class="course_teacher">Profesor: <?php echo $profe['Nombre']." ".$profe['Apellido'];?></div>
 										<div class="course_text">
-											<p>Estas por comprar esta clase con fecha desde: <?php echo $fecha_inicio." ";?> Hasta el dia: <?php echo " ".$fecha_fin;?></p>
+											<p>Estas por comprar esta clase con fecha desde: <?php echo $fecha_inicio." ";?> Hasta el dia: <?php # " ".$fecha_fin;?></p>
 										</div>
 									</div>
 									<div class="course_footer">
 										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
 											<div class="course_info">
 												<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-												<span><?php echo  $clases['alumnos'];?></span>
+												<span><?php # echo  $clases['alumnos'];?></span>
 											</div>
 											<div class="course_info">
 												<i class="fa fa-star" aria-hidden="true"></i>
 												<span>5 estrellas</span>
 											</div>
-                                            <div class="course_price ml-auto" > Promo Lanzamiento ! <div style="color: red;"><span>$1600</span><?php echo $clases['precio'];?></div></div>
+                                            <div class="course_price ml-auto" > Promo Lanzamiento ! <div style="color: green;"><span>Normal $<?php echo $clases['Precio'] + 499;?></span>$<?php echo $clases['Precio'];?></div></div>
                                             
                                         </div>
                                         <div class="course_image"><img src="../../../images/course_3.jpg"  alt=""></div>
@@ -415,7 +419,7 @@ $fat   = mysqli_fetch_assoc($query);
                         </div>
                         <div class="course_tittle">
                             <p>
-                                <h3><?php if($b['estado'] == "activo"){ echo "¡ Clase Adquirida Disfurta de tu formación hasta la fecha $b[fecha_fin] !";}elseif($b['estado'] == "vencido"){echo "Esta clase esta Vencida! Actualiza el pago para Reactivarla!";}else{echo "Continuar con el Pago";} ?></h3>
+                                <h3><?php # if($b['estado'] == "activo"){ echo "¡ Clase Adquirida Disfurta de tu formación hasta la fecha $b[fecha_fin] !";}elseif($b['estado'] == "vencido"){echo "Esta clase esta Vencida! Actualiza el pago para Reactivarla!";}else{echo "Continuar con el Pago";} ?></h3>
                             </p>
                         </div>
                         <!-- <div class="course_tittle">

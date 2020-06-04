@@ -220,7 +220,8 @@ else
                     <form action="#" id="courses_search_form" method="post" autocomplete="off" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
 							<input type="search" class="courses_search_input" name="palabra" placeholder="Buscar Clase o Tema" required="required">
 							<select id="courses_search_select" name="seleccion"class="courses_search_select courses_search_input">
-									<option value="historia">Historia</option>
+									
+									<option selected="selected" value="historia">Historia</option>
 									<option value="matematica">Matemática</option>
 									<option value="fisica">Física</option>
 								    <option value="quimica">Química</option>
@@ -242,11 +243,18 @@ else
 							
 							
 							require_once "./clases/bachillerato/buscador.php";
+
+							echo "</tbody>
+                            </table>
+                            <br>
+                            <br>
+                            </div>";
 							
 						}
 						
 						
 						?>
+						
 					</div>
 
 					

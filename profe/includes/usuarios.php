@@ -1,5 +1,6 @@
 <?php
 // include "./conecciones.php";
+$materia = $usuario['materias'];
 $consulta1= consultarSQL(" SELECT * FROM clases WHERE Profesor='$id'");
 while($alumno = mysqli_fetch_assoc($consulta1)):
     
@@ -9,17 +10,18 @@ while($alumno = mysqli_fetch_assoc($consulta1)):
 
     while ($usuario = mysqli_fetch_assoc($query)):
 
-        $consulta2= consultarSQL("SELECT * FROM fatura WHERE id_user='$id_alumno'");
+        $consulta2= consultarSQL("SELECT * FROM fatura WHERE id_user='$id_alumno' AND materia='$materia'  ");
         $alumno_factura  = mysqli_fetch_assoc($consulta2);
         $precio_clase_alumno = $alumno_factura['valor'];
+        $precio_clase_alumno = $precio_clase_alumno . 0;
 
         $materia_alumno = $alumno_factura['materia'];
-
-        $consulta3 = ciclobasicoSQL("SELECT * FROM $materia_alumno WHERE precio=$precio_clase_alumno");
+      
+        $consulta3 = gruposSQL("SELECT * FROM $materia WHERE Precio=$precio_clase_alumno");
               
 
         $tipo_clase = mysqli_fetch_assoc($consulta3);
-        $tipo_clase = $tipo_clase['nombre_clase'];
+        $tipo_clase = $tipo_clase['Nombre'];
         
 
     ?>

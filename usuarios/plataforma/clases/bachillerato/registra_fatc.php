@@ -4,16 +4,21 @@
 // de clases en nuestra plataforma en base a la respuesta de la compra en Mercado Pago
 
 
- require_once 'conn/conn.php';
+ require_once './conn/conn.php';
+ include " ../../../../../../admin/includes/conecciones.php ";
+
 
  
 //  obtenemos x get el nombre de la clase y la materia enviada desde index.php en el buscador
  $materia=$_GET['materia'];
  $nombreclase=$_GET['id'];
+ $id_clase = $_GET['id2'];
  
  $id_user = $_GET['usuario'];// obtenemos x GET el id del usuario
- 
- $data = date('d/m/Y');//aqui la fecha para adicionar a la fatura
+ $profe = consultarSQL("SELECT * FROM usuario WHERE materias='$materia'");
+ $profe = mysqli_fetch_assoc($profe);
+ $profe_id = $profe['id'];
+ $data = 0;
 
  $s = $_GET['precio']; // Valor de la clase a comprar, enviado x GET ? precio =$fila['precio'];
 
@@ -36,8 +41,8 @@
   $forma  = "Mercado Pago";
  
   //Registramos la factura
-  $sql = mysqli_query($conn,"INSERT INTO fatura (`id_user`, `ref`, `forma`, `data`, `valor`, `producto`, `materia`, `status`, `comprobante`, `identificador_compra` ) 
-  VALUES ('$id_user','$ref','$forma','$data','$valor', '$nombreclase', '$materia', '$status', 'esperando confirmacion de Pago', '')");
+  $sql = mysqli_query($conn,"INSERT INTO fatura (`id_user`, `ref`, `forma`, `data`, `valor`, `producto`, `materia`, `status`, `comprobante`, `identificador_compra`, `id_clase` ) 
+  VALUES ('$id_user','$ref','$forma','$profe_id ','$valor', '$nombreclase', '$materia', '$status', 'esperando confirmacion de Pago', '', '$id_clase')");
   if($sql){
       //Buscar esta factura en la base de datos
       $query = mysqli_query($conn,"SELECT * FROM `fatura` WHERE ref='$ref' LIMIT 1");

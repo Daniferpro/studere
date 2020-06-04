@@ -1,8 +1,9 @@
 <?php
 require_once '../conn/conn.php';
 include_once "../../../../../includes/seguro.php";
-include_once "../../../../../includes/conectar.php";
+
 include_once "../../../includes/coneccionbdclases.php";
+include " ../../../../../../../profe/includes/conecciones.php ";
 
 
 
@@ -22,10 +23,10 @@ $conss=consultarSQL($queryy);
 $info_fact=mysqli_fetch_assoc($conss);
 
 $id=$info_fact['ref'];
-$clase = $info_fact['producto'];
+$clase = $info_fact['id_clase'];
 $materia = $info_fact['materia'];
 
-$query2="SELECT * FROM clases WHERE Alumno='$a[id]' AND Nombre_clase='$clase'";
+$query2="SELECT * FROM clases WHERE Alumno='$a[id]' AND id_clase='$clase'";
 $consulta3=consultarSQL($query2);
 $b=mysqli_fetch_assoc($consulta3);
 
@@ -34,6 +35,15 @@ $query3="SELECT * FROM $materia WHERE nombre_clase='$clase'";
 $consulta1=consultar3SQL($query3);
 $clases = mysqli_fetch_assoc($consulta1);
 
+$query3="SELECT * FROM $materia WHERE id='$clase'";
+$consulta1=gruposSQL($query3);
+$clases_2 = mysqli_fetch_assoc($consulta1);
+$año_clase = $clases_2['nivel'];
+
+$query4 = "SELECT * FROM usuario WHERE materias='$materia'";
+$query4 = consultarSQL($query4);
+$profe_datos = mysqli_fetch_assoc($query4);
+$profe_id = $profe_datos['id'];
 if($b['estado'] == "activo"){ echo "<script>location.href='../../../miscursos.php';</script>";}  //si la clase esta activa sale de esta configuracion.
 
 
@@ -46,9 +56,9 @@ if($consulta3->num_rows>=1){
 
         if(isset($_GET['collection_status']) && $estado_recivido="approved"){ //comparamos el estado de la compra si esta aprovado el pago actualizamos la clase
           
-           $clasenueva=$clase;
+           $clasenueva=$clases_2['Nombre'];
            $profesor=$clases['profesor'];
-           $año="4°to año bd";
+           $año=$año_clase;
            $fecha_inicio= date("Y-m-d");
            $fecha_fin = strtotime ( '+60 day' , strtotime ( $fecha_inicio ) ) ;
            $fecha_fin = date ( 'Y-m-j' , $fecha_fin );
@@ -57,8 +67,8 @@ if($consulta3->num_rows>=1){
 
            $borrar="DELETE FROM clases WHERE id='$_GET[id2]'";
            consultarSQL($borrar);    
-           $permisonuevo="INSERT INTO clases (Nombre_clase, Profesor, Año, fecha_inicio, fecha_fin, Alumno, materia, estado, ref)
-           VALUES ('$clasenueva', '$profesor', '$año', '$fecha_inicio', '$fecha_fin', '$alumno', '$materia_nueva', 'activo', '$id')";
+           $permisonuevo="INSERT INTO clases (Nombre_clase, Profesor, Año, fecha_inicio, fecha_fin, Alumno, materia, estado, ref, id_clase)
+           VALUES ('$clasenueva', '$profesor', '$año', '$fecha_inicio', '$fecha_fin', '$alumno', '$materia_nueva', 'activo', '$id', '$clase')";
            consultarSQL($permisonuevo);
            
            echo "<script>location.href='../../../miscursos.php';</script>";
@@ -75,17 +85,17 @@ if($consulta3->num_rows>=1){
 
     if(isset($_GET['aprovado']) && $estado_recivido="approved"){ //comparamos el estado de la compra si esta aprovado el pago creamos la clase
       
-       $clasenueva=$clase;
-       $profesor=$clases['profesor'];
-       $año="4°to año bd";
+       $clasenueva=$clases_2['Nombre'];
+       $profesor=$profe_id;
+       $año= $año_clase;
        $fecha_inicio= date("Y-m-d");
        $fecha_fin = strtotime ( '+30 day' , strtotime ( $fecha_inicio ) ) ;
        $fecha_fin = date ( 'Y-m-j' , $fecha_fin );
        $alumno = $a['id'];
        $materia_nueva=$materia;
 
-       $permisonuevo="INSERT INTO clases (Nombre_clase, Profesor, Año, fecha_inicio, fecha_fin, Alumno, materia, estado, ref)
-       VALUES ('$clasenueva', '$profesor', '$año', '$fecha_inicio', '$fecha_fin', '$alumno', '$materia_nueva', 'activo', '$id')";
+       $permisonuevo="INSERT INTO clases (Nombre_clase, Profesor, Año, fecha_inicio, fecha_fin, Alumno, materia, estado, ref, id_clase)
+       VALUES ('$clasenueva', '$profesor', '$año', '$fecha_inicio', '$fecha_fin', '$alumno', '$materia_nueva', 'activo', '$id', '$clase')";
        consultarSQL($permisonuevo);
 
        $pago_nuevo="UPDATE usuario SET pago='1' WHERE Email='$hola'";
