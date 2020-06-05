@@ -24,6 +24,11 @@
                 </div>
             </td>
             <td>
+                <div class="sparkbar" data-color="#00a65a" data-height="20"><?php  echo $clases['nivel']; ?>
+                
+                </div>
+            </td>
+            <td>
                 <a href="./editar_clase.php?id=<?php echo $usuario['id'].'&clase='.$clases['id'];?>" class="sparkbar" data-color="#00a65a" data-height="20">Editar
                 
         </a>

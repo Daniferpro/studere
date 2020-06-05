@@ -28,12 +28,12 @@ for ($i=0; $i <$cantidad_materias ; $i++) {
                 
                 <div class="col-lg-6 course_col">
 								<div class="course">
-									<div class="course_image"><a href="./materias.php?id='.$asd.'"><img src="../../images/'.$asd.'.jpg" alt=""></a></div>
+									<div class="course_image"><a href="./materias.php?id='.$asd.'&profe='.$profesor['Nombre'].' '.$profesor['Apellido'].'"><img src="../../images/'.$asd.'.jpg" alt=""></a></div>
 									<div class="course_body">
-										<h3 class="course_title"><a href="./materias.php?id='.$asd.'">'.$asd.'</a></h3>
+										<h3 class="course_title"><a href="./materias.php?id='.$asd.'&profe='.$profesor['Nombre'].' '.$profesor['Apellido'].'">'.strtoupper($asd).'</a></h3>
 										<div class="course_teacher">'.$profesor['Nombre'].' '. $profesor['Apellido'].'</div>
 										<div class="course_text">
-											<p>Acceso a Clases por medio de Video Conferencias</p>
+											<p>Ver las Clases habilitadas para esta asignatura</p>
 										</div>
 									</div>
 									<div class="course_footer">

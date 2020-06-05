@@ -199,7 +199,7 @@ $a=mysqli_fetch_assoc($consulta);
 				<!-- Courses Main Content -->
 				<div class="col-lg-8">
 					<div class="courses_search_container">
-                    
+                    <h3>Profesor & Asignatura:  </h3><h4> <li><?php echo $_GET['profe'];?></li> <li><?php echo strtoupper($_GET['id']);?></li> </h4>
 					</div>
 
 					
@@ -212,7 +212,7 @@ $a=mysqli_fetch_assoc($consulta);
 							<!-- aqui van los cursos -->
 							
 							
-							<?php include "./procesos/materias.php";?>
+							<?php include "./procesos/materias_detalle.php";?>
                             
                             <!-- fin cursos -->
 

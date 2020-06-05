@@ -748,7 +748,19 @@ $Grupo = New Grupo($id_grupo,$materia);
                     <input type="text" name="dias" class="form-control" id="text" placeholder="Ejemplo: Lunes Martes y Viernes" >
                   </div>
                 </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-3 control-label">Nivel (requerido)</label>
+
+                  <select name="nivel" class="form-control select2" style="width: 50%;" >
+                    <option selected="selected" value="1">1° Ciclo básico</option>
+                    <option value="2">2° Ciclo básico</option>
+                    <option value="3">3° Ciclo básico</option>
+                    <option value="4">1° Bachillerato</option>
+                    <option value="5">2° Bachillerato</option>
+                    <option value="6">3° Bachillerato</option>
+                  </select>
                 
+              </div>
                 
                 </div>
                 
@@ -1094,7 +1106,15 @@ if(isset($_POST['oculto'])){
 
     }
   }
+  
+  if(isset($_POST['nivel'])){
+    if(!empty($_POST['nivel'])){
+      $valor = $_POST['nivel'];
+      $campo = "nivel ";
+      $Grupo->actualizar($campo, $valor);
 
+    }
+  }
 
 }
 ?>

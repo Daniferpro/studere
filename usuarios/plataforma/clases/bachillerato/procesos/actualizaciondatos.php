@@ -6,7 +6,7 @@ include_once "../../../includes/coneccionbdclases.php";
 include " ../../../../../../../profe/includes/conecciones.php ";
 
 
-
+# preference_id  external_reference payment_id  payment_status payment_status_detail  merchant_order_id   
 
 
 $hola=$_SESSION['email'];
@@ -18,9 +18,12 @@ $alumno = $a['Nombre'].$a['Apellido']." ".$a['Email'];
 
 // consultas
 
-$queryy="SELECT * FROM fatura WHERE id_user='$a[id]' AND status='Pendiente' AND ref='$_GET[external_reference]'";
+$queryy="SELECT * FROM fatura WHERE id_user='$a[id]' AND status='Pendiente' AND ref='$_REQUEST[external_reference]'";
 $conss=consultarSQL($queryy);
 $info_fact=mysqli_fetch_assoc($conss);
+
+
+
 
 $id=$info_fact['ref'];
 $clase = $info_fact['id_clase'];
@@ -52,9 +55,9 @@ if($b['estado'] == "activo"){ echo "<script>location.href='../../../miscursos.ph
 if($consulta3->num_rows>=1){
     if($b['estado'] == "vencido"){  // si la clase esta vencida y hay pago y respuesta valida de MP la actualizamos
 
-    if(isset($_GET['aprovado'])){$estado_recivido = $_GET['collection_status'];} //guardamos el estado de la compra 
+    if(isset($_REQUEST['aprovado'])){$estado_recivido = $_REQUEST['payment_status'];} //guardamos el estado de la compra 
 
-        if(isset($_GET['collection_status']) && $estado_recivido="approved"){ //comparamos el estado de la compra si esta aprovado el pago actualizamos la clase
+        if(isset($_REQUEST['payment_status']) && $estado_recivido="approved"){ //comparamos el estado de la compra si esta aprovado el pago actualizamos la clase
           
            $clasenueva=$clases_2['Nombre'];
            $profesor=$clases['profesor'];
@@ -65,7 +68,7 @@ if($consulta3->num_rows>=1){
            $alumno = $a['id'];
            $materia_nueva=$materia;    
 
-           $borrar="DELETE FROM clases WHERE id='$_GET[id2]'";
+           $borrar="DELETE FROM clases WHERE id='$_REQUEST[id2]'";
            consultarSQL($borrar);    
            $permisonuevo="INSERT INTO clases (Nombre_clase, Profesor, Año, fecha_inicio, fecha_fin, Alumno, materia, estado, ref, id_clase)
            VALUES ('$clasenueva', '$profesor', '$año', '$fecha_inicio', '$fecha_fin', '$alumno', '$materia_nueva', 'activo', '$id', '$clase')";
@@ -80,10 +83,10 @@ if($consulta3->num_rows>=1){
 
 
   if($consulta3->num_rows==0){ // si no esxiste la clase la creamos en la BD clases con los datos correspondientes y si hay respuesa valida de mp
-  
-    if(isset($_GET['aprovado'])){$estado_recivido=$_GET['collection_status'];} //guardamos el estado de la compra 
-
-    if(isset($_GET['aprovado']) && $estado_recivido="approved"){ //comparamos el estado de la compra si esta aprovado el pago creamos la clase
+   if(isset($_GET['collection_status'])){$estado_recivido=$_GET['collection_status'];}else{$estado_recivido=$_REQUEST['payment_status'];}
+    
+  }
+    if($estado_recivido="approved"){ //comparamos el estado de la compra si esta aprovado el pago creamos la clase
       
        $clasenueva=$clases_2['Nombre'];
        $profesor=$profe_id;
@@ -110,8 +113,10 @@ if($consulta3->num_rows>=1){
        //sumamos un alumno.
        $consulta3_1="UPDATE $materia SET alumnos='$cantidad_alumnos_modificar' WHERE nombre_clase='$clase' ";
        consultar3SQL($consulta3_1);
-       $payment_type=$_GET['payment_type'];
-       $f_new="UPDATE fatura SET status='aprovado', forma='$payment_type', comprobante='$_GET[collection_id]', identificador_compra='$_GET[merchant_order_id]' WHERE ref= '$id'";
+      //  $payment_type=$_REQUEST['payment_status_detail'];
+       if(isset($_GET['payment_type'])){$payment_type=$_GET['payment_type'];}else{$payment_type=$_REQUEST['payment_status_detail'];}
+       if(isset($_GET['collection_id'])){$comprobante=$_GET['collection_id'];}else{$comprobante=$_REQUEST['payment_id'];}
+       $f_new="UPDATE fatura SET status='aprovado', forma='$payment_type', comprobante='$comprobante', identificador_compra='$_REQUEST[merchant_order_id]' WHERE ref= '$id'";
        $factura_nueva=consultarSQL($f_new);
 
 
@@ -119,10 +124,10 @@ if($consulta3->num_rows>=1){
        echo "<script>location.href='../../../miscursos.php';</script>";
 
     }
-   }
+   
   
-
-   if(isset($_GET['pendiente'])){
+   if(isset($_GET['collection_status'])){$estado_recivido=$_GET['collection_status'];}else{$estado_recivido=$_REQUEST['payment_status'];
+      if($estado_recivido == "pending"){
 
     
     $clasenueva=$clase;
@@ -150,30 +155,33 @@ if($consulta3->num_rows>=1){
     //sumamos un alumno.
     $consulta3_1="UPDATE $materia SET alumnos='$cantidad_alumnos_modificar' WHERE nombre_clase='$clase' ";
     consultar3SQL($consulta3_1);
-    $payment_type=$_GET['payment_type'];
-    $f_new="UPDATE fatura SET status='Pendiente', forma='$payment_type', comprobante='$_GET[collection_id]', identificador_compra='$_GET[merchant_order_id]' WHERE ref= '$id'";
+    $payment_type=$_POST['payment_type'];
+    $f_new="UPDATE fatura SET status='Pendiente', forma='$payment_type', comprobante='$_REQUEST[payment_id]', identificador_compra='$_REQUEST[merchant_order_id]' WHERE ref= '$id'";
     $factura_nueva=consultarSQL($f_new);
 
 
 
     echo "<script>location.href='../../../miscursos.php';</script>";
 
-
+      }
    }
-   
-   if(isset($_GET['fallo'])){
+   if(isset($_GET['collection_status'])){$estado_recivido=$_GET['collection_status'];}else{$estado_recivido=$_REQUEST['payment_status'];
     
-    $f_new="UPDATE fatura SET status='Fallo', forma='No completo Pago', comprobante='$_GET[collection_id]', identificador_compra='$_GET[merchant_order_id]' WHERE ref= '$id'";
+   if($estado_recivido == "failure"){
+    
+    $f_new="UPDATE fatura SET status='Fallo', forma='No completo Pago', comprobante='$_REQUEST[payment_id]', identificador_compra='$_REQUEST[merchant_order_id]' WHERE ref= '$id'";
     $factura_nueva=consultarSQL($f_new);
     echo "<script>location.href='../../../miscursos.php?fallo';</script>";
+   
    }
+}
 
   
 
 
 
 
-
+  
 
 
 ?>

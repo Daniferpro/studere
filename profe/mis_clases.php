@@ -691,6 +691,7 @@ if($email == "danielferreira@studere.com.uy"){
                     <th>Precio</th>
                     <th>Alumnos</th>
                     <th>Dias</th>
+                    <th>Nivel</th>
                     <th>Opciones</th>
                     
                     

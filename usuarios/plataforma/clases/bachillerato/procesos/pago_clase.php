@@ -5,6 +5,7 @@ include "../conn/conecciones.php";
 include_once "../../../includes/coneccionbdclases.php";
 
 $id=$_GET['ref'];
+$id2 = $_GET['id2'];
 
 $hola=$_SESSION['email'];
 $query="SELECT * FROM usuario WHERE email='$hola' ";
@@ -23,7 +24,7 @@ $profe = mysqli_fetch_assoc($profe);
 // $b=mysqli_fetch_assoc($consulta3);
 
  
-$query3="SELECT * FROM $materia WHERE Nombre='$clase'";
+$query3="SELECT * FROM $materia WHERE id='$id2'";
 $consulta1=gruposSQL($query3);
 $clases = mysqli_fetch_assoc($consulta1);
 
@@ -34,12 +35,13 @@ require __DIR__  . '../../../../../../vendor/autoload.php';
 
 // MercadoPago\SDK::setClientId("6168214163550142");
 // MercadoPago\SDK::setClientSecret("q23K4fKeC7wE8poxp1B05aUuiqTsbhJJ");
-MercadoPago\SDK::setAccessToken("APP_USR-6168214163550142-061000-8fdabbe8a7c255dcb03cd24cfabeb2b7-190894637");
-MercadoPago\SDK::setPublicKey("APP_USR-812c544c-9c4d-4cd9-81e2-33d73f8d6f28");
+MercadoPago\SDK::setAccessToken("TEST-6168214163550142-061000-ee6579ca989e2e437b1a52c64bba054a-190894637");
+MercadoPago\SDK::setPublicKey("TEST-b546175f-461c-49b4-8890-63f7c93abc15");
 
 $preference = new MercadoPago\Preference();
 
   $produto = [$clase, 1, $clases['Precio'], $id];
+  $precio = floatval($produto[2]);
 
   $item2 = new MercadoPago\Item();
   $item2->currency_id = "UYU";
@@ -47,7 +49,7 @@ $preference = new MercadoPago\Preference();
   $item2->collection_id = $produto[3];
   $item2->title = $produto[0]." ".$materia; 
   $item2->quantity = $produto[1];
-  $item2->unit_price = str_replace(',', '.', $produto[2]);
+  $item2->unit_price = str_replace(',', '.', $precio);
   $item2->collection_id = $id;
   $item2->picture_url = "https://studere.uy/usuarios/plataforma/images/images/logo4.png";
   $item2->description = "Studere Platform Tacuarembó Uruguay";
@@ -65,11 +67,18 @@ $preference = new MercadoPago\Preference();
     "failure" => "localhost/usuarios/plataforma/clases/bachillerato/procesos/actualizaciondatos.php?fallo",
     "pending" => "localhost/usuarios/plataforma/clases/bachillerato/procesos/actualizaciondatos.php?pendiente"
 );
-
+  
+  
 
   $preference->external_reference = $id;
   $preference->items = array($item2);
   $preference->payer = $payer;
+  $preference->payment_methods = array(
+    
+    "excluded_payment_types" => array(array("id" => "ticket")),#excluimos el metodo de pago ticket = efectivo x redes de cobranza
+    "installments" => 12);
+
+  
   $preference->save(); # Save the preference and send the HTTP Request to create
   
 
@@ -366,11 +375,12 @@ $fat   = mysqli_fetch_assoc($query);
                             <div class="col-lg-1 text-right">
                             <!-- <a class="btn btn-success" href="#">Finalizar</a> -->
                             <div class="container-login100-form-btn p-t-10">
-    <?php 
-                       echo "<a class='btn btn-success' href='$preference->sandbox_init_point '>Comprar Clase</a>";
-                        ?>
-							
-</div>
+                            <form action="/usuarios/plataforma/clases/bachillerato/procesos/actualizaciondatos.php?aprovado" method="POST">
+  <script
+   src="https://www.mercadopago.com.uy/integrations/v1/web-payment-checkout.js"
+   data-preference-id="<?php echo $preference->id; ?>">
+  </script>
+</form>
                             </div>
 
                             <!-- <form class="login100-form validate-form" action="#" method="POST">

@@ -349,7 +349,7 @@ if($consulta1->num_rows >=1){
                   <a href="../usuarios/plataforma/" class="btn btn-default btn-flat">Ver como Alumno</a>
                 </div>
                 <div class="pull-right">
-                  <a href="../admin//includes/logout.php?tk=<?php echo $_SESSION['token']?>" class="btn btn-default btn-flat">Cerrar Sesion</a>
+                  <a href="../admin/includes/logout.php?tk=<?php echo $_SESSION['token']?>" class="btn btn-default btn-flat">Cerrar Sesion</a>
                 </div>
               </li>
             </ul>
