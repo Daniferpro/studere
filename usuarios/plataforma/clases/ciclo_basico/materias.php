@@ -1,37 +1,19 @@
-
 <?php
-include_once "../../includes/seguro.php";
-include_once "../../includes/conectar.php";
-include_once "includes/actualzar_estado_de_clases.php";
-include_once "includes/coneccionbdclases.php";
+include_once "../../../../includes/seguro.php";
+include_once "../../../../includes/conectar.php";
+include_once "../bachillerato/consulta_pago.php";
 $hola=$_SESSION['email'];
 $query="SELECT * FROM usuario WHERE email='$hola' ";
 $consulta=consultarSQL($query);
 $a=mysqli_fetch_assoc($consulta);
-$alumno=$a['Nombre'].$a['Apellido']." ".$a['Email'];
-
-$query="SELECT * FROM clases WHERE Alumno='$alumno' ORDER BY fecha_fin DESC";
-$consulta32=consultarSQL($query);
-
-$fecha_hoy= date("Y-m-d"); //fecha de hoy
-$resultado=mysqli_fetch_assoc($consulta32);
-if(!isset($_COOKIE['contador']))
-{ 
-  // Caduca en un año   
-  setcookie('contador', 0 , time() + 365 * 24 * 60 * 60); 
-  $mensaje = 'Número de visitas: ' . $_COOKIE['contador']; 
-} 
-else 
-{ 
-  // Caduca en un año 
-  setcookie('contador', $_COOKIE['contador'] + 1, time() + 365 * 24 * 60 * 60); 
-  $mensaje = 'Bienvenido a Plataforma Studere'; 
-} 
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Studere.uy</title>
+<title>1° Bachillerato</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Somos una plataforma de Estudios Online dónde puedes obtener apoyo para terminar los e´xamenes o directamente el año completo">
@@ -39,7 +21,6 @@ else
 <link rel="stylesheet" type="text/css" href="../../styles/bootstrap4/bootstrap.min.css">
 <link href="../../plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="../../plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
-<link rel="icon" type="image/ico" href="../../images/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="../../plugins/OwlCarousel2-2.2.1/owl.carousel.css">
 <link rel="stylesheet" type="text/css" href="../../plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="../../plugins/OwlCarousel2-2.2.1/animate.css">
@@ -200,7 +181,7 @@ else
 						<div class="breadcrumbs">
 							<ul>
 								<li><a href="../../index.php">Inicio</a></li>
-								<li>Clases de 1°ero Bachillerato</li>
+								<li>Asignaturas habilitadas para Bachillerato</li>
 							</ul>
 						</div>
 					</div>
@@ -216,46 +197,9 @@ else
 			<div class="row">
 			
 				<!-- Courses Main Content -->
-				<div class="col-lg-10">
+				<div class="col-lg-8">
 					<div class="courses_search_container">
-                    <form action="#" id="courses_search_form" method="post" autocomplete="off" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
-							<input type="search" class="courses_search_input" name="palabra" placeholder="Buscar Clase o Tema" required="required">
-							<select id="courses_search_select" name="seleccion"class="courses_search_select courses_search_input">
-									
-									<option selected="selected" value="historia">Historia</option>
-									<option value="matematica">Matemática</option>
-									<option value="fisica">Física</option>
-								    <option value="quimica">Química</option>
-									<option value="ingles">Inglés</option>
-                                    <option value="espanol">Id.Español</option>
-									<option value="visual">Ed.Visual</option>
-									<option value="musical">Ed.Musical</option>
-									<option value="biologia">Biología</option>
-                                    <option value="literatura">Literatura</option>
-                                    <option value="civica">Ed.Cívica</option> 
-									
-								
-							</select>
-							<button action="submit" class="courses_search_button ml-auto">Buscar Ahora</button>
-						</form>
-		 				<?php 
-						if(isset($_POST['palabra'])){
-
-							
-							
-							require_once "./clases/bachillerato/buscador.php";
-
-							echo "</tbody>
-                            </table>
-                            <br>
-                            <br>
-                            </div>";
-							
-						}
-						
-						
-						?>
-						
+                    <h3>Profesor & Asignatura:  </h3><h4> <li><?php echo $_GET['profe'];?></li> <li><?php echo strtoupper($_GET['id']);?></li> </h4>
 					</div>
 
 					
@@ -267,63 +211,8 @@ else
 							
 							<!-- aqui van los cursos -->
 							
-							<div class="col-lg-6 course_col">
-						<div class="course">
-							<div class="course_image"><img src="images/blog_2.jpg" alt=""></div>
-							<div class="course_body">
-								<h3 class="course_title"><a href="./clases/ciclo_basico/index.php">Ciclo Básico</a></h3>
-								<div class="course_teacher">1°ero - 2°do - 3°ero</div>
-								<div class="course_text">
-									<p>Todas Las Materias de Ciclo Básico</p>
-									<li>Activo</li>
-								</div>
-							</div>
-							<div class="course_footer">
-								<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-									<div class="course_info">
-										<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-										<span>197 Estudiantes</span>
-									</div>
-									<div class="course_info">
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<span>5 Estrellas</span>
-									</div>
-									<div class="course_price ml-auto"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-	
-					<!-- Course -->
-					
-					<div class="col-lg-6 course_col">
-						<div class="course">
-							<div class="course_image" ><img src="images/video.jpg"></div>
-							<div class="course_body">
-								<h3 class="course_title"><a href="./clases/bachillerato/index.php">Bachilleratos</a></h3>
-								<div class="course_teacher">4°  -  5°  -  6°</div>
-								<div class="course_text">
-									<p>Todas las Materias de Bachilleratos</p>
-										<li>Activo</li>
-										
-											
-								</div>
-							</div>
-							<div class="course_footer">
-								<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-									<div class="course_info">
-										<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-										<span>236 Estudiantes</span>
-									</div>
-									<div class="course_info">
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<span>5 Estrellas</span>
-									</div>
-									<div class="course_price ml-auto"></div>
-								</div>
-							</div>
-						</div>
-					</div>
+							
+							<?php include "./procesos/materias_detalle.php";?>
                             
                             <!-- fin cursos -->
 
@@ -333,16 +222,14 @@ else
 				</div>
 
 				<!-- Courses Sidebar -->
-				<div class="col-lg-2">
+				<div class="col-lg-4">
 					<div class="sidebar">
 						
 						<!-- Categories -->
 						<div class="sidebar_section">
-							<div class="sidebar_section_title">ALERTA !!!</div>
-							<br>
-							<div class="tags_list">
-								<li>Estamos Realizando tareas de mantenimiento hasta el Viernes 5 de Junio</li>
-								<!-- <ul>
+							<div class="sidebar_section_title">Categories</div>
+							<div class="sidebar_categories">
+								<ul>
 									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Matemática</a></li>
 									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Física</a></li>
 									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Química</a></li>
@@ -355,15 +242,15 @@ else
                                     <li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Literatura</a></li>
                                     
 									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Biología</a></li>
-								</ul> -->
+								</ul>
 							</div>
 						</div>
 
 						<!-- Latest Course -->
-						<!-- <iframe src="https://www.mercadopago.com.uy/descuentos?campaign_id=59410&show_legals_link=true&dont_show_legals=true&iframe=true" width="100%" height="400" seamless="" frameborder="0" scrolling="no"></iframe>
+						<iframe src="https://www.mercadopago.com.uy/descuentos?campaign_id=59410&show_legals_link=true&dont_show_legals=true&iframe=true" width="100%" height="400" seamless="" frameborder="0" scrolling="no"></iframe>
 					
 
-						
+						<!-- Tags -->
 						<div class="sidebar_section">
 							<div class="sidebar_section_title">Etiquetas</div>
 							<div class="sidebar_tags">
@@ -376,7 +263,7 @@ else
 									<li><a href="#">Ejercicios</a></li>
 								</ul>
 							</div>
-						</div> -->
+						</div>
 
 						<!-- Banner -->
 						<!-- <div class="sidebar_section">
@@ -422,7 +309,7 @@ else
 	<!-- Footer -->
 
 	<footer class="footer">
-		<?php require ('./includes/footer.php'); ?>
+		<?php require ('./procesos/footer.php'); ?>
 	</footer>
 </div>
 
