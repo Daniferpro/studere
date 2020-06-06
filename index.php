@@ -70,7 +70,7 @@
 								<ul class="main_nav">
 									<li class="active"><a href="#">Inicio</a></li>
 									<li><a href="./contact.php">Eres Docente? clic aquí</a></li>
-									<li><a href="./cursos.php">Cursos</a></li>
+									<li><a href="#">Cursos</a></li>
 									<li><a href="./usuarios/plataforma/estudiando/register.php?nuevo_registro">Registrarse</a></li>
 									<li><a href="#">Contacto</a></li>
 								</ul>
@@ -125,7 +125,7 @@
 			<ul class="menu_mm">
 				<li class="menu_mm"><a href="./login.php">Iniciar Sesion</a></li>
 				<li class="menu_mm"><a href="./contact.php">Eres docente? clic aquí</a></li>
-				<li class="menu_mm"><a href="./cursos.php">Cursos</a></li>
+				<li class="menu_mm"><a href="#">Cursos</a></li>
 				<li class="menu_mm"><a href="./usuarios/plataforma/estudiando/register.php?nuevo_registro">Registrarse!</a></li>
 				<li class="menu_mm"><a href="#">Contacto</a></li>
 			</ul>
@@ -154,6 +154,25 @@
                                         <div class="home_slider_form_container">
                                             <button type="submit" class="home_search_button">Ver clases</button>
 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="owl-item">
+                        <div class="home_slider_background" style="background-image:url(images/promo1.jpg)"></div>
+                        <div class="home_slider_content">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <div class="home_slider_title">
+                                            {% Promo de Lanzamiento %}
+                                        </div>
+                                        <div class="home_slider_subtitle" style="color: white;">No pierdas tu oportunidad, todas las materias por video conferencias</div>
+                                        <div class="home_slider_form_container">
+                                          
                                         </div>
                                     </div>
                                 </div>
