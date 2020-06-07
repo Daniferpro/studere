@@ -139,8 +139,8 @@ echo "
                                   <li>Recuerda que la clase pudo Haber Vencido</li>
                                   <li>Busca con Otra Palabra diferente</li>
                                   <li>En el peor de los casos la clase o tema que buscas está siendo actualizada</li>    
-                                  <li>Tal ven no lo has adquirido</li>  
-                                  <li><a href='./clases/1bc/'> <button class='courses_search_button'>Ver los Cursos</button> </a></li>
+                                  <li>Tal vez no has comprado la clase aun.</li>  
+                                  <li><a href='./'> <button class='courses_search_button'>Ver los Cursos</button> </a></li>
                                   </tr> 
 
 </tbody>

@@ -19,7 +19,7 @@
 </head>
 
 <body>
-
+<!-- Código de instalación Cliengo para www.studere.uy --> <script type="text/javascript">(function () { var ldk = document.createElement('script'); ldk.type = 'text/javascript'; ldk.async = true; ldk.src = 'https://s.cliengo.com/weboptimizer/5cfb0d68e4b003abf5067580/5cfb0d69e4b003abf5067583.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ldk, s); })();</script>
 <div class="super_container">
 
 	<!-- Header -->

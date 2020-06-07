@@ -38,15 +38,8 @@ for ($i=0; $i <$cantidad_materias ; $i++) {
 									</div>
 									<div class="course_footer">
 										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-											<div class="course_info">
-												<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-												<span>Etudiantes</span>
-											</div>
-											<div class="course_info">
-												<i class="fa fa-star" aria-hidden="true"></i>
-												<span>5 Ratings</span>
-											</div>
-											<div class="course_price ml-auto">Pack</div>
+											
+											<div class="course_price ml-auto">FECHA DE INICIO CLASES: MIÉRCOLES 10 DE JUNIO</div>
 										</div>
 									</div>
 								</div>

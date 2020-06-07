@@ -18,7 +18,7 @@ if(isset($_GET['estabamirando'])){
 	//mostrar mensaje toogle de ánimos sigue estudiando esta clase.... en la parte de scripts 
 }
 
-?>
+?> 
 <!DOCTYPE html>
 <html lang="es-es">
 <head>

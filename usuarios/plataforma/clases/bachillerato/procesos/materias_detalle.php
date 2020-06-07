@@ -30,11 +30,11 @@ while($clase = mysqli_fetch_assoc($sql)){
 										<div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
 											<div class="course_info">
 												<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-												<span>Estudiantes</span>
+												<span>FECHA DE INICIO </span>
 											</div>
 											<div class="course_info">
-												<i class="fa fa-star" aria-hidden="true"></i>
-												<span>OFERTA </span>
+												
+												<span>'.$clase['dia_inicio'].' </span>
 											</div>
 											<div class="course_price ml-auto">$'.$clase['Precio'].'</div>
 										</div>

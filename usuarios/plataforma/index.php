@@ -341,7 +341,7 @@ else
 							<div class="sidebar_section_title">ALERTA !!!</div>
 							<br>
 							<div class="tags_list">
-								<li>Estamos Realizando tareas de mantenimiento hasta el Viernes 5 de Junio</li>
+								<li>Estamos Realizando tareas de mantenimiento hasta el martes 09 de Junio</li>
 								<!-- <ul>
 									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Matemática</a></li>
 									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Física</a></li>
