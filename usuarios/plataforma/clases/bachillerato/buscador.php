@@ -12,7 +12,7 @@ $palabramayus = strtoupper($palabra);
 $materia = $_POST['seleccion'];
 
 
-$query="SELECT * FROM $materia WHERE Nombre LIKE '%$palabra%'";
+$query="SELECT * FROM $materia WHERE Nombre LIKE '%$palabra%' OR descripcion LIKE '%$palabra%' ";
 $consulta=gruposSQL($query);
 
 
@@ -26,6 +26,7 @@ if($consulta->num_rows>=1){
             <th class='courses_search_input'>Pack de Clase</th>
             <th class='courses_search_input'>Horario</th>
             <th class='courses_search_input'>Dias</th>
+            <th class='courses_search_input'>Precio</th>
  
         </thead>
         <tbody>";
@@ -41,6 +42,7 @@ if($consulta->num_rows>=1){
                     <td class='courses_search_input'> <a  href='./clases/bachillerato/registra_fatc.php?id=$fila[Nombre]&materia=$materia&usuario=$a[id]&precio=$fila[Precio],00&id2=$fila[id]'>$fila[Nombre].</a></td>
                         <td  class='courses_search_input'>$fila[Horario]</td>
                         <td class='courses_search_input'>$fila[Dias]</td>
+                        <td class='courses_search_input'>$fila[Precio]</td>
                         
                     </tr>";
                     echo " ";}

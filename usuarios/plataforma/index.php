@@ -224,8 +224,11 @@ else
 									
 									<option selected="selected" value="historia">Historia</option>
 									<option value="matematica">Matemática</option>
+									<option value="matematica1">Matemática</option>
 									<option value="fisica">Física</option>
-								    <option value="quimica">Química</option>
+									<option value="derecho">Derecho</option> 
+									<option value="quimica">Química</option>
+									<option value="geografia">Geografía</option>
 									<option value="ingles">Inglés</option>
                                     <option value="espanol">Id.Español</option>
 									<option value="visual">Ed.Visual</option>
@@ -301,7 +304,7 @@ else
 							<div class="course_image" ><img src="images/video.jpg"></div>
 							<div class="course_body">
 								<h3 class="course_title"><a href="./clases/bachillerato/index.php">Bachilleratos</a></h3>
-								<div class="course_teacher">4°  -  5°  -  6°</div>
+								<div class="course_teacher">4°to  -  5°to  -  6°to</div>
 								<div class="course_text">
 									<p>Todas las Materias de Bachilleratos</p>
 										<li>Activo</li>
