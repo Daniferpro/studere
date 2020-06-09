@@ -47,7 +47,7 @@ echo "
 <div class='course'>
 <div class='course_image'><img src='images/clase_1.jpg' width='100%' alt=''></div>
 <div class='course_body'>
-<h5 class='course_title'><a href='estudiando/index.php?materia=$cursos[materia]&tema=$cursos[Nombre_clase]'>$cursos[Nombre_clase]</a></h5>
+<h5 class='course_title'><a href='estudiando/index.php?materia=$cursos[materia]&tema=$cursos[Nombre_clase]&id_clase=$cursos[id_clase]'>$cursos[Nombre_clase]</a></h5>
 <div class='course_teacher'>Prof: $profesor</div>
 <div class='course_price ml-auto'>Esta clase finaliza el día: $cursos[fecha_fin]  </div>
 <div class='course_text'>
