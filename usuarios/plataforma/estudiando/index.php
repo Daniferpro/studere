@@ -278,7 +278,7 @@ $lista_subtemas = explode('_', $consulta_lista['temas']);
             $materia_clase_resultado = $consulta_clases_resultado['materia'];
           ?>
           
-            <li><a href="index.php?materia=<?php print $materia_clase_resultado. '&tema='.$nombre_clase_resultado?>"><i class="fa fa-circle-o"></i> <?php print $nombre_clase_resultado;?></a></li>
+            <li><a href="index.php?materia=<?php print $materia_clase_resultado. '&tema='.$nombre_clase_resultado .'&id_clase='.$id_clase;?>"><i class="fa fa-circle-o"></i> <?php print $nombre_clase_resultado;?></a></li>
 
           <?php endwhile;?>
           </ul>
