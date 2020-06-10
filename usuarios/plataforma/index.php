@@ -91,8 +91,8 @@ else
 								<ul class="main_nav">
 									
 									<li><a href="#">Inicio</a></li>
-									<li><a href="../miscursos.php">Mis Cursos</a></li>
-									<li><a href="../perfil.php">Editar Perfil</a></li>
+									<li><a href="./miscursos.php">Mis Cursos</a></li>
+									<li><a href="/perfil.php">Editar Perfil</a></li>
 									<li><div class="top_bar_login ml-auto">
 									<a href="../../../../logout.php?tk=<?php echo $_SESSION['token']?>">Cerrar Sesion</a></div>
 								</li>
@@ -132,7 +132,7 @@ else
 			<ul class="menu_mm">
 				<li class="menu_mm"><a href="#">Inicio</a></li>
 				<li class="menu_mm"><a href="./miscursos.php">Mis Cursos</a></li>
-				<li class="menu_mm"><a href="perfil.php">Editar Perfil</a></li>
+				<li class="menu_mm"><a href="./perfil.php">Editar Perfil</a></li>
 	  			<li class="menu_mm"><a href="../../../../logout.php?tk=<?php echo $_SESSION['token']?>">Cerrar Sesión</a></li>
 			</ul>
 			
@@ -199,8 +199,8 @@ else
 					<div class="col">
 						<div class="breadcrumbs">
 							<ul>
-								<li><a href="../../index.php">Inicio</a></li>
-								<li>Clases de 1°ero Bachillerato</li>
+								<li><a href="#">Inicio</a></li>
+								<li>Elije tu clase</li>
 							</ul>
 						</div>
 					</div>
