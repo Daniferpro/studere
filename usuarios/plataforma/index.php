@@ -90,9 +90,9 @@ else
 							<nav class="main_nav_contaner ml-auto">
 								<ul class="main_nav">
 									
-									<li><a href="../../index.php">Inicio</a></li>
-									<li><a href="../../miscursos.php">Mis Cursos</a></li>
-									<li><a href="../../perfil.php">Editar Perfil</a></li>
+									<li><a href="#">Inicio</a></li>
+									<li><a href="../miscursos.php">Mis Cursos</a></li>
+									<li><a href="../perfil.php">Editar Perfil</a></li>
 									<li><div class="top_bar_login ml-auto">
 									<a href="../../../../logout.php?tk=<?php echo $_SESSION['token']?>">Cerrar Sesion</a></div>
 								</li>
@@ -130,9 +130,9 @@ else
 		<nav class="menu_nav">
 			
 			<ul class="menu_mm">
-				<li class="menu_mm"><a href="../../index.php">Inicio</a></li>
-				<li class="menu_mm"><a href="#">Mis Cursos</a></li>
-				<li class="menu_mm"><a href="../../perfil.php">Editar Perfil</a></li>
+				<li class="menu_mm"><a href="#">Inicio</a></li>
+				<li class="menu_mm"><a href="./miscursos.php">Mis Cursos</a></li>
+				<li class="menu_mm"><a href="perfil.php">Editar Perfil</a></li>
 	  			<li class="menu_mm"><a href="../../../../logout.php?tk=<?php echo $_SESSION['token']?>">Cerrar Sesión</a></li>
 			</ul>
 			
