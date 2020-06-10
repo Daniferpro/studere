@@ -26,16 +26,16 @@ $id_clase = $_GET['id_clase'];
 }else{ header("Location: ../miscursos.php?error=Sin Permisos Para Acceder al Curso.");}
 
 include "../includes/coneccionbdclases.php";
-$qry_tema = "SELECT * FROM $materia WHERE nombre_clase = '$clase'";
-$texto_tema_consulta = consultar3SQL($qry_tema);
-$texto_de_tema = mysqli_fetch_assoc($texto_tema_consulta);
+// $qry_tema = "SELECT * FROM $materia WHERE nombre_clase = '$clase'";
+// $texto_tema_consulta = consultar3SQL($qry_tema);
+// $texto_de_tema = mysqli_fetch_assoc($texto_tema_consulta);
 
-//consultamos la lista de video para obtener el link a los mismos y mostrar al alumno
-$lista_consulta =consultar3SQL("SELECT * FROM $materia WHERE nombre_clase = '$clase'");
+// //consultamos la lista de video para obtener el link a los mismos y mostrar al alumno
+// $lista_consulta =consultar3SQL("SELECT * FROM $materia WHERE nombre_clase = '$clase'");
 
-$consulta_lista = mysqli_fetch_assoc($lista_consulta);
-$lista_videos = explode('_', $consulta_lista['videos']);
-$lista_subtemas = explode('_', $consulta_lista['temas']);
+// $consulta_lista = mysqli_fetch_assoc($lista_consulta);
+// $lista_videos = explode('_', $consulta_lista['videos']);
+// $lista_subtemas = explode('_', $consulta_lista['temas']);
 
 
 
@@ -453,26 +453,7 @@ if($cc->num_rows>0):
               </div>
             </div>
           </div>
-          <?php 
-                  $numero = 0;
-                  while(count($lista_videos)>$numero):?>
-
-                    <!-- aqui va el codigo a repetir segun las cantidades de linkde videos existan el la bd de cada tema de materia -->
-                    <div class="panel box box-success">
-            <div class="box-header with-border">
-              <h4 class="box-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php print $numero ;?>">
-                 <?php  echo  $lista_subtemas[$numero] ;?>
-                </a>
-              </h4>
-            </div>
-            <div id="collapse<?php print $numero ;?>" class="panel-collapse collapse">
-              <div class="box-body">
-               <?php echo $lista_videos[$numero];?>
-              </div>
-            </div>
-          </div>
-            <?php $numero +=1; endwhile; ?>
+         
           
          
          
@@ -645,23 +626,7 @@ if($cc->num_rows>0):
                 </ol>
                 <div class="carousel-inner">
                   <div class="item active">
-                    <a href="./material/<?php print $materia . '/'.$clase.'.pdf';?>" download="MATERIAL_PDF_<?php print $clase . '_' . $materia . '_' . $texto_de_tema['profesor'] ;?>_Studere_Platform_2019" ><img src="dist/img/material_completo.jpg" alt="Material Completo en PDF"></a>
-
-                    <div class="carousel-caption">
-                      Material PDF
-                    </div>
-                  </div>
-                  <div class="item">
-                  <a href="./material/<?php print $materia . '/'.$clase.'.pptx';?>" download="PRESENTACION_POWERPOINT_<?php print $clase . '_' . $materia . '_' . $texto_de_tema['profesor']  ;?>_Studere_Platform_2019" ><img src="dist/img/presentacion_power_point.jpg" alt="Presentacion en Power Point"></a>
-
-
-                    <div class="carousel-caption">
-                      Presentacion
-                    </div>
-                  </div>
-                  <div class="item">
-                  <a href="./material/<?php print $materia . '/'.$clase. '_presentacion' . '.pdf';?>" download="PRESENTACION_PDF_<?php print $clase . '_' . $materia . '_' . $texto_de_tema['profesor'];?>_Studere_Platform_2019" ><img src="dist/img/presentacion_formato_pdf.jpg" alt="Presentacion en Formato PDF"></a>
-
+            
 
                     <div class="carousel-caption">
                       Presentación PDF
@@ -698,13 +663,13 @@ if($cc->num_rows>0):
                 <b>Subtemas que componen ésta clase: </b>
                 
                 <p><?php 
-                $cantidad_subtemas = 0;
-                while(count($lista_subtemas)>$cantidad_subtemas){
+                // $cantidad_subtemas = 0;
+                // while(count($lista_subtemas)>$cantidad_subtemas){
 
-                  print ("<li>" . $lista_subtemas[$cantidad_subtemas]);
-                  $cantidad_subtemas += 1;
+                //   print ("<li>" . $lista_subtemas[$cantidad_subtemas]);
+                //   $cantidad_subtemas += 1;
 
-                }
+                // }
                 ?>
                 <p> 
               </div>

@@ -2,7 +2,6 @@
 //incluimos conecciones a las ases ded datos  
 include "./includes/conecciones.php";
 include "../admin/includes/seguridad.php";
-include "./includes/objetos.php";
 
 
 $email = $_SESSION['email'];
@@ -41,9 +40,6 @@ if($consulta1->num_rows >=1){
 if($email == "danielferreira@studere.com.uy"){
   $admin_form = '';
 }else{ $admin_form = 'disabled="disabled"'; }
-$materia = $usuario['materias'];
-$id_grupo = $_GET['clase'];
-$Grupo = New Grupo($id_grupo,$materia);
 
 
 
@@ -426,7 +422,7 @@ $Grupo = New Grupo($id_grupo,$materia);
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Menú avanzado</li>
-        <li class="active treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Informacion</span>
             <span class="pull-right-container">
@@ -436,12 +432,12 @@ $Grupo = New Grupo($id_grupo,$materia);
           <ul class="treeview-menu">
             <li><a href="./index.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> General</a></li>
             <li><a href="./users.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Mis Alumnos</a></li>
-            <li class="active"><a href="./mis_clases.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Mis Clases </a></li>
+            <li><a href="./mis_clases.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Mis Clases </a></li>
             <li><a href="./mis_grupos.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Video Conferencias </a></li>
           </ul>
         </li>
          
-        <li class="treeview">
+        <li class="active treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
             <span>Op Video Conferencias</span>
@@ -450,7 +446,7 @@ $Grupo = New Grupo($id_grupo,$materia);
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Fechas y Horas</a></li>
+            <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Grabacione vc</a></li>
             <li><a href="./software_vc.php?id=<?php echo $id;?>s"><i class="fa fa-circle-o"></i> Software a utilizar</a></li>
             </ul>
         </li>
@@ -593,7 +589,7 @@ $Grupo = New Grupo($id_grupo,$materia);
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        EDITAR Mis Clases
+        Mis Clases
         <small>Lista de Mis Clases</small>
       </h1>
       <ol class="breadcrumb">
@@ -711,172 +707,19 @@ $Grupo = New Grupo($id_grupo,$materia);
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-            <a  class="btn btn-success" href="./editar_clase.php?id=<?php echo $id.'&clase='.$id_grupo; ?>">refrescar</a>
+            <a  class="btn btn-success" href="./mis_clases.php?id=<?php echo $id; ?>">refrescar</a>
 
               </div>
             <!-- /.box-footer -->
           </div>
           <!-- Horizontal Form -->
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Editar Clase <?php echo $Grupo->nombre;?></h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form NUEVA CLASEEEE start -->
-
-            <form class="form-horizontal" method="post" action="#">
-              <div class="box-body">
-
-              <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Editar Precio </label>
-
-                  <div class="col-sm-10">
-                    <input type="number" name="precio" class="form-control" id="text" placeholder="Agregar o editar precio del Pack." >
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                 
-                  
-                  <input type="text" value="<?php echo $id?>" name="oculto" hidden>
-                </div>  
-                
-  
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Dias</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" name="dias" class="form-control" id="text" placeholder="Ejemplo: Lunes Martes y Viernes" >
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Nivel (requerido)</label>
-
-                  <select name="nivel" class="form-control select2" style="width: 50%;" >
-                    <option selected="selected" value="1">1° Ciclo básico</option>
-                    <option value="2">2° Ciclo básico</option>
-                    <option value="3">3° Ciclo básico</option>
-                    <option value="4">1° Bachillerato</option>
-                    <option value="5">2° Bachillerato</option>
-                    <option value="6">3° Bachillerato</option>
-                  </select>
-                
-              </div>
-                
-                </div>
-                
-                <div class="form-group">
-                
-                  <div class="col-sm-offset-2 col-sm-10">
-                    <div class="checkbox">
-                      
-                    <div class="box-footer">
-                      
-                    <button type="" class="btn btn-sm btn-default btn-flat pull-left">La nueva Clase quedará Activa Luego de Revision de Admin</button>
-                <button type="submit" class="btn btn-info pull-right">Modificar Clase</button>
-                
-                </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.box-body -->
-              
-              <!-- /.box-footer -->
-            </form>
-
-          <!-- TO DO List -->
-          <!-- /.box -->
-
+          
           <!-- quick email widget -->
           
         </section>
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-5 connectedSortable">
-
-          <!-- /.box -->
-
-          <!-- Calendar -->
-          <div class="box box-solid bg-blue-gradient">
-            <div class="box-header">
-              <i class="fa fa-dollar"></i>
-
-              <h3 class="box-title">Precios Sugeridos</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <!-- button with a dropdown -->
-                <div class="btn-group">
-                  
-                </div>
-                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                
-              </div>
-              <!-- /. tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <!--The calendar -->
-              <div class="table-responsive">
-                <table class="table no-margin">
-                  <thead>
-                  <tr>
-                    
-                    <th>N° de Clases</th>
-                    <th>$ Básico</th>
-                    <th>$ Especificas</th>
-                    <th>Ganancia</th>
-                    
-                    
-                    
-                  </tr>
-                  </thead>
-                  <tbody name="usuarios" id="usuarios_total">
-                 <tr>
-                   <td>20 Clases</td>
-                   <td>$4000</td>
-                   <td>$4500</td>
-                   <td>70 %</td>
-                 </tr>
-
-                 <tr>
-                   <td>12 Clases</td>
-                   <td>$3000</td>
-                   <td>$3600</td>
-                   <td>70 %</td>
-                 </tr>
-
-                 <tr>
-                   <td>8 Clases</td>
-                   <td>$2600</td>
-                   <td>$3000</td>
-                   <td>70 %</td>
-                 </tr>
-                 <tr>
-                   <td>1 Clase</td>
-                   <td>$350</td>
-                   <td>$500</td>
-                   <td>70 %</td>
-                 </tr>
-                   </tbody>
-                </table>
-              </div>
-            <!-- /.box-body -->
-            <div class="box-footer text-black">
-              <div class="row">
-                <div class="col-sm-12">
-                  <!-- Progress bars -->
-                  <span class="">Estos son precios sugeridos para trabajar dentro de un Margen de costos acorde para cada asignatura</span>
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-            </div>
-          </div>
-          <!-- /.box -->
-
-        </section>
+      
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->
@@ -1089,35 +932,8 @@ $Grupo = New Grupo($id_grupo,$materia);
 </div>
 <!-- ./wrapper -->
 <?php
-if(isset($_POST['oculto'])){
-
-  if(isset($_POST['dias'])){
-    if(!empty($_POST['dias'])){
-      $valor = $_POST['dias'];
-      $campo = "Dias ";
-      $Grupo->actualizar($campo, $valor);
-
-    }
-  }
-  if(isset($_POST['precio'])){
-    if(!empty($_POST['precio'])){
-      $valor = $_POST['precio'];
-      $campo = "Precio ";
-      $Grupo->actualizar($campo, $valor);
-
-    }
-  }
-  
-  if(isset($_POST['nivel'])){
-    if(!empty($_POST['nivel'])){
-      $valor = $_POST['nivel'];
-      $campo = "nivel ";
-      $Grupo->actualizar($campo, $valor);
-
-    }
-  }
-
-}
+if(isset($_POST['id_profe']))
+{include "./includes/nueva_clase.php";}
 ?>
 <!-- jQuery 3 -->
 <script src="../admin/bower_components/jquery/dist/jquery.min.js"></script>

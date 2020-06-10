@@ -341,10 +341,20 @@ else
 						
 						<!-- Categories -->
 						<div class="sidebar_section">
-							<div class="sidebar_section_title">ALERTA !!!</div>
+							<div class="sidebar_section_title">Menu !!!</div>
 							<br>
-							<div class="tags_list">
-								<li>Estamos Realizando tareas de mantenimiento hasta el martes 09 de Junio</li>
+							<div class="tags_list"><nav class="menu_nav">
+			
+			<ul class="menu_mm">
+				<li class="menu_mm"><a href="#">Inicio</a></li>
+				<li class="menu_mm"><a href="./miscursos.php">Mis Cursos</a></li>
+				<li class="menu_mm"><a href="./perfil.php">Editar Perfil</a></li>
+	  			<li class="menu_mm"><a href="../../../../logout.php?tk=<?php echo $_SESSION['token']?>">Cerrar Sesión</a></li>
+			</ul>
+			
+			<div></div>
+
+		</nav>
 								<!-- <ul>
 									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Matemática</a></li>
 									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Física</a></li>

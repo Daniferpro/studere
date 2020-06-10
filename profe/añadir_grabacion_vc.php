@@ -593,8 +593,8 @@ $Grupo = New Grupo($id_grupo,$materia);
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        EDITAR Mis Clases
-        <small>Lista de Mis Clases</small>
+        Agregar link de las grabaciones
+        <small>Grabaciones de Mis Clases</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
@@ -719,7 +719,7 @@ $Grupo = New Grupo($id_grupo,$materia);
           <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Editar Clase <?php echo $Grupo->nombre;?></h3>
+              <h3 class="box-title">Agregar o editar Link de Grabacion vc- > <?php echo $Grupo->nombre;?></h3>
             </div>
             <!-- /.box-header -->
             <!-- form NUEVA CLASEEEE start -->
@@ -728,10 +728,19 @@ $Grupo = New Grupo($id_grupo,$materia);
               <div class="box-body">
 
               <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Editar Precio </label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Link de grabacion </label>
 
                   <div class="col-sm-10">
-                    <input type="number" name="precio" class="form-control" id="text" placeholder="Agregar o editar precio del Pack." >
+                    <input type="text" name="link" class="form-control" id="text" placeholder="Agregar o editar Link de la Grabacion." required >
+                  </div>
+                </div>
+                
+                
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">contraseña grabacion </label>
+
+                  <div class="col-sm-10">
+                    <input type="text" name="pass" class="form-control" id="text" placeholder="si es necesario ingrese la contraseña" required >
                   </div>
                 </div>
                 
@@ -743,25 +752,13 @@ $Grupo = New Grupo($id_grupo,$materia);
                 
   
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Dias</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Dia de la vc</label>
 
                   <div class="col-sm-10">
-                    <input type="text" name="dias" class="form-control" id="text" placeholder="Ejemplo: Lunes Martes y Viernes" >
+                    <input type="date" name="fecha" class="form-control" id="text" placeholder="Ejemplo: Lunes Martes y Viernes" required >
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Nivel (requerido)</label>
-
-                  <select name="nivel" class="form-control select2" style="width: 50%;" >
-                    <option selected="selected" value="1">1° Ciclo básico</option>
-                    <option value="2">2° Ciclo básico</option>
-                    <option value="3">3° Ciclo básico</option>
-                    <option value="4">1° Bachillerato</option>
-                    <option value="5">2° Bachillerato</option>
-                    <option value="6">3° Bachillerato</option>
-                  </select>
                 
-              </div>
                 
                 </div>
                 
@@ -772,8 +769,7 @@ $Grupo = New Grupo($id_grupo,$materia);
                       
                     <div class="box-footer">
                       
-                    <button type="" class="btn btn-sm btn-default btn-flat pull-left">La nueva Clase quedará Activa Luego de Revision de Admin</button>
-                <button type="submit" class="btn btn-info pull-right">Modificar Clase</button>
+                   <button type="submit" class="btn btn-info pull-right">Guardar cambios</button>
                 
                 </div>
                     </div>
@@ -1090,34 +1086,29 @@ $Grupo = New Grupo($id_grupo,$materia);
 <!-- ./wrapper -->
 <?php
 if(isset($_POST['oculto'])){
-
-  if(isset($_POST['dias'])){
-    if(!empty($_POST['dias'])){
-      $valor = $_POST['dias'];
-      $campo = "Dias ";
-      $Grupo->actualizar($campo, $valor);
-
-    }
-  }
-  if(isset($_POST['precio'])){
-    if(!empty($_POST['precio'])){
-      $valor = $_POST['precio'];
-      $campo = "Precio ";
-      $Grupo->actualizar($campo, $valor);
-
-    }
-  }
   
-  if(isset($_POST['nivel'])){
-    if(!empty($_POST['nivel'])){
-      $valor = $_POST['nivel'];
-      $campo = "nivel ";
-      $Grupo->actualizar($campo, $valor);
+$grabacion_vc="CREATE TABLE IF NOT EXISTS $materia (id int(11) NOT NULL auto_increment,
+id_clase int(200)NOT NULL, link_grabacion text(1000)NOT NULL,
+contraseña text(200)NOT NULL,
+fecha DATE NOT NULL,
+PRIMARY KEY(id) )";
+$grabacion_vc = consultaclasesSQL($grabacion_vc);
 
+
+  if(isset($_POST['fecha']) && isset($_POST['link']) && isset($_POST['pass'])){
+    $link = $_POST['link'];
+    $fecha = $_POST['fecha'];
+    $pass = $_POST['pass'];
+    $agreagr_fecha = consultaclasesSQL("INSERT INTO `$materia` ( `id_clase`, `link_grabacion`, `contraseña`, `fecha`) 
+    VALUES ('$id_grupo', '$link', '$pass', '$fecha' )");
+
+
+     
     }
   }
 
-}
+
+
 ?>
 <!-- jQuery 3 -->
 <script src="../admin/bower_components/jquery/dist/jquery.min.js"></script>
