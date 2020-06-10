@@ -3,7 +3,7 @@ session_start();
 
 //importamos conecciones a la bd
 
-include "./procesos/conecciones.php";
+include "../../../profe/includes/conecciones.php";
 
 //DATOS USUARIO
 
@@ -22,6 +22,7 @@ $mis_clases = mysqli_fetch_assoc(consultarSQL($query2));
 if(isset($_GET['materia'])){
 $materia = $_GET['materia'];
 $clase = $_GET['tema'];
+$id_clase = $_GET['id_clase'];
 }else{ header("Location: ../miscursos.php?error=Sin Permisos Para Acceder al Curso.");}
 
 include "../includes/coneccionbdclases.php";
@@ -277,7 +278,7 @@ $lista_subtemas = explode('_', $consulta_lista['temas']);
             $materia_clase_resultado = $consulta_clases_resultado['materia'];
           ?>
           
-            <li><a href="index.php?materia=<?php print $materia_clase_resultado. '&tema='.$nombre_clase_resultado?>"><i class="fa fa-circle-o"></i> <?php print $nombre_clase_resultado;?></a></li>
+            <li><a href="index.php?materia=<?php print $materia_clase_resultado. '&tema='.$nombre_clase_resultado .'&id_clase='.$id_clase;?>"><i class="fa fa-circle-o"></i> <?php print $nombre_clase_resultado;?></a></li>
 
           <?php endwhile;?>
           </ul>
@@ -411,9 +412,7 @@ if($cc->num_rows>0):
             <ul class="nav nav-tabs pull-right">
               <!-- muestra el video de portada -->
               <li class="pull-left header"><i class="fa fa-inbox"></i><?php print $clase;?></li>
-              <!-- <?php // echo $lista_videos[0];?> este muestra el video desde la bd -->
-              <video src="<?php echo "material/".$materia."/".$clase.".mp4"; ?>" width="100%" controls="true" ></video>
-            </ul>
+              </ul>
             <div class="tab-content no-padding">
               <!-- Morris chart - Sales -->
               
@@ -424,7 +423,7 @@ if($cc->num_rows>0):
   <div class="box-header with-border">
     <div class="box box-solid">
       <div class="box-header with-border">
-        <h3 class="box-title">Video Presentaciones</h3>
+        <h3 class="box-title">Link de Video Conferencia</h3>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
@@ -433,14 +432,24 @@ if($cc->num_rows>0):
           <div class="panel box box-primary">
             <div class="box-header with-border">
               <h4 class="box-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                 Presentacion <?php print $clase;?>
+              <?php 
+              $link = mysqli_fetch_assoc(gruposSQL("SELECT * FROM $materia WHERE id=$id_clase "));
+              $link_1 = $link['link_vc'];
+              
+              
+              ?>
+                <a  href="<?php echo $link_1;?>">
+                  <?php 
+                  
+                  
+                  print $link_1;?>
                 </a>
               </h4>
             </div>
             <div id="collapseOne" class="panel-collapse collapse in">
               <div class="box-body">
-                <?php print $texto_de_tema['Descripcion'];?>
+              <h3 class="box-title">contraseña:: </h3>
+                <?php print $link['Contraseña_vc'];?>
               </div>
             </div>
           </div>
