@@ -695,6 +695,7 @@ $Grupo = New Grupo($id_grupo,$materia);
                     <th>Precio</th>
                     <th>Alumnos</th>
                     <th>Dias</th>
+                    <th>Nivel</th>
                     <th>Opciones</th>
                     
                     

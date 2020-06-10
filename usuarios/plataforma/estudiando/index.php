@@ -13,7 +13,7 @@ $consulta = consultarSQL($query);                                               
 $datos_usuario = mysqli_fetch_assoc($consulta);                                            // asociamos resultado a variable
 $alumno = $datos_usuario['id']; // creamos variable alumno con los datos relevantes
 $nombre_apellido = $datos_usuario['Nombre'] . " " . $datos_usuario['Apellido'];
-
+ 
 $query2 = "SELECT * FROM clases WHERE Alumno = '$alumno'";
 $mis_clases = mysqli_fetch_assoc(consultarSQL($query2));
 
