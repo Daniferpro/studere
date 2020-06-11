@@ -672,7 +672,7 @@ $Grupo = New Grupo($id_grupo,$materia);
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
+        <section class="col-lg-12 connectedSortable">
          <!-- TABLE: LATEST ORDERS -->
          <div class="box box-info">
             <div class="box-header with-border">
@@ -690,10 +690,10 @@ $Grupo = New Grupo($id_grupo,$materia);
                 <table class="table no-margin">
                   <thead>
                   <tr>
-                    
+                  <th>Grupo</th> 
                     <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Alumnos</th>
+                    <th>Horario</th>
+                    
                     <th>Dias</th>
                     <th>Nivel</th>
                     <th>Opciones</th>
@@ -716,15 +716,56 @@ $Grupo = New Grupo($id_grupo,$materia);
               </div>
             <!-- /.box-footer -->
           </div>
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Grabaciones del GRUPO <?php echo $id_grupo;?></h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                  <tr>
+                  <th>Grupo</th> 
+                    <th>Link Grabación</th>
+                    <th>Contraseña</th>
+                    
+                    <th>Fecha</th>
+                    
+                    
+                    
+                  </tr>
+                  </thead>
+                  <tbody name="usuarios" id="usuarios_total">
+                  
+                 <?php include "./includes/vc_list.php";  ?>
+                   </tbody>
+                </table>
+              </div>
+              <!-- /.table-responsive -->
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+            <a  class="btn btn-success" href="./añadir_grabacion_vc.php?id=<?php echo $id.'&clase='.$id_grupo; ?>">refrescar</a>
+
+              </div>
+            <!-- /.box-footer -->
+          </div>
           <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Agregar o editar Link de Grabacion vc- > <?php echo $Grupo->nombre;?></h3>
+              <h3 class="box-title">Agregar Grabacion vc- > <?php echo $Grupo->nombre. " " . " GRUPO ". $Grupo->identificador;?></h3>
             </div>
             <!-- /.box-header -->
             <!-- form NUEVA CLASEEEE start -->
 
-            <form class="form-horizontal" method="post" action="#">
+            <form class="form-horizontal" method="post" action="">
               <div class="box-body">
 
               <div class="form-group">
@@ -737,7 +778,7 @@ $Grupo = New Grupo($id_grupo,$materia);
                 
                 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">contraseña grabacion </label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">contraseña grabacion</label>
 
                   <div class="col-sm-10">
                     <input type="text" name="pass" class="form-control" id="text" placeholder="si es necesario ingrese la contraseña" required >
@@ -794,84 +835,7 @@ $Grupo = New Grupo($id_grupo,$materia);
           <!-- /.box -->
 
           <!-- Calendar -->
-          <div class="box box-solid bg-blue-gradient">
-            <div class="box-header">
-              <i class="fa fa-dollar"></i>
-
-              <h3 class="box-title">Precios Sugeridos</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <!-- button with a dropdown -->
-                <div class="btn-group">
-                  
-                </div>
-                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                
-              </div>
-              <!-- /. tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <!--The calendar -->
-              <div class="table-responsive">
-                <table class="table no-margin">
-                  <thead>
-                  <tr>
-                    
-                    <th>N° de Clases</th>
-                    <th>$ Básico</th>
-                    <th>$ Especificas</th>
-                    <th>Ganancia</th>
-                    
-                    
-                    
-                  </tr>
-                  </thead>
-                  <tbody name="usuarios" id="usuarios_total">
-                 <tr>
-                   <td>20 Clases</td>
-                   <td>$4000</td>
-                   <td>$4500</td>
-                   <td>70 %</td>
-                 </tr>
-
-                 <tr>
-                   <td>12 Clases</td>
-                   <td>$3000</td>
-                   <td>$3600</td>
-                   <td>70 %</td>
-                 </tr>
-
-                 <tr>
-                   <td>8 Clases</td>
-                   <td>$2600</td>
-                   <td>$3000</td>
-                   <td>70 %</td>
-                 </tr>
-                 <tr>
-                   <td>1 Clase</td>
-                   <td>$350</td>
-                   <td>$500</td>
-                   <td>70 %</td>
-                 </tr>
-                   </tbody>
-                </table>
-              </div>
-            <!-- /.box-body -->
-            <div class="box-footer text-black">
-              <div class="row">
-                <div class="col-sm-12">
-                  <!-- Progress bars -->
-                  <span class="">Estos son precios sugeridos para trabajar dentro de un Margen de costos acorde para cada asignatura</span>
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-            </div>
-          </div>
-          <!-- /.box -->
-
+        
         </section>
         <!-- right col -->
       </div>

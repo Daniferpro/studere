@@ -609,58 +609,21 @@ if($cc->num_rows>0):
 
 
 <!-- END ACCORDION & CAROUSEL-->
-          <div class="box box-solid bg-green-gradient">
-          
-          
-          <div class="box box-solid">
-            <div class="box-header with-border">
-              <h3 class="box-title">Material Descargable </h3> <br>  <small> Toca y Descarga</small>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
-                </ol>
-                <div class="carousel-inner">
-                  <div class="item active">
-            
-
-                    <div class="carousel-caption">
-                      Presentación PDF
-                    </div>
-                  </div>
-                </div>
-                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                  <span class="fa fa-angle-left"></span>
-                </a>
-                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                  <span class="fa fa-angle-right"></span>
-                </a>
-              </div>
-            </div>
-            
-            
-            <!-- /.box-body -->
-          
-          <!-- /.box -->
-        </div>
-          </div>
+      
           <div class="box box-solid">
         <div class="box box-solid">
           <!-- Custom Tabs -->
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab_1" data-toggle="tab">Sub-Temas</a></li>
-              <li><a href="#tab_2" data-toggle="tab">Mas Cursos</a></li>
+              <li class="active"><a href="#tab_1" data-toggle="tab">Descripcion</a></li>
+              <li><a href="#tab_2" data-toggle="tab">MATERIAL</a></li>
               <li><a href="#tab_3" data-toggle="tab">Recuerda...</a></li>
              
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="tab_1">
-                <b>Subtemas que componen ésta clase: </b>
+                <li>Informacion de la clase</li>
+                <b><?php echo $link['descripcion'];?> </b>
                 
                 <p><?php 
                 // $cantidad_subtemas = 0;
@@ -675,17 +638,56 @@ if($cc->num_rows>0):
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="tab_2">
+               <h4>Clic para descargar</h4>
+               <?php 
                
-               colocar publicidad de algunos cursos
+                
+               function obtener_estructura_directorios($ruta){
+                // Se comprueba que realmente sea la ruta de un directorio
+                if (is_dir($ruta)){
+                    // Abre un gestor de directorios para la ruta indicada
+                    $gestor = opendir($ruta);
+                    echo "<ul>";
+            
+                    // Recorre todos los elementos del directorio
+                    while (($archivo = readdir($gestor)) !== false)  {
+                            
+                        $ruta_completa = $ruta . "/" . $archivo;
+            
+                        // Se muestran todos los archivos y carpetas excepto "." y ".."
+                        if ($archivo != "." && $archivo != "..") {
+                            // Si es un directorio se recorre recursivamente
+                            if (is_dir($ruta_completa)) {
+                                echo "<li>" . $archivo . "</li>";
+                                obtener_estructura_directorios($ruta_completa);
+                            } else {
+                                echo "<a download='studere.uy_material_$archivo' href='$ruta_completa'><li>" . $archivo . "</li></a>";
+                            }
+                        }
+                    }
+                    
+                    // Cierra el gestor de directorios
+                    closedir($gestor);
+                    echo "</ul>";
+                } else {
+                    echo "Sin materiales para descargar....<br/>";
+                }
+            }
+               
+                  
+               
+               
+               
+               
+            $ruta = '../../../profe/material/'.$materia.'/'.$id_clase;
+            obtener_estructura_directorios($ruta);
+               
+               ?>
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="tab_3">
                 <b>Recueda que:</b>
-                <p> En esta seccion encontrarás Los videos de la clase del profesor de <?php print $materia. ',  <code>' . $texto_de_tema['profesor']. '</code>' ; ?>,
-                 el cuál también anexa material descargable como archivos PDF y Presentaciónes para que 
-                 puedas estudiar apoyándote no solo en el video Principal Sino que en todo el material, 
-                 el cual sumado a los medios de comunicación como el <code>chat</code>, las <code>VideoConf</code> y el  <code>Post</code> de comentarios, son un conjunto de Herramientas a tu disposición
-                 para lograr un aprendiaje rápido, cómodo y efectivo. </p>
+                <p>asda </p>
               </div>
               <!-- /.tab-pane -->
             </div>

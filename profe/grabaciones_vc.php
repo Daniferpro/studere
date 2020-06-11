@@ -589,8 +589,8 @@ if($email == "danielferreira@studere.com.uy"){
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Mis Clases
-        <small>Lista de Mis Clases</small>
+        Mis Grabaciones
+        <small>Grabaciones de Video Conferencias</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
@@ -668,11 +668,11 @@ if($email == "danielferreira@studere.com.uy"){
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
+        <section class="col-lg-12 connectedSortable">
          <!-- TABLE: LATEST ORDERS -->
          <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Lista de Mis Clases Creadas</h3>
+              <h3 class="box-title">Aquí podrá agregar los link de las grabaciones de sus clases</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -686,10 +686,9 @@ if($email == "danielferreira@studere.com.uy"){
                 <table class="table no-margin">
                   <thead>
                   <tr>
-                    
+                  <th>Grupo</th>
                     <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Alumnos</th>
+                    <th>horario</th>
                     <th>Dias</th>
                     <th>Nivel</th>
                     <th>Opciones</th>
@@ -707,7 +706,7 @@ if($email == "danielferreira@studere.com.uy"){
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-            <a  class="btn btn-success" href="./mis_clases.php?id=<?php echo $id; ?>">refrescar</a>
+            <a  class="btn btn-success" href="./grabaciones_vc.php?id=<?php echo $id;?>">refrescar</a>
 
               </div>
             <!-- /.box-footer -->

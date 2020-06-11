@@ -11,13 +11,11 @@
         <html>
 
             <tr>
-            
+            <td><?php echo $clases['id'];?></td> 
             <td><?php echo $clases['Nombre'];?></td>
 
-            <td>$<?php echo $clases['Precio'];?></td>
-            <td>
-                <div class="sparkbar" data-color="#00a65a" data-height="20"><?php echo $clases['alumnos']; ?></div>
-            </td>
+            <td><?php echo $clases['Horario'];?></td>
+           
             <td>
                 <div class="sparkbar" data-color="#00a65a" data-height="20"><?php  echo $clases['Dias']; ?>
                 
@@ -29,7 +27,7 @@
                 </div>
             </td>
             <td>
-                <a href="./añadir_grabacion_vc.php?id=<?php echo $usuario['id'].'&clase='.$clases['id'];?>" class="sparkbar" data-color="#00a65a" data-height="20">Editar
+                <a href="./añadir_grabacion_vc.php?id=<?php echo $usuario['id'].'&clase='.$clases['id'];?>" class="sparkbar" data-color="#00a65a" data-height="20">Agregar Grabacion
                 
         </a>
             </td>

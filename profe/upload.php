@@ -2,7 +2,6 @@
 //incluimos conecciones a las ases ded datos  
 include "./includes/conecciones.php";
 include "../admin/includes/seguridad.php";
-include "./includes/objetos.php";
 
 
 $email = $_SESSION['email'];
@@ -41,9 +40,6 @@ if($consulta1->num_rows >=1){
 if($email == "danielferreira@studere.com.uy"){
   $admin_form = '';
 }else{ $admin_form = 'disabled="disabled"'; }
-$materia = $usuario['materias'];
-$id_grupo = $_GET['clase'];
-$Grupo = New Grupo($id_grupo,$materia);
 
 
 
@@ -436,7 +432,7 @@ $Grupo = New Grupo($id_grupo,$materia);
           <ul class="treeview-menu">
             <li><a href="./index.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> General</a></li>
             <li><a href="./users.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Mis Alumnos</a></li>
-            <li class="active"><a href="./mis_clases.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Mis Clases </a></li>
+            <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Mis Clases </a></li>
             <li><a href="./mis_grupos.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Video Conferencias </a></li>
           </ul>
         </li>
@@ -450,8 +446,8 @@ $Grupo = New Grupo($id_grupo,$materia);
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="./grabaciones_vc.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Grabaciones vc</a></li>
-            <li><a href="./software_vc.php?id=<?php echo $id;?>"><i class="fa fa-circle-o"></i> Software a utilizar</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Fechas y Horas</a></li>
+            <li><a href="./software_vc.php?id=<?php echo $id;?>s"><i class="fa fa-circle-o"></i> Software a utilizar</a></li>
             </ul>
         </li>
         <!-- <li class="treeview">
@@ -593,7 +589,7 @@ $Grupo = New Grupo($id_grupo,$materia);
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        EDITAR Mis Clases
+        Mis Clases
         <small>Lista de Mis Clases</small>
       </h1>
       <ol class="breadcrumb">
@@ -671,8 +667,67 @@ $Grupo = New Grupo($id_grupo,$materia);
       <!-- /.row -->
       <!-- Main row -->
       <div class="row">
+      <section class="col-lg-12 connectedSortable">
+
+<!-- /.box -->
+
+<!-- Calendar -->
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">Subir material para el grupo <?php echo $_GET['clase'];?></h3>
+  </div>
+  <!-- /.box-header -->
+  <!-- form NUEVA CLASEEEE start -->
+
+  <form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
+    <div class="box-body">
+
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Seleccionar material </label>
+
+        <div class="col-sm-5">
+          <input type="file" name="uploadfile" class="form-control" id="text" placeholder="Agregar o editar Link de la Grabacion." required >
+        </div>
+      </div>
+      
+      
+      
+      
+      <div class="form-group">
+       
+        
+        <input type="text" value="<?php echo $id?>" name="oculto" hidden>
+      </div>  
+      
+
+      
+      
+      
+      </div>
+      
+      <div class="form-group">
+      
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="checkbox">
+            
+          <div class="box-footer">
+            
+         <button type="submit" name="material" value="upload" class="btn btn-info pull-right">Guardar cambios</button>
+      
+      </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.box-body -->
+    
+    <!-- /.box-footer -->
+  </form>
+
+
+</section>
         <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
+        <section class="col-lg-12 connectedSortable">
          <!-- TABLE: LATEST ORDERS -->
          <div class="box box-info">
             <div class="box-header with-border">
@@ -692,7 +747,7 @@ $Grupo = New Grupo($id_grupo,$materia);
                   <tr>
                     
                     <th>Nombre</th>
-                    <th>Precio</th>
+                    <th>Fecha</th>
                     <th>Alumnos</th>
                     <th>Dias</th>
                     <th>Nivel</th>
@@ -702,8 +757,14 @@ $Grupo = New Grupo($id_grupo,$materia);
                   </tr>
                   </thead>
                   <tbody name="usuarios" id="usuarios_total">
-                  
-                 <?php include "./includes/clases.php";  ?>
+                    <tr>  
+                      <td>
+                        hola
+                      </td>
+                      <td>fecha</td>
+
+                    </tr>
+                 <?php include "./includes/material.php";  ?>
                    </tbody>
                 </table>
               </div>
@@ -711,172 +772,19 @@ $Grupo = New Grupo($id_grupo,$materia);
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-            <a  class="btn btn-success" href="./editar_clase.php?id=<?php echo $id.'&clase='.$id_grupo; ?>">refrescar</a>
+            <a  class="btn btn-success" href="./mis_clases.php?id=<?php echo $id; ?>">refrescar</a>
 
               </div>
             <!-- /.box-footer -->
           </div>
           <!-- Horizontal Form -->
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Editar Clase <?php echo $Grupo->nombre;?></h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form NUEVA CLASEEEE start -->
-
-            <form class="form-horizontal" method="post" action="#">
-              <div class="box-body">
-
-              <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Editar Precio </label>
-
-                  <div class="col-sm-10">
-                    <input type="number" name="precio" class="form-control" id="text" placeholder="Agregar o editar precio del Pack." >
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                 
-                  
-                  <input type="text" value="<?php echo $id?>" name="oculto" hidden>
-                </div>  
-                
-  
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Dias</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" name="dias" class="form-control" id="text" placeholder="Ejemplo: Lunes Martes y Viernes" >
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-3 control-label">Nivel (requerido)</label>
-
-                  <select name="nivel" class="form-control select2" style="width: 50%;" >
-                    <option selected="selected" value="1">1° Ciclo básico</option>
-                    <option value="2">2° Ciclo básico</option>
-                    <option value="3">3° Ciclo básico</option>
-                    <option value="4">1° Bachillerato</option>
-                    <option value="5">2° Bachillerato</option>
-                    <option value="6">3° Bachillerato</option>
-                  </select>
-                
-              </div>
-                
-                </div>
-                
-                <div class="form-group">
-                
-                  <div class="col-sm-offset-2 col-sm-10">
-                    <div class="checkbox">
-                      
-                    <div class="box-footer">
-                      
-                    <button type="" class="btn btn-sm btn-default btn-flat pull-left">La nueva Clase quedará Activa Luego de Revision de Admin</button>
-                <button type="submit" class="btn btn-info pull-right">Modificar Clase</button>
-                
-                </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.box-body -->
-              
-              <!-- /.box-footer -->
-            </form>
-
-          <!-- TO DO List -->
-          <!-- /.box -->
-
+          
           <!-- quick email widget -->
           
         </section>
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-5 connectedSortable">
-
-          <!-- /.box -->
-
-          <!-- Calendar -->
-          <div class="box box-solid bg-blue-gradient">
-            <div class="box-header">
-              <i class="fa fa-dollar"></i>
-
-              <h3 class="box-title">Precios Sugeridos</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <!-- button with a dropdown -->
-                <div class="btn-group">
-                  
-                </div>
-                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                
-              </div>
-              <!-- /. tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <!--The calendar -->
-              <div class="table-responsive">
-                <table class="table no-margin">
-                  <thead>
-                  <tr>
-                    
-                    <th>N° de Clases</th>
-                    <th>$ Básico</th>
-                    <th>$ Especificas</th>
-                    <th>Ganancia</th>
-                    
-                    
-                    
-                  </tr>
-                  </thead>
-                  <tbody name="usuarios" id="usuarios_total">
-                 <tr>
-                   <td>20 Clases</td>
-                   <td>$4000</td>
-                   <td>$4500</td>
-                   <td>70 %</td>
-                 </tr>
-
-                 <tr>
-                   <td>12 Clases</td>
-                   <td>$3000</td>
-                   <td>$3600</td>
-                   <td>70 %</td>
-                 </tr>
-
-                 <tr>
-                   <td>8 Clases</td>
-                   <td>$2600</td>
-                   <td>$3000</td>
-                   <td>70 %</td>
-                 </tr>
-                 <tr>
-                   <td>1 Clase</td>
-                   <td>$350</td>
-                   <td>$500</td>
-                   <td>70 %</td>
-                 </tr>
-                   </tbody>
-                </table>
-              </div>
-            <!-- /.box-body -->
-            <div class="box-footer text-black">
-              <div class="row">
-                <div class="col-sm-12">
-                  <!-- Progress bars -->
-                  <span class="">Estos son precios sugeridos para trabajar dentro de un Margen de costos acorde para cada asignatura</span>
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-            </div>
-          </div>
-          <!-- /.box -->
-
-        </section>
+     
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->
@@ -884,6 +792,7 @@ $Grupo = New Grupo($id_grupo,$materia);
     </section>
     <!-- /.content -->
   </div>
+  
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
@@ -1089,35 +998,43 @@ $Grupo = New Grupo($id_grupo,$materia);
 </div>
 <!-- ./wrapper -->
 <?php
-if(isset($_POST['oculto'])){
+if (isset($_POST['material']) && $_POST['material'] == 'upload') {
+  // get details of the uploaded file
+$fileTmpPath = $_FILES['uploadfile']['tmp_name'];
+$fileName = $_FILES['uploadfile']['name'];
+$fileSize = $_FILES['uploadfile']['size'];
+$fileType = $_FILES['uploadfile']['type'];
+$fileNameCmps = explode(".", $fileName);
+$fileExtension = strtolower(end($fileNameCmps));
+$newFileName = $fileName;
 
-  if(isset($_POST['dias'])){
-    if(!empty($_POST['dias'])){
-      $valor = $_POST['dias'];
-      $campo = "Dias ";
-      $Grupo->actualizar($campo, $valor);
+$materia = $usuario['materias'];
 
-    }
-  }
-  if(isset($_POST['precio'])){
-    if(!empty($_POST['precio'])){
-      $valor = $_POST['precio'];
-      $campo = "Precio ";
-      $Grupo->actualizar($campo, $valor);
-
-    }
-  }
-  
-  if(isset($_POST['nivel'])){
-    if(!empty($_POST['nivel'])){
-      $valor = $_POST['nivel'];
-      $campo = "nivel ";
-      $Grupo->actualizar($campo, $valor);
-
-    }
-  }
-
+$micarpeta = './material/'.$materia.'/'.$_GET['clase'];
+if (!file_exists($micarpeta)) {
+    mkdir($micarpeta, 0777, true);
 }
+
+
+$allowedfileExtensions = array('jpg', 'gif', 'png', 'zip', 'txt', 'xls', 'doc', 'pdf', 'docx');
+  if (in_array($fileExtension, $allowedfileExtensions)) {
+  // directory in which the uploaded file will be moved
+  
+  $uploadFileDir = './material/'.$materia.'/'.$_GET['clase'].'/';
+  $dest_path = $uploadFileDir . $newFileName;
+  
+  if(move_uploaded_file($fileTmpPath, $dest_path))
+{
+ $_SESSION['message'] = $message ='exito';
+}
+else
+{
+ $_SESSION['message'] = $message = 'error';
+}
+}
+
+
+  }
 ?>
 <!-- jQuery 3 -->
 <script src="../admin/bower_components/jquery/dist/jquery.min.js"></script>
@@ -1156,5 +1073,70 @@ if(isset($_POST['oculto'])){
 <script src="../admin/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../admin/dist/js/demo.js"></script>
+<script
+     src="https://code.jquery.com/jquery-3.4.1.min.js"
+     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+     crossorigin="anonymous"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+        <?php
+    if (isset($_SESSION['message']) && $_SESSION['message'] && $_SESSION['message'] == 'exito'):
+    
+     
+    //   unset($_SESSION['message']);
+    // }
+?>
+
+<script>
+Command: toastr["success"]("se ha cargado su archivo exitosamente", "Genial!")
+
+toastr.options = {
+  "closeButton": true,
+  "debug": false,
+  "newestOnTop": true,
+  "progressBar": true,
+  "positionClass": "toast-top-center",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+</script>
+<?php
+elseif(isset($_SESSION['message']) && $_SESSION['message'] && $_SESSION['message'] == 'error'):
+?>
+<script>
+
+Command: toastr["error"]("mensaje", "NO SE GUARDO EL ARCHIVO. VERIFIQUE FORMATO Y TAMAÑO")
+
+toastr.options = {
+  "closeButton": true,
+  "debug": false,
+  "newestOnTop": true,
+  "progressBar": true,
+  "positionClass": "toast-top-center",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "600",
+  "hideDuration": "2000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+</script>
+<?php
+endif;
+unset($_SESSION['message']);
+?>
 </body>
 </html>
