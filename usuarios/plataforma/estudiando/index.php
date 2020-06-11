@@ -661,7 +661,7 @@ if($cc->num_rows>0):
                                 echo "<li>" . $archivo . "</li>";
                                 obtener_estructura_directorios($ruta_completa);
                             } else {
-                                echo "<a download='studere.uy_material_$archivo' href='$ruta_completa'><li>" . $archivo . "</li></a>";
+                                echo "<a download='STUDERE_UY_MATERIAL_$archivo' href='$ruta_completa'><li>" . $archivo . "</li></a>";
                             }
                         }
                     }

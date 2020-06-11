@@ -691,7 +691,7 @@ if($email == "danielferreira@studere.com.uy"){
       </div>
       
       
-      
+      <h4 class="col-sm-8 control-label">Tipos de archivos aceptados: .jpg .png .doc .docx .pdf .zip  tamaño máximo: 100MB</h4>
       
       <div class="form-group">
        
@@ -731,6 +731,95 @@ if($email == "danielferreira@studere.com.uy"){
          <!-- TABLE: LATEST ORDERS -->
          <div class="box box-info">
             <div class="box-header with-border">
+           
+              <h3 class="box-title">Lista de Mis Documentos y archivos cargados para esta clase</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                  <tr>
+                  
+                    <th>Archivos actuales para este grupo </th>
+                    
+                    
+                    
+                  </tr>
+                  </thead>
+                  <tbody name="usuarios" id="usuarios_total">
+                    <tr>  
+                      
+<?php 
+               
+                
+               function obtener_estructura_directorios($ruta){
+                // Se comprueba que realmente sea la ruta de un directorio
+                if (is_dir($ruta)){
+                    // Abre un gestor de directorios para la ruta indicada
+                    $gestor = opendir($ruta);
+                    echo "<ul>";
+            
+                    // Recorre todos los elementos del directorio
+                    while (($archivo = readdir($gestor)) !== false)  {
+                            
+                        $ruta_completa = $ruta . "/" . $archivo;
+            
+                        // Se muestran todos los archivos y carpetas excepto "." y ".."
+                        if ($archivo != "." && $archivo != "..") {
+                            // Si es un directorio se recorre recursivamente
+                            if (is_dir($ruta_completa)) {
+                                echo "<li>" . $archivo . "</li>";
+                                obtener_estructura_directorios($ruta_completa);
+                            } else {
+                                echo "<td><a download='STUDERE_UY_MATERIAL_$archivo' href='$ruta_completa'><li>" . $archivo . "</li></a></td>";
+                            }
+                        }
+                    }
+                    
+                    // Cierra el gestor de directorios
+                    closedir($gestor);
+                    echo "</ul>";
+                } else {
+                    echo "<td>No hay documentos o archivos actualmente....<br/></td>";
+                }
+            }
+               
+                  
+               
+               
+               
+            $materia = $usuario['materias'];
+            $ruta = './material/'.$materia.'/'.$_GET['clase'];
+            obtener_estructura_directorios($ruta);
+               
+               ?>
+                      
+
+                    </tr>
+                
+                   </tbody>
+                </table>
+              </div>
+              <!-- /.table-responsive -->
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+            <a  class="btn btn-success" href="./upload.php?id=<?php echo $id.'&clase='.$_GET['clase'];?>">refrescar</a>
+
+              </div>
+            <!-- /.box-footer -->
+          </div>
+        
+         <div class="box box-info">
+            <div class="box-header with-border">
+           
               <h3 class="box-title">Lista de Mis Clases Creadas</h3>
 
               <div class="box-tools pull-right">
@@ -745,10 +834,10 @@ if($email == "danielferreira@studere.com.uy"){
                 <table class="table no-margin">
                   <thead>
                   <tr>
-                    
+                  <th>Grupo</th>
                     <th>Nombre</th>
-                    <th>Fecha</th>
-                    <th>Alumnos</th>
+                    <th>Fecha Fin</th>
+                    <th>Horario</th>
                     <th>Dias</th>
                     <th>Nivel</th>
                     <th>Opciones</th>
@@ -758,10 +847,7 @@ if($email == "danielferreira@studere.com.uy"){
                   </thead>
                   <tbody name="usuarios" id="usuarios_total">
                     <tr>  
-                      <td>
-                        hola
-                      </td>
-                      <td>fecha</td>
+                     
 
                     </tr>
                  <?php include "./includes/material.php";  ?>
@@ -772,7 +858,7 @@ if($email == "danielferreira@studere.com.uy"){
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-            <a  class="btn btn-success" href="./mis_clases.php?id=<?php echo $id; ?>">refrescar</a>
+            <a  class="btn btn-success" href="./upload.php?id=<?php echo $id.'&clase='.$_GET['clase'];?>">refrescar</a>
 
               </div>
             <!-- /.box-footer -->

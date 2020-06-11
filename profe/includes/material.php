@@ -11,12 +11,13 @@
         <html>
 
             <tr>
-            
+             
+            <td><?php echo $clases['id'];?></td>
             <td><?php echo $clases['Nombre'];?></td>
 
-            <td>$<?php echo $clases['Precio'];?></td>
+            <td><?php echo $clases['dia_fin'];?></td>
             <td>
-                <div class="sparkbar" data-color="#00a65a" data-height="20"><?php echo $clases['alumnos']; ?></div>
+                <div class="sparkbar" data-color="#00a65a" data-height="20"><?php echo $clases['Horario']; ?></div>
             </td>
             <td>
                 <div class="sparkbar" data-color="#00a65a" data-height="20"><?php  echo $clases['Dias']; ?>
