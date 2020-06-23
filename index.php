@@ -37,7 +37,7 @@
 									<li><div class="question">Tienes alguna Pregunta?</div></li>
 									<li>
 										<i class="fa fa-phone" aria-hidden="true"></i>
-										<div>(+598) 096 635 675</div>
+										<div>(+598) 092 763 897</div>
 									</li>
 									<li>
 										<i class="fa fa-envelope-o" aria-hidden="true"></i>
@@ -72,7 +72,7 @@
 									<li><a href="./contact.php">Eres Docente? clic aquí</a></li>
 									<li><a href="#">Cursos</a></li>
 									<li><a href="./usuarios/plataforma/estudiando/register.php?nuevo_registro">Registrarse</a></li>
-									<li><a href="#">Contacto</a></li>
+									<li><a href="./contact.php">Contacto</a></li>
 								</ul>
 								<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 
@@ -127,7 +127,7 @@
 				<li class="menu_mm"><a href="./contact.php">Eres docente? clic aquí</a></li>
 				<li class="menu_mm"><a href="#">Cursos</a></li>
 				<li class="menu_mm"><a href="./usuarios/plataforma/estudiando/register.php?nuevo_registro">Registrarse!</a></li>
-				<li class="menu_mm"><a href="#">Contacto</a></li>
+				<li class="menu_mm"><a href="./cotact.php">Contacto</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -148,7 +148,7 @@
                                 <div class="row">
                                     <div class="col text-center">
                                         <div class="home_slider_title">
-                                            {% COMO EN CLASE PERO EN CASA %}
+                                            COMO EN CLASE PERO EN CASA 
                                         </div>
                                         <div class="home_slider_subtitle" style="color: white;">Al alcance de tu mano y a tu ritmo</div>
                                         <div class="home_slider_form_container">
@@ -168,7 +168,7 @@
                                 <div class="row">
                                     <div class="col text-center">
                                         <div class="home_slider_title">
-                                            {% Promo de Lanzamiento %}
+                                            Promo de Lanzamiento 
                                         </div>
                                         <div class="home_slider_subtitle" style="color: white;">No pierdas tu oportunidad, todas las materias por video conferencias</div>
                                         <div class="home_slider_form_container">
@@ -182,13 +182,13 @@
 
                     <!-- Home Slider Item -->
                     <div class="owl-item">
-                        <div class="home_slider_background" style="background-image:url(images/para_todos.png)"></div>
+                        <div class="home_slider_background" style="background-image:url(images/nuevos/estudia1.jpg)"></div>
                         <div class="home_slider_content">
                             <div class="container">
                                 <div class="row">
                                     <div class="col text-center">
-                                        <div class="home_slider_title" style="color: white;">[-PARA TÍ-PARA EL-PARA TODOS-]</div>
-                                        <div class="home_slider_subtitle" style="color: white;">El futuro de la educación es atravéz de la tecnología</div>
+                                        <div class="home_slider_title" style="color: white;">Video Conferencias</div>
+                                        <div class="home_slider_subtitle" style="color: white;">Prepara tus exámenes con nuestros profesores</div>
                                         <div class="home_slider_form_container">
                                             <button type="submit" class="home_search_button">Ver Clases</button>
                                         </div>
@@ -200,15 +200,15 @@
 
                     <!-- Home Slider Item -->
                     <div class="owl-item">
-                        <div class="home_slider_background" style="background-image:url(images/historia.png)"></div>
+                        <div class="home_slider_background" style="background-image:url(images/nuevos/tec.jpg)"></div>
                         <div class="home_slider_content">
                             <div class="container">
                                 <div class="row">
                                     <div class="col text-center">
-                                        <div class="home_slider_title" style="color: black;">Eres Docente y Quieres ser parte del equipo?</div>
-                                        <div class="home_slider_subtitle" style="color: black;">Comunícate con nosotros para más información</div>
+                                        <div class="home_slider_title" style="color: black;"></div>
+                                        <div class="home_slider_subtitle" style="color: black;"></div>
                                         <div class="home_slider_form_container">
-                                             <a href="./contact.php"><button type="submit" class="home_search_button">Quiero Más Información</button></a>
+                                             <a href="./contact.php"><button type="submit" class="home_search_button"></button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -323,10 +323,9 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="counter_content">
-                            <h2 class="counter_title">Creciendo Juntos...</h2>
+                            <h2 class="counter_title">Prepara Tus Exámenes</h2>
                             <div class="counter_text">
-                                <p>Estamos continuamente agregando material, videos, Información. Nuestro equipo está trabajando para brindarte todas las asignaturas de Secundaria, Creciendo Juntos.
-                                </p>
+                                <p>Puedes estar desde tu casa, la playa o en la oficina, Studere brinda horarios variados y la posibilidad de preparar tus exámenes desde donde estés! Atravez de Video Conferencias con los profesores, el material que cargan juntos con los ejercicios, ayudarán a que Prepares tus exámenes  </p>
                             </div>
 
                             <!-- Milestones -->
@@ -388,100 +387,7 @@
 
         <!-- Events -->
 
-        <div class="events">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="section_title_container text-center">
-                            <h2 class="section_title">Enfoque Grupal</h2>
-                            <div class="section_subtitle">
-                                <p>Estamos enfocados en crear una rama paralela a la educación, para que TÚ puedas tener CLASES PARTICULARES atravez de internet y en la comodidad de TU CASA!!!</p>
-                            </div>
-                            <!-- <embed src="./plataforma.pdf" type="application/pdf" width="100%" height="600px" /> -->
-
-                        </div>
-                    </div>
-                </div>
-                <div class="row events_row">
-
-                    <!-- Event -->
-                    <div class="col-lg-4 event_col">
-                        <div class="event event_left">
-                            <div class="event_image"><img src="images/event_1.jpg" alt=""></div>
-                            <div class="event_body d-flex flex-row align-items-start justify-content-start">
-                                <div class="event_date">
-                                    <div class="d-flex flex-column align-items-center justify-content-center trans_200">
-                                        <div class="event_day trans_200">10</div>
-                                        <div class="event_month trans_200">Agos</div>
-                                    </div>
-                                </div>
-                                <div class="event_content">
-                                    <div class="event_title"><a href="#">Lanzamos 4to Año Historia 1°ero bachillerato</a></div>
-                                    <div class="event_info_container">
-                                        <div class="event_info"><i class="fa fa-clock-o" aria-hidden="true"></i><span>15.00 - 19.30</span></div>
-                                        <div class="event_info"><i class="fa fa-map-marker" aria-hidden="true"></i><span>Uruguay</span></div>
-                                        <div class="event_text">
-                                            <p>Agregamos el curso completo de Historia 4to año Profesor: Rogelio Castro...</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Event -->
-                    <div class="col-lg-4 event_col">
-                        <div class="event event_mid">
-                            <div class="event_image"><img src="images/event_2.jpg" alt=""></div>
-                            <div class="event_body d-flex flex-row align-items-start justify-content-start">
-                                <div class="event_date">
-                                    <div class="d-flex flex-column align-items-center justify-content-center trans_200">
-                                        <div class="event_day trans_200">22</div>
-                                        <div class="event_month trans_200">Nov</div>
-                                    </div>
-                                </div>
-                                <div class="event_content">
-                                    <div class="event_title"><a href="#">Encuentro Nacional de Educación y TI</a></div>
-                                    <div class="event_info_container">
-                                        <div class="event_info"><i class="fa fa-clock-o" aria-hidden="true"></i><span>09.00 - 17.30</span></div>
-                                        <div class="event_info"><i class="fa fa-map-marker" aria-hidden="true"></i><span>Caraguatá</span></div>
-                                        <div class="event_text">
-                                            <p>Participación del equipo en eventos que marcan el futuro en Educación & Tecnología...</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Event -->
-                    <div class="col-lg-4 event_col">
-                        <div class="event event_right">
-                            <div class="event_image"><img src="images/event_3.jpg" alt=""></div>
-                            <div class="event_body d-flex flex-row align-items-start justify-content-start">
-                                <div class="event_date">
-                                    <div class="d-flex flex-column align-items-center justify-content-center trans_200">
-                                        <div class="event_day trans_200">01</div>
-                                        <div class="event_month trans_200">Dic</div>
-                                    </div>
-                                </div>
-                                <div class="event_content">
-                                    <div class="event_title"><a href="#">Lanzaremos Promociones Imperdibles de Lanzamiento!</a></div>
-                                    <div class="event_info_container">
-                                        <div class="event_info"><i class="fa fa-clock-o" aria-hidden="true"></i><span>13.00 - 18.30</span></div>
-                                        <div class="event_info"><i class="fa fa-map-marker" aria-hidden="true"></i><span>Uruguay</span></div>
-                                        <div class="event_text">
-                                            <p>Lanzaremos plan Promociones IMPERDIBLES por lanzamiento de la plataforma....</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+        
 
         <!-- Team -->
 
@@ -491,7 +397,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="section_title_container text-center">
-                            <h2 class="section_title">El equipo de Trabajo</h2>
+                            <h2 class="section_title">Team Work</h2>
                             <div class="section_subtitle">
                                 <p>Responsables dedicados a que Studere.uy cobre vida, brindando así, otra oportunidad.</p>
                             </div>
@@ -505,7 +411,7 @@
                     <!-- Team Item -->
                     <div class="col-lg-6 col-md-6 team_col">
                         <div class="team_item">
-                            <div class="team_image"><img src="images/team_2.jpg" alt=""></div>
+                            <div class="team_image"><img src="images/rogelio_c.jpeg" alt=""></div>
                             <div class="team_body">
                                 <div class="team_title"><a href="#">Rogelio Castro</a></div>
                                 <div class="team_subtitle">Fundador | Director Educativo | Prof Historia</div>
@@ -523,7 +429,7 @@
                     <!-- Team Item -->
                     <div class="col-lg-6 col-md-6 team_col">
                         <div class="team_item">
-                            <div class="team_image"><img src="images/team_2.jpg" alt=""></div>
+                            <div class="team_image"><img src="images/daniel_f.jpeg" alt=""></div>
                             <div class="team_body">
                                 <div class="team_title"><a href="#">Daniel Ferreria</a></div>
                                 <div class="team_subtitle">Fundador | Líder Technology | Programador | Diseñador</div>

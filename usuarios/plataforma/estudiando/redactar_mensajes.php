@@ -23,12 +23,16 @@ if(isset($_GET['materia']) && isset($_GET['chat'])){
 $materia = $_GET['materia'];
 }else{ header("Location: ../miscursos.php?error=Sin Permisos Para Acceder al Chat.");}
 
+$id_user = $datos_usuario['id'];
+$chat="CREATE TABLE IF NOT EXISTS `$id_user` 
+( `id` INT NOT NULL AUTO_INCREMENT ,
+ `Nombre` VARCHAR(100) NOT NULL ,
+ `mensaje` TEXT(500) NOT NULL ,
+  `materia` VARCHAR(100) NOT NULL ,
+   `fecha` TIMESTAMP NOT NULL ,
+    `estado` INT NOT NULL ,
+     PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 
-$chat="CREATE TABLE IF NOT EXISTS $_GET[chat] (id int(11) NOT NULL auto_increment,
-Nombre varchar(30)NOT NULL, mensaje text(1000)NOT NULL,
-materia varchar(30)NOT NULL,
-fecha TIMESTAMP NOT NULL,
-PRIMARY KEY(id) )";
 $pueba = consultachatSQL($chat);
 
 ?>
@@ -73,71 +77,10 @@ $pueba = consultachatSQL($chat);
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
  
-  <script type="text/javascript">
-		function ajax(){
-			var req = new XMLHttpRequest();
 
-			req.onreadystatechange = function(){
-				if (req.readyState == 4 && req.status == 200) {
-					document.getElementById('online').innerHTML = req.responseText;
-					
-				}
-			}
-
-			req.open('GET', './procesos/usuarios_online.php', true);
-			req.send();
-		}
-
-			//linea que hace que se refreseque la pagina cada segundo
-		setInterval(function(){ajax();}, 500);	
-
-		
-	</script>
-   <script type="text/javascript">
-		function comentarios(){
-			var req = new XMLHttpRequest();
-
-			req.onreadystatechange = function(){
-				if (req.readyState == 4 && req.status == 200) {
-					document.getElementById('comentarios').innerHTML = req.responseText;
-					
-				}
-			}
-
-			req.open('GET', './procesos/comentarios.php?tema=<?php print $clase;?>', true);
-			req.send();
-		}
-
-			//linea que hace que se refreseque la pagina cada segundo
-		setInterval(function(){comentarios();}, 750);	
-
-		
-	</script>
-   
-  <!-- Mensajes x ajax prueba 1 -->
-   <script type="text/javascript">
-		function mensajes(){
-			var req = new XMLHttpRequest();
-
-			req.onreadystatechange = function(){
-				if (req.readyState == 4 && req.status == 200) {
-					document.getElementById('mensaje').innerHTML = req.responseText;
-					
-				}
-			}
-
-			req.open('GET', './procesos/mensajes.php?materia=<?php echo $materia;?>', true);
-			req.send();
-		}
-
-			//linea que hace que se refreseque la pagina cada segundo
-		setInterval(function(){mensajes();}, 1000);	
-
-		
-	</script> 
   
 </head>
-<body class="hold-transition skin-blue sidebar-mini" onload="ajax(), chat_ajax();">
+<body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
@@ -367,21 +310,25 @@ function formatearFecha($fecha){
 $nombre=$_GET['chat'];
 $materia=$_GET['materia'];
 	///consultamos a la base para cada materia copiar el chat y configurar su resultado 
-	$consulta = "SELECT * FROM $nombre WHERE materia='$materia' ORDER BY fecha DESC ";
+	$consulta = "SELECT * FROM `$id_user` WHERE materia='$materia' ORDER BY id ASC ";
   $ejecutar = consultachatSQL($consulta);
   
 
 	if($ejecutar):
-	while($fila = $ejecutar->fetch_assoc()) :
+  while($fila = $ejecutar->fetch_assoc()) :
+    
+    if($fila['estado'] == 0){$estado = 0 ;}else{$estado = 1;}
+    $nombre_completo = $datos_usuario['Nombre']. " " . $datos_usuario['Apellido'] ." ";;
 	
 ?>
-	 <tr>
+	                <tr>
                                   
-                    <td class="mailbox-name"><?php echo $fila['Nombre'];?></td>
-                    <td class="mailbox-subject"><b><?php echo $fila['mensaje'] ?></b> 
-                    </td>
+                   
+                    <td  class="mailbox-subject" <?php if($fila['Nombre'] == $nombre_completo){echo "style='color: blue;'";}else{echo 'style="color: red;"';} ?> ><b><?php echo $fila['mensaje'] ?></b></td>
+                   
                     <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date"><?php echo formatearFecha($fila['fecha']);?></td>
+                    <td class="mailbox-date" ><?php echo formatearFecha($fila['fecha']);?></td>
+                   
                   </tr>
 	
 	<?php 
@@ -418,6 +365,8 @@ else:
              
             </div>
             <div class="box-footer clearfix">
+            <a type="button" href="./redactar_mensajes.php?materia=<?php echo $materia;?>&chat=<?php echo $datos_usuario['Nombre'].$datos_usuario['Apellido'];  ?>"  class="pull-left btn btn-default" >Actualizar
+                <i class="fa fa-arrow-circle-right"></i></a>
               <button type="submit" class="pull-right btn btn-default" id="sendEmail">Enviar
                 <i class="fa fa-arrow-circle-right"></i></button>
               <!-- /.box-footer -->
@@ -435,9 +384,13 @@ else:
                   
 
 
-
-
-                  consultachatSQL("INSERT INTO $_GET[chat] (`Nombre`, `mensaje`, `materia`) VALUES ('$datos_usuario[Nombre] ', '$_POST[mensaje]', '$_GET[materia]');");
+                $nombre = $datos_usuario['Nombre'] . " " . $datos_usuario['Apellido'];
+                $mensaje = $_POST['mensaje'];
+                $materia = $_GET['materia'];
+                
+                
+                 $guardar_chat =  consultachatSQL("INSERT INTO `$id_user` (`id`, `Nombre`, `mensaje`, `materia`, `fecha`, `estado` ) 
+                 VALUES (NULL, '$nombre ', '$mensaje', '$materia', current_timestamp(), '0')");
                     }else{ echo '
                                 <div class="info-box">
                                     <span class="info-box-icon bg-red"><i class="fa fa-comments-o"></i></span>

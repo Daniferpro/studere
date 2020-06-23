@@ -439,7 +439,7 @@ $mailAdmin->isHTML(true);
 								</div>
 								<div>
 									<div class="form_title">Asignatura</div>
-									<input type="text" class="comment_input" name="asignatura" placeholder="Que asignatura enseñas?" required="required">
+									<input type="text" class="comment_input" name="asignatura" placeholder="Que asignatura enseñas o quieres estudiar?" required="required">
 								</div>
 								<div>
 									<div class="form_title">Mensaje</div>

@@ -25,7 +25,7 @@ while($post = mysqli_fetch_assoc($comentarios)): ?>
                   </a>
                   <?php  echo $post['comentario'] ; ?>
                 </p>
-                
+                 
               </div>
               
 <!-- /.item -->

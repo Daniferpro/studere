@@ -299,7 +299,7 @@ include "../includes/coneccionbdclases.php";
 				{	
 				
 				$persona=$row[0];
-				$consulta8="SELECT * FROM $persona WHERE materia='$materia'";
+				$consulta8="SELECT * FROM `$persona` WHERE materia='$materia'";
 				$cc=consultachatSQL($consulta8);
 			    if($cc->num_rows>0){$i++;}
 				
