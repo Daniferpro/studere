@@ -781,7 +781,7 @@ $Grupo = New Grupo($id_grupo,$materia);
                   <label for="inputEmail3" class="col-sm-2 control-label">contraseña grabacion</label>
 
                   <div class="col-sm-10">
-                    <input type="text" name="pass" class="form-control" id="text" placeholder="si es necesario ingrese la contraseña" required >
+                    <input type="text" name="pass" class="form-control" id="text" placeholder="si es necesario ingrese la contraseña"  >
                   </div>
                 </div>
                 
