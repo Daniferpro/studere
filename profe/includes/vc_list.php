@@ -14,7 +14,7 @@
 
                 <tr>
                 <td><?php echo $clases['id_clase'];?></td> 
-                <a href="<?php echo $clases['link_grabacion'];?>"><td><?php echo $clases['link_grabacion'];?></td></a>
+                <td><a href="<?php echo $clases['link_grabacion'];?>"><?php echo $clases['link_grabacion'];?></a></td>
 
                 <td><?php echo $clases['contraseña'];?></td>
             
