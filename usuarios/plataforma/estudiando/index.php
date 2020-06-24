@@ -617,7 +617,7 @@ if($cc->num_rows>0):
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab_1" data-toggle="tab">Descripcion</a></li>
               <li><a href="#tab_2" data-toggle="tab">MATERIAL</a></li>
-              <li><a href="#tab_3" data-toggle="tab">Recuerda...</a></li>
+              <li><a href="#tab_3" data-toggle="tab">GRABACIONES</a></li>
              
             </ul>
             <div class="tab-content">
@@ -640,54 +640,18 @@ if($cc->num_rows>0):
               <div class="tab-pane" id="tab_2">
                <h4>Clic para descargar</h4>
                <?php 
-               
-                
-               function obtener_estructura_directorios($ruta){
-                // Se comprueba que realmente sea la ruta de un directorio
-                if (is_dir($ruta)){
-                    // Abre un gestor de directorios para la ruta indicada
-                    $gestor = opendir($ruta);
-                    echo "<ul>";
-            
-                    // Recorre todos los elementos del directorio
-                    while (($archivo = readdir($gestor)) !== false)  {
-                            
-                        $ruta_completa = $ruta . "/" . $archivo;
-            
-                        // Se muestran todos los archivos y carpetas excepto "." y ".."
-                        if ($archivo != "." && $archivo != "..") {
-                            // Si es un directorio se recorre recursivamente
-                            if (is_dir($ruta_completa)) {
-                                echo "<li>" . $archivo . "</li>";
-                                obtener_estructura_directorios($ruta_completa);
-                            } else {
-                                echo "<a download='STUDERE_UY_MATERIAL_$archivo' href='$ruta_completa'><li>" . $archivo . "</li></a>";
-                            }
-                        }
-                    }
-                    
-                    // Cierra el gestor de directorios
-                    closedir($gestor);
-                    echo "</ul>";
-                } else {
-                    echo "Sin materiales para descargar....<br/>";
-                }
-            }
-               
-                  
-               
-               
-               
-               
-            $ruta = '../../../profe/material/'.$materia.'/'.$id_clase;
-            obtener_estructura_directorios($ruta);
-               
+                #listamos los materiales de estudio cargados por los profesores
+               include "./procesos/materiales_lista.php";
                ?>
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="tab_3">
-                <b>Recueda que:</b>
-                <p>asda </p>
+                <h4>Links de las Video Conferencias Grabadas</h4>
+                <?php  
+                
+                include "./procesos/grabaciones_lista.php";
+                
+                ?>
               </div>
               <!-- /.tab-pane -->
             </div>

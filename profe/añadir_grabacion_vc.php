@@ -127,7 +127,7 @@ $Grupo = New Grupo($id_grupo,$materia);
 		}
 
 			//linea que hace que se refreseque la pagina cada segundo
-		setInterval(function(){usuarios();} 1000);	
+		setInterval(function(){usuarios();}, 1000);	
 
 		
 	</script>
