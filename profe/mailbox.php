@@ -3,7 +3,7 @@
 include "../admin/includes/conecciones.php";
 include "../admin/includes/seguridad.php";
 $id = $_GET['id'];
-$email = $_SESSION['email'];
+$email = $_SESSION['email']; 
 
 $consulta = "SELECT * FROM usuario WHERE id='$id' ";
 $usuario = mysqli_fetch_assoc( consultarSQL($consulta) );

@@ -32,12 +32,14 @@ while($numero > $i){
         
     }
     
-    if($mensajes == 0){
-        echo NULL;
-    }else{
-    echo $mensajes;
-    }
+    
 
+}
+
+if($mensajes == 0){
+    echo NULL;
+}else{
+echo $mensajes;
 }
 
 

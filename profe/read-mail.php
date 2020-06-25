@@ -612,7 +612,7 @@ if($consulta1->num_rows >=1){
               <!-- chat item  traidos por ajax()-->
               <span id="chat"></span>
              
-            </div>
+            </div> 
                 <table class="table table-hover table-striped">
                   <tbody id="mensajeria">
                  
@@ -628,7 +628,7 @@ if($consulta1->num_rows >=1){
              
             </div>
             <div class="box-footer clearfix">
-            <a type="button" href="./read-mail.php?id=<?php echo $id_profe;?>&id_alumno=<?php echo $id_alumno;  ?>"  class="pull-left btn btn-default" >Actualizar
+            <a type="button" href="./read-mail.php?id=<?php $id_alumno = $_GET['id_alumno']; echo $id_profe;?>&id_alumno=<?php echo $id_alumno;  ?>"  class="pull-left btn btn-default" >Actualizar
                 <i class="fa fa-arrow-circle-right"></i></a>
               <button type="submit" class="pull-right btn btn-default" id="sendEmail">Enviar
                 <i class="fa fa-arrow-circle-right"></i></button>
@@ -668,7 +668,8 @@ if($consulta1->num_rows >=1){
                                 '; }
                    }
                     #AQUI CREAMOS LA TABLA CON EL NUMERO DE ALUMNO SI NO EXISTE                  
-                   
+                    $id_alumno= $_GET['id_alumno'];
+
                     $chat="CREATE TABLE IF NOT EXISTS `$id_alumno` 
                     ( `id` INT NOT NULL AUTO_INCREMENT ,
                     `Nombre` VARCHAR(100) NOT NULL ,
