@@ -1,3 +1,7 @@
+RewriteEngine On
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://studere.uy/$1 [R=301,L]
+
 Options -Indexes
 
 <ifModule mod_rewrite.c>
