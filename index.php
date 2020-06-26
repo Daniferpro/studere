@@ -16,6 +16,8 @@
     <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
     <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+    <script charset="UTF-8" src="//web.webpushs.com/js/push/72a2679820c89b10df008462554e3abb_1.js" async></script>
+
 </head>
 
 <body>
