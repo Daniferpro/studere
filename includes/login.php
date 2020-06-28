@@ -36,26 +36,47 @@ if($consulta2->num_rows>=1){
     $consultamos="UPDATE usuario SET estado='online' WHERE Email='$email'";
     consultarSQL($consultamos);
     
-    switch ($materia) {
-      case $vacio:
-        header ("Location: ./usuarios/plataforma/index.php");
-        break;
-    
-      case $admin:
-        header ("Location: ./admin/?materia=admin&id=$usuario[id]");
-        break;
+    if(isset($_POST['redirectto'])){
+      $url_nueva = $_POST['redirectto'];
+      header ("Location: " . $url_nueva . "&usuario=" . $usuario['id']);
+
+    }else {
+      switch ($materia) {
+        case $vacio:
+          header ("Location: ./usuarios/plataforma/index.php");
+          break;
       
-      default:
-        header ("Location: ./profe/?materia=$usuario[materias]&id=$usuario[id]");
-        break;
+        case $admin:
+          header ("Location: ./admin/?materia=admin&id=$usuario[id]");
+          break;
+        
+        default:
+          header ("Location: ./profe/?materia=$usuario[materias]&id=$usuario[id]");
+          break;
+  
+  
+      }
     }
+    
     
     
      
     
 }else{
 
-    echo "<script language='JavaScript'> alert (' Usuario o Contraseña Incorrecto'); </script>"; 
+    echo "<script language='JavaScript'> alert (' Usuario o Contraseña Incorrecto'); </script>";
+    echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $( document ).ready(function() {
+      document.getElementById("nologginredir").submit();
+  });
+    </script>
+  ';
+    $url_out_session = $_POST['redirectto'];
+    echo '<form method="post" action="#" id="nologginredir">
+    <input type="hidden" value="'.$url_out_session.'" name="url_redirect">
+    </form>
+    ';
 
 }
 

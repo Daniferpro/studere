@@ -9,12 +9,35 @@
 
 
  
-//  obtenemos x get el nombre de la clase y la materia enviada desde index.php en el buscador
+//  obtenemos x get el nombre de la clase y la materia enviada desde index.php en el buscador.
  $materia=$_GET['materia'];
  $nombreclase=$_GET['id'];
  $id_clase = $_GET['id2'];
  
- $id_user = $_GET['usuario'];// obtenemos x GET el id del usuario
+ if(empty($_GET['usuario'])){
+  echo '<a style="float:right;">Identificando session...</a>';
+  
+  echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+  $( document ).ready(function(){
+    setTimeout(function(){
+      document.getElementById("nologginredir").submit();
+    }, 3000);
+    
+});
+  </script>
+';
+  $url_out_session = $_SERVER['REQUEST_URI'];
+  echo '<form method="post" action="../../../../login.php" id="nologginredir">
+  <input type="hidden" value="'.$url_out_session.'" name="url_redirect">
+  </form>
+  ';
+}else {
+  $id_user = $_GET['usuario'];// obtenemos x GET el id del usuario
+
+
+
+ 
  $profe = consultarSQL("SELECT * FROM usuario WHERE materias='$materia'");
  $profe = mysqli_fetch_assoc($profe);
  $profe_id = $profe['id'];
@@ -58,6 +81,6 @@
       echo "<script>location.href='index.php?ERROR1';</script>";
     }
 
-
+  }
 
 ?>

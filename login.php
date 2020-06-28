@@ -1,6 +1,8 @@
 <?php
 ob_start();
 
+
+
 ?>
 <!DOCTYPE html>
 
@@ -54,6 +56,12 @@ ob_start();
 						</span>
 					</div>
 					
+					<?php 
+					if(isset($_POST['url_redirect'])){
+						$url_vieja = $_POST['url_redirect'];
+						echo '<input type="hidden" value="'.$url_vieja.'" name="redirectto">';
+					}
+					?>
 					<div class="container-login100-form-btn p-t-10">
 						<input class="login100-form-btn" action="" type="submit" value="Acceder">
 					</div>	
@@ -80,10 +88,23 @@ ob_start();
 							
 					<div class="text-center w-full p-t-25 p-b-230">
 					
-					<a class="txt1" href="./index.php">
-							Volver al Inicio
-							<i class="fa fa-long-arrow-right"></i>						
-						</a>
+					<?php 
+					#Si viene la variable redirect dar la opcion  de continuar anonimamente.
+					if(isset($_POST['url_redirect'])){
+						echo '<a class="txt1" href="#" data-toggle="modal" data-target="#exampleModalCenter">
+						Continuar sin registrarme
+												
+					</a>';
+					}else {
+						#sino, lo muestra normal.
+echo '<a class="txt1" href="./index.php">
+Volver al Inicio
+<i class="fa fa-long-arrow-right"></i>						
+</a>';
+					}
+					?>
+
+					
 					</div>
 					</div>
 
@@ -107,7 +128,28 @@ ob_start();
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 	
-									
+
+
+
+			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>						
 	
 </body>
 </html>
