@@ -25,8 +25,10 @@
     if (isset($_POST['caja_busqueda'])) {
 		$materia = $_POST['seleccion'];
 		$palabra = $_POST['caja_busqueda'];
-    	$q = $conn->real_escape_string($palabra);
-    	$query = "SELECT * FROM $materia WHERE Nombre LIKE '%$palabra%' OR descripcion LIKE '%$palabra%'";
+		$q = $conn->real_escape_string($palabra);
+		$conn->set_charset("utf8");
+		$query = "SELECT * FROM $materia WHERE Nombre LIKE '%$palabra%' OR descripcion LIKE '%$palabra%'";
+	
     }
 
     $resultado = $conn->query($query);
