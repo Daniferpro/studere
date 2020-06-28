@@ -15,7 +15,7 @@
     if (isset($_POST['caja_busqueda'])) {
 		$materia = $_POST['seleccion'];
 		$palabra = $_POST['caja_busqueda'];
-    	$q = $conn->real_escape_string($pala);
+    	$q = $conn->real_escape_string($palabra);
     	$query = "SELECT * FROM $materia WHERE Nombre LIKE '%$palabra%' OR descripcion LIKE '%$palabra%'";
     }
 
@@ -35,7 +35,7 @@
 
 			while($fila = mysqli_fetch_assoc($resultado)){
     		$salida.="<tr>                                  
-			<td class='courses_search_input'> <a target='_blank' href='./clases/bachillerato/registra_fatc.php?id=".$fila[Nombre]."&materia=".$materia."&precio=".$fila[Precio].",00&id2=".$fila[id]."'>".$fila[Nombre].".</a></td>
+			<td class='courses_search_input'> <a target='_blank' href='./clases/bachillerato/registra_fatc.php?id=".$fila['Nombre']."&materia=".$materia."&precio=".$fila['Precio'].",00&id2=".$fila['id']."'>".$fila['Nombre'].".</a></td>
 				<td  class='courses_search_input'>$fila[Horario]</td>
 				<td class='courses_search_input'>$fila[Dias]</td>
 				<td class='courses_search_input'>$fila[Precio]</td>
