@@ -1,20 +1,14 @@
 
 <?php
-include_once "../../includes/seguro.php";
 include_once "../../includes/conectar.php";
-include_once "includes/actualzar_estado_de_clases.php";
 include_once "includes/coneccionbdclases.php";
-$hola=$_SESSION['email'];
-$query="SELECT * FROM usuario WHERE email='$hola' ";
-$consulta=consultarSQL($query);
-$a=mysqli_fetch_assoc($consulta);
-$alumno=$a['Nombre'].$a['Apellido']." ".$a['Email'];
 
-$query="SELECT * FROM clases WHERE Alumno='$alumno' ORDER BY fecha_fin DESC";
-$consulta32=consultarSQL($query);
+
+
+
 
 $fecha_hoy= date("Y-m-d"); //fecha de hoy
-$resultado=mysqli_fetch_assoc($consulta32);
+
 if(!isset($_COOKIE['contador']))
 { 
   // Caduca en un año   
@@ -31,7 +25,7 @@ else
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Studere.uy</title>
+<title>Studere.uy - DEV</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Somos una plataforma de Estudios Online dónde puedes obtener apoyo para terminar los e´xamenes o directamente el año completo">
@@ -43,11 +37,21 @@ else
 <link rel="stylesheet" type="text/css" href="../../plugins/OwlCarousel2-2.2.1/owl.carousel.css">
 <link rel="stylesheet" type="text/css" href="../../plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="../../plugins/OwlCarousel2-2.2.1/animate.css">
-<script type="text/javascript" src="../../js/jquery.min.js"></script>
 <!-- <link rel="stylesheet" type="text/css" href="../../styles/about.css"> -->
 <link rel="stylesheet" type="text/css" href="../../styles/courses.css">
-<link rel="stylesheet" type="text/css" href="../../styles/courses_responsive.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
+<link rel="stylesheet" type="text/css" href="../../styles/courses_responsive.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+.fa-question-circle{
+	transition: all .5s;
+}
+.fa-question-circle:hover{
+	color:orange;
+	cursor:pointer;
+} 
+</style>
 </head>
 <body>
 
@@ -65,7 +69,7 @@ else
 						<div class="col">
 							<div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
 								<ul class="top_bar_contact_list">
-									<li><div class="question">Bienvenido : <?php  echo $a['Nombre']." ".$a['Apellido']; ?> </div></li>
+									<li ><div class="question"><a href="../../index.php" style="text-decoration:none;color:white;">Studere.uy</a></div></li>
 									
 									
 								</ul>
@@ -84,19 +88,19 @@ else
 					<div class="col">
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
 							<div class="logo_container">
-								<a href="../../index.php">
-									<div class="logo_text">Alumno <span><?php echo $a['Nombre']; ?></span></div>
+								<a>
+									<div class="logo_text">Encuentra tu <span>Clase</span> <i class="fa fa-question-circle" style="font-size:20px" data-toggle="modal" data-target="#exampleModal"></i></div>
 								</a>
 							</div>
 							<nav class="main_nav_contaner ml-auto">
 								<ul class="main_nav">
 									
-									<li><a href="#">Inicio</a></li>
-									<li><a href="./miscursos.php">Mis Cursos</a></li>
-									<li><a href="/perfil.php">Editar Perfil</a></li>
-									<li><div class="top_bar_login ml-auto">
-									<a href="../../../../logout.php?tk=<?php echo $_SESSION['token']?>">Cerrar Sesion</a></div>
-								</li>
+									<li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+									
+									<li><a href="../../login.php"><i class="fa fa-user"></i> Iniciar sesión</a></li>
+									<!--<li><div class="top_bar_login ml-auto">
+									<a href="../../../../logout.php?tk=">Cerrar Sesion</a></div>
+								</li>-->
 								</ul>
 																
 								<!-- Hamburger -->
@@ -134,7 +138,7 @@ else
 				<li class="menu_mm"><a href="#">Inicio</a></li>
 				<li class="menu_mm"><a href="./miscursos.php">Mis Cursos</a></li>
 				<li class="menu_mm"><a href="./perfil.php">Editar Perfil</a></li>
-	  			<li class="menu_mm"><a href="../../../../logout.php?tk=<?php echo $_SESSION['token']?>">Cerrar Sesión</a></li>
+	  			<!--<li class="menu_mm"><a href="../../../../logout.php?tk=<?php echo $_SESSION['token']?>">Cerrar Sesión</a></li-->
 			</ul>
 			
 			<div></div>
@@ -183,9 +187,7 @@ else
 				<li class="menu_mm"><a href="#">Inicio</a></li>
 				<li class="menu_mm"><a href="./miscursos.php">Mis Cursos</a></li>
 				<li class="menu_mm"><a href="./perfil.php">Editar Perfil</a></li>
-				<li><div class="top_bar_login ml-auto">
-									<a href="../../../../logout.php?tk=<?php echo $_SESSION['token']?>">Cerrar Sesion</a></div>
-								</li>
+				
 				
 			</ul>
 		</nav>
@@ -244,9 +246,26 @@ else
 							<button action="submit" class="courses_search_button ml-auto">Buscar Ahora</button>
 						</form>
 						<div id="mostrarquery"></div>
-		 				
+		 				<?php 
+						#if(isset($_POST['palabra'])){
+
+							
+							
+						#	require_once "./clases/bachillerato/buscador-no-session.php";
+
+						#	echo "</tbody>
+                         #   </table>
+                          #  <br>
+                           # <br>
+                            #</div>";
+							
+				#		}
+						
+						
+						?>
 						
 					</div>
+
 					
 
 					<div class="courses_container">
@@ -424,12 +443,41 @@ else
 		<?php require ('./includes/footer.php'); ?>
 	</footer>
 </div>
+
+<script src="../../js/jquery-3.2.1.min.js"></script>
+<script src="../../styles/bootstrap4/popper.js"></script>
+<script src="../../styles/bootstrap4/bootstrap.min.js"></script>
+<script src="../../plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="../../plugins/easing/easing.js"></script>
+<script src="../../plugins/parallax-js-master/parallax.min.js"></script>
+<script src="../../plugins/colorbox/jquery.colorbox-min.js"></script>
+<script src="../../js/courses.js"></script>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Explicar al usuario y meter el form aca tmb
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
 $(buscar_datos());
 
 function buscar_datos(consulta){
 	$.ajax({
-		url: '../../includes/buscador-ajax-dev-session.php?usuario=<?php echo $a['id'];?>',
+		url: '../../includes/buscador-ajax-dev.php' ,
 		type: 'POST' ,
 		dataType: 'html',
 		data: $("#formtest").serialize(),
@@ -452,14 +500,6 @@ $(document).on('keyup','#caja_busqueda', function(){
 	}
 });
 </script>
-<script src="../../styles/bootstrap4/popper.js"></script>
-<script src="../../styles/bootstrap4/bootstrap.min.js"></script>
-<script src="../../plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="../../plugins/easing/easing.js"></script>
-<script src="../../plugins/parallax-js-master/parallax.min.js"></script>
-<script src="../../plugins/colorbox/jquery.colorbox-min.js"></script>
-<script src="../../js/courses.js"></script>
-
-
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
 </body>
 </html>
