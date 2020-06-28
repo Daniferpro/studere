@@ -24,7 +24,10 @@ include "./procesos/email/OAuth.php";
       if($consulta2){ header('Location: login.php?email='.$email.'');}
 
     }else{
-      echo "<script> alert('El código ingresado no es Correcto.') </script>";
+      echo '<div class="alert alert-danger" role="alert">
+      El código ingresado no es correcto!
+      
+    </div>';
     }    
   }
   if(isset($_POST['token_email']) && $respuesta ){ //si enviaron el formulario y la query a la bd es OK!.
@@ -36,7 +39,9 @@ include "./procesos/email/OAuth.php";
       if($consulta2){ header('Location: login.php?email='.$email.'');}
 
     }else{
-      echo "<script> alert('El código ingresado no es Correcto.') </script>";
+      echo '<div class="alert alert-danger" role="alert">
+      El código Ingresado no es correcto!
+    </div>';  
     }    
 
   }
@@ -60,7 +65,7 @@ $mail->send();
   $whatsmsapi = new WhatsmsApi();
   $celular ="$_GET[celular]";
   $numero_destino ="+598" . $celular;
-  $mensaje_detino = "Hola ". " " . $nombre ." " . " este es tu link para activar tu cuenta en studere http://www.studere.uy/usuarios/plataforma/estudiando/confirmacion_email.php?token=$token&&id=$email";
+  $mensaje_detino = "Hola ". " " . $nombre ." " . " este es tu código de activacion : $token";
   $whatsmsapi->setApiKey("5da53cab6ca02");
   $whatsmsapi->sendSms($numero_destino, $mensaje_detino);
 

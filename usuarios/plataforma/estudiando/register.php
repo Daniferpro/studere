@@ -67,7 +67,8 @@
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox" name="checkbox"> Acepto los <a href="#">terminos</a>
+              <input type="checkbox" name="checkbox"> Acepto los <a href="#"  data-toggle="modal" data-target="#exampleModalLong">terminos</a>
+              <!-- Button trigger modal -->
             </label>
           </div>
         </div>
@@ -88,6 +89,62 @@
 </div>
 <!-- /.register-box -->
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle">Lea atentamente los terminos y condiciones de uso de Studere.uy para Registrarse</h3>
+        
+      </div>
+      <div class="modal-body">
+        
+        <p> <h4>1)</h4>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui mollitia, in autem vero molestias pariatur nulla ut eligendi? Nostrum commodi dolore nemo quasi praesentium voluptates nihil asperiores. Alias, quia quasi.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti similique inventore veniam facere commodi est laborum! Fuga labore deleniti dolor voluptas perferendis, sapiente vitae impedit facere provident sunt alias enim?
+        </p>
+        <p><h4>2)</h4>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui mollitia, in autem vero molestias pariatur nulla ut eligendi? Nostrum commodi dolore nemo quasi praesentium voluptates nihil asperiores. Alias, quia quasi.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti similique inventore veniam facere commodi est laborum! Fuga labore deleniti dolor voluptas perferendis, sapiente vitae impedit facere provident sunt alias enim?
+        </p>
+        <p><h4>3)</h4>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui mollitia, in autem vero molestias pariatur nulla ut eligendi? Nostrum commodi dolore nemo quasi praesentium voluptates nihil asperiores. Alias, quia quasi.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti similique inventore veniam facere commodi est laborum! Fuga labore deleniti dolor voluptas perferendis, sapiente vitae impedit facere provident sunt alias enim?
+        </p>
+        <p> <h4>4)</h4>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui mollitia, in autem vero molestias pariatur nulla ut eligendi? Nostrum commodi dolore nemo quasi praesentium voluptates nihil asperiores. Alias, quia quasi.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti similique inventore veniam facere commodi est laborum! Fuga labore deleniti dolor voluptas perferendis, sapiente vitae impedit facere provident sunt alias enim?
+        </p>
+        <p><h4>5)</h4>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui mollitia, in autem vero molestias pariatur nulla ut eligendi? Nostrum commodi dolore nemo quasi praesentium voluptates nihil asperiores. Alias, quia quasi.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti similique inventore veniam facere commodi est laborum! Fuga labore deleniti dolor voluptas perferendis, sapiente vitae impedit facere provident sunt alias enim?
+        </p>
+        <p><h4>6)</h4>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui mollitia, in autem vero molestias pariatur nulla ut eligendi? Nostrum commodi dolore nemo quasi praesentium voluptates nihil asperiores. Alias, quia quasi.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti similique inventore veniam facere commodi est laborum! Fuga labore deleniti dolor voluptas perferendis, sapiente vitae impedit facere provident sunt alias enim?
+        </p>
+        <p> <h4>7)</h4>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui mollitia, in autem vero molestias pariatur nulla ut eligendi? Nostrum commodi dolore nemo quasi praesentium voluptates nihil asperiores. Alias, quia quasi.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti similique inventore veniam facere commodi est laborum! Fuga labore deleniti dolor voluptas perferendis, sapiente vitae impedit facere provident sunt alias enim?
+        </p>
+        <p><h4>8)</h4>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui mollitia, in autem vero molestias pariatur nulla ut eligendi? Nostrum commodi dolore nemo quasi praesentium voluptates nihil asperiores. Alias, quia quasi.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti similique inventore veniam facere commodi est laborum! Fuga labore deleniti dolor voluptas perferendis, sapiente vitae impedit facere provident sunt alias enim?
+        </p>
+        <p><h4>9)</h4>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui mollitia, in autem vero molestias pariatur nulla ut eligendi? Nostrum commodi dolore nemo quasi praesentium voluptates nihil asperiores. Alias, quia quasi.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti similique inventore veniam facere commodi est laborum! Fuga labore deleniti dolor voluptas perferendis, sapiente vitae impedit facere provident sunt alias enim?
+        </p>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">He leído los Terminos y Condiciones</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -114,7 +171,7 @@ if(isset($_POST['checkbox']) && $_POST['checkbox'] == "on"){
   $password = $_POST['password'];
   $password1 = $_POST['password1'];
   $pass_encrip = base64_encode($password);
-  $token2=base64_encode(uniqid(mt_rand(), true));//token para enviar por email para confirmacion de usuario..
+  $token2=uniqid(mt_rand(000000,999999), true);//token para enviar por email para confirmacion de usuario..
 
     //comprobamos si las passwords ingresadas son iguales
     if($password != $password1){

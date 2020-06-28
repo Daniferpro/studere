@@ -1,0 +1,17 @@
+comentarios:
+
+Las bases de datos en esta carpeta son las oficiales que estan en el hosting, 
+en las funciones dentro de la plataforma el nombre varia. 
+Entonces hay que modificar los datos de las funciones a las conexiones, 
+por ejemplo en local yo tengo la bd "grupos" pero en el hosting esta como "danifer1_grupos" (asi me la crea el hosting)
+
+en las funciones de conección están los parametros como :
+
+$coneccion=new mysqli("localhost", "root", "", "grupos"); (eso es en local)
+
+pero en el hosting debo de modificar el nombre de la tabla el usuario y la contraseña.
+quedando algo asi:
+
+$coneccion=new mysqli("localhost", "danifer1", "daniferpro2019", "danifer1_grupos");
+
+eso para cada funcion de coneccion.
