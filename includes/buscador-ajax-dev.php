@@ -1,8 +1,18 @@
 <?php
+	
+	# en local son estas config
+	// $servername = "localhost";
+    // $username = "root";
+  	// $password = "";
+	// $dbname = "grupos";
+	  
+	#en el hosting son las siguientes
+
 	$servername = "localhost";
-    $username = "root";
-  	$password = "";
-  	$dbname = "grupos";
+    $username = "danifer1_usuario";
+  	$password = "studereplataforma2020";
+	$dbname = "danifer1_grupos";
+
 
 	$conn = new mysqli($servername, $username, $password, $dbname);
       if($conn->connect_error){
