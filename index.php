@@ -72,7 +72,7 @@
 								<ul class="main_nav">
 									<li class="active"><a href="#">Inicio</a></li>
 									<li><a href="./contact.php">Eres Docente? clic aquí</a></li>
-									<li><a href="#">Cursos</a></li>
+									<li><a href="./usuarios/plataforma/buscar-curso.php">Cursos</a></li>
 									<li><a href="./usuarios/plataforma/estudiando/register.php?nuevo_registro">Registrarse</a></li>
 									<li><a href="./contact.php">Contacto</a></li>
 								</ul>
@@ -127,7 +127,7 @@
 			<ul class="menu_mm">
 				<li class="menu_mm"><a href="./login.php">Iniciar Sesion</a></li>
 				<li class="menu_mm"><a href="./contact.php">Eres docente? clic aquí</a></li>
-				<li class="menu_mm"><a href="#">Cursos</a></li>
+				<li class="menu_mm"><a href="./usuarios/plataforma/buscar-curso.php">Cursos</a></li>
 				<li class="menu_mm"><a href="./usuarios/plataforma/estudiando/register.php?nuevo_registro">Registrarse!</a></li>
 				<li class="menu_mm"><a href="./cotact.php">Contacto</a></li>
 			</ul>
