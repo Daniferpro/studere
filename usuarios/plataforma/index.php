@@ -36,17 +36,17 @@ else
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Somos una plataforma de Estudios Online dónde puedes obtener apoyo para terminar los e´xamenes o directamente el año completo">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="../../styles/bootstrap4/bootstrap.min.css">
-<link href="../../plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href="../../plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="./styles/bootstrap4/bootstrap.min.css">
+<link href="./plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="./plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
 <link rel="icon" type="image/ico" href="../../images/favicon.ico" />
-<link rel="stylesheet" type="text/css" href="../../plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="../../plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="../../plugins/OwlCarousel2-2.2.1/animate.css">
-<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="./plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="./plugins/OwlCarousel2-2.2.1/animate.css">
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <!-- <link rel="stylesheet" type="text/css" href="../../styles/about.css"> -->
-<link rel="stylesheet" type="text/css" href="../../styles/courses.css">
-<link rel="stylesheet" type="text/css" href="../../styles/courses_responsive.css">
+<link rel="stylesheet" type="text/css" href="./styles/courses.css">
+<link rel="stylesheet" type="text/css" href="./styles/courses_responsive.css">
 
 </head>
 <body>
@@ -96,13 +96,20 @@ else
 									<li><a href="/perfil.php">Editar Perfil</a></li>
 									<li><div class="top_bar_login ml-auto">
 									<a href="../../../../logout.php?tk=<?php echo $_SESSION['token']?>">Cerrar Sesion</a></div>
+									
 								</li>
+								
 								</ul>
+								<div class="hamburger menu_mm">
+									<i class="fa fa-bars menu_mm" aria-hidden="true"></i>
+								</div>
+								
+								
 																
 								<!-- Hamburger -->
-
 								
 								</div>
+								
 							</nav>
 
 						</div>
@@ -134,7 +141,8 @@ else
 				<li class="menu_mm"><a href="#">Inicio</a></li>
 				<li class="menu_mm"><a href="./miscursos.php">Mis Cursos</a></li>
 				<li class="menu_mm"><a href="./perfil.php">Editar Perfil</a></li>
-	  			<li class="menu_mm"><a href="../../../../logout.php?tk=<?php echo $_SESSION['token']?>">Cerrar Sesión</a></li>
+				  <li class="menu_mm"><a href="../../../../logout.php?tk=<?php echo $_SESSION['token']?>">Cerrar Sesión</a></li>
+				  
 			</ul>
 			
 			<div></div>
@@ -226,7 +234,7 @@ else
 									<option  selected="selected" value="" disabled>Selecciona la asignatura</option>
 									<option value="historia">Historia</option>
 									<option value="matematica">Matemática</option>
-									<option value="matematica1">Matemática</option>
+									<option value="matematica1">Matemática1</option>
 									<option value="fisica">Física</option>
 									<option value="derecho">Derecho</option> 
 									<option value="quimica">Química</option>
@@ -241,7 +249,7 @@ else
 									
 								
 							</select>
-							<button action="submit" class="courses_search_button ml-auto">Buscar Ahora</button>
+							
 						</form>
 						<div id="mostrarquery"></div>
 		 				
@@ -322,72 +330,7 @@ else
 				</div>
 
 				<!-- Courses Sidebar -->
-				<div class="col-lg-2">
-					<div class="sidebar">
-						
-						<!-- Categories -->
-						<div class="sidebar_section">
-							<div class="sidebar_section_title">Menu !!!</div>
-							<br>
-							<div class="tags_list"><nav class="menu_nav">
 			
-			<ul class="menu_mm">
-				<li class="menu_mm"><a href="#">Inicio</a></li>
-				<li class="menu_mm"><a href="./miscursos.php">Mis Cursos</a></li>
-				<li class="menu_mm"><a href="./perfil.php">Editar Perfil</a></li>
-	  			<li class="menu_mm"><a href="../../../../logout.php?tk=<?php echo $_SESSION['token']?>">Cerrar Sesión</a></li>
-			</ul>
-			
-			<div></div>
-
-		</nav>
-								<!-- <ul>
-									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Matemática</a></li>
-									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Física</a></li>
-									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Química</a></li>
-									<li><a href="materias/historia/historia.php">Historia</a></li>
-                                    <li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Inglés</a></li>
-                                    <li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Id.Español</a></li>
-									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Ed.Visual</a></li>
-									
-									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Biología</a></li>
-                                    <li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Literatura</a></li>
-                                    
-									<li><a href="#" onclick="alert('Disculpa actualmente esta deshabilitado pero pronto estará disponilbe')">Biología</a></li>
-								</ul> -->
-							</div>
-						</div>
-
-						<!-- Latest Course -->
-						<!-- <iframe src="https://www.mercadopago.com.uy/descuentos?campaign_id=59410&show_legals_link=true&dont_show_legals=true&iframe=true" width="100%" height="400" seamless="" frameborder="0" scrolling="no"></iframe>
-					
-
-						
-						<div class="sidebar_section">
-							<div class="sidebar_section_title">Etiquetas</div>
-							<div class="sidebar_tags">
-								<ul class="tags_list">
-									<li><a href="#">Aprender</a></li>
-									<li><a href="#">Examen</a></li>
-									<li><a href="#">Parcial</a></li>
-									<li><a href="#">ideas</a></li>
-									<li><a href="#">4°Año</a></li>
-									<li><a href="#">Ejercicios</a></li>
-								</ul>
-							</div>
-						</div> -->
-
-						<!-- Banner -->
-						<!-- <div class="sidebar_section">
-							<div class="sidebar_banner d-flex flex-column align-items-center justify-content-center text-center">
-								<div class="sidebar_banner_background" style="background-image:url(../../images/banner_1.jpg)"></div>
-								<div class="sidebar_banner_overlay"></div>
-								<div class="sidebar_banner_content">
-									<div class="banner_title">Libro Gratis</div>
-									<div class="banner_button"><a href="#">Descargar Ahora</a></div>
-						</div> -->
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -425,11 +368,11 @@ else
 	</footer>
 </div>
 <script>
-$(buscar_datos());
+	$(buscar_datos());
 
 function buscar_datos(consulta){
 	$.ajax({
-		url: '../../includes/buscador-ajax-dev-session.php?usuario=<?php echo $a['id'];?>',
+		url: '../../includes/buscador-ajax-dev-session.php?usuario=<?php echo $a['id'];?>' ,
 		type: 'POST' ,
 		dataType: 'html',
 		data: $("#formtest").serialize(),

@@ -138,7 +138,7 @@ else
 				<li class="menu_mm"><a href="#">Inicio</a></li>
 				<li class="menu_mm"><a href="./miscursos.php">Mis Cursos</a></li>
 				<li class="menu_mm"><a href="./perfil.php">Editar Perfil</a></li>
-	  			<!--<li class="menu_mm"><a href="../../../../logout.php?tk=<?php echo $_SESSION['token']?>">Cerrar Sesión</a></li-->
+	  			<!--<li class="menu_mm"><a href="../../../../logout.php?tk=<?php  #echo $_SESSION['token']?>">Cerrar Sesión</a></li-->
 			</ul>
 			
 			<div></div>

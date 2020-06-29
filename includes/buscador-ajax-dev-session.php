@@ -1,8 +1,17 @@
 <?php
+	# en local son estas config
+	// $servername = "localhost";
+    // $username = "root";
+  	// $password = "";
+	// $dbname = "grupos";
+	  
+	#en el hosting son las siguientes
+
 	$servername = "localhost";
-    $username = "root";
-  	$password = "";
-  	$dbname = "grupos";
+    $username = "danifer1_usuario";
+  	$password = "studereplataforma2020";
+	$dbname = "danifer1_grupos";
+
 
 	$conn = new mysqli($servername, $username, $password, $dbname);
       if($conn->connect_error){
@@ -15,7 +24,8 @@
     if (isset($_POST['caja_busqueda'])) {
 		$materia = $_POST['seleccion'];
 		$palabra = $_POST['caja_busqueda'];
-    	$q = $conn->real_escape_string($pala);
+		$q = $conn->real_escape_string($palabra);
+		$conn->set_charset("utf8");
     	$query = "SELECT * FROM $materia WHERE Nombre LIKE '%$palabra%' OR descripcion LIKE '%$palabra%'";
     }
 
@@ -35,7 +45,7 @@
 
 			while($fila = mysqli_fetch_assoc($resultado)){
     		$salida.="<tr>                                  
-			<td class='courses_search_input'> <a target='_blank' href='./clases/bachillerato/registra_fatc.php?id=".$fila[Nombre]."&materia=".$materia."&precio=".$fila[Precio].",00&id2=".$fila[id]."&usuario=".$_GET['usuario']."'>".$fila[Nombre].".</a></td>
+			<td class='courses_search_input'> <a target='_blank' href='./clases/bachillerato/registra_fatc.php?id=".$fila['Nombre']."&materia=".$materia."&precio=".$fila['Precio'].",00&id2=".$fila['id']."&usuario=".$_GET['usuario']."'>".$fila['Nombre'].".</a></td>
 				<td  class='courses_search_input'>$fila[Horario]</td>
 				<td class='courses_search_input'>$fila[Dias]</td>
 				<td class='courses_search_input'>$fila[Precio]</td>
