@@ -25,7 +25,7 @@ else
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Studere.uy - DEV</title>
+<title>Studere.uy</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Somos una plataforma de Estudios Online dónde puedes obtener apoyo para terminar los e´xamenes o directamente el año completo">

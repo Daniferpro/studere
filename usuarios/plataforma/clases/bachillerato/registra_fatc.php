@@ -15,14 +15,18 @@
  $id_clase = $_GET['id2'];
  
  if(empty($_GET['usuario'])){
-  echo '<a style="float:right;">Identificando session...</a>';
+  echo '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<div style="margin: 15% 50%;width:300px;" class="center">
+  <img src="91.gif" ><br><br>
+  <a style="text-indent:-150px;">Autenticando, por favor, aguarde...</a>
+  </div>';
   
   echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
   $( document ).ready(function(){
     setTimeout(function(){
       document.getElementById("nologginredir").submit();
-    }, 3000);
+    }, 2500);
     
 });
   </script>
