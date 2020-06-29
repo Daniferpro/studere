@@ -6,7 +6,7 @@ Options -Indexes
 
 <ifModule mod_rewrite.c>
 
-RewriteBase /prueba/
+RewriteBase //
 RewriteCond %{SCRIPT_FILENAME}  !-d
 RewriteCond %{SCRIPT_FILENAME}  !-f
 
