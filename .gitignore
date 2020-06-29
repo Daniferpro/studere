@@ -2,3 +2,4 @@
 usuarios/plataforma/clases/bachillerato/procesos/actualizaciondatos.php
 usuarios/plataforma/clases/bachillerato/procesos/notificaciones.php
 usuarios/plataforma/clases/bachillerato/procesos/pago_clase.php
+.htaccess
