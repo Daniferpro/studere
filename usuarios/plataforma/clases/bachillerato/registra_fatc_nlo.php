@@ -14,31 +14,8 @@
  $nombreclase=$_GET['id'];
  $id_clase = $_GET['id2'];
  
- if(empty($_GET['usuario'])){
-  echo '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<div style="margin: 15% 50%;width:300px;" class="center">
-  <img src="91.gif" ><br><br>
-  <a style="text-indent:-150px;">Autenticando, por favor, aguarde...</a>
-  </div>';
-  
-  echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script>
-  $( document ).ready(function(){
-    setTimeout(function(){
-      document.getElementById("nologginredir").submit();
-    }, 2500);
-    
-});
-  </script>
-';
-  $url_out_session = $_SERVER['REQUEST_URI'];
-  echo '<form method="post" action="../../../../login.php" id="nologginredir">
-  <input type="hidden" value="'.$url_out_session.'" name="url_redirect">
-  <input type="hidden" value="'.$nombreclase.'" name="nombre_clase">
-  </form>
-  ';
-}else {
-  $id_user = $_GET['usuario'];// obtenemos x GET el id del usuario
+ 
+  $id_user = $_POST['email_annon'];// obtenemos x GET el id del usuario
 
 
 
@@ -61,7 +38,7 @@
   $valor = formata($s);
   
    //Aqui creamos una referencia  (esta es enviada a mercado pago el cual nos devuelve la info con esta referencia)
-   $ref = rand(1,9999).$id_user; // Ex: 53801
+   $ref = rand(1,9999).md5($id_user); // Ex: 53801
   
   //Status recive Pendiente
   $status = "Pendiente";
@@ -77,7 +54,14 @@
       if($query){
         $fat = mysqli_fetch_assoc($query);
         $id = $fat['ref'];
-        echo "<script>location.href='procesos/pago_clase.php?id=$nombreclase&materia=$materia&id2=$_GET[id2]&ref=$ref';</script>";
+        $email_hasheado = md5($id_user);
+        echo "
+        <form action='procesos/pago_clase_nlo.php?id=$nombreclase&materia=$materia&id2=$_GET[id2]&ref=$ref&session_status=annon' method='post' id='form_fact'>
+        <input type='hidden' value='".$id_user."' name='email_user'>
+        </form>
+        
+        <script>document.getElementById('form_fact').submit();
+        </script>";
       }else{
         echo "<script>location.href='index.php?ERROR';</script>";
       }
@@ -86,6 +70,6 @@
       echo "<script>location.href='index.php?ERROR1';</script>";
     }
 
-  }
+  
 
 ?>

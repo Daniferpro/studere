@@ -43,7 +43,7 @@
 									</li>
 									<li>
 										<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										<div>studerepletaforma@gmail.com</div>
+										<div>contacto@studere.uy</div>
 									</li>
 								</ul>
 								<div class="top_bar_login ml-auto">

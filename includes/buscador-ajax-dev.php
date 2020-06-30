@@ -9,9 +9,9 @@
 	#en el hosting son las siguientes
 
 	$servername = "localhost";
-    $username = "danifer1_usuario";
-  	$password = "studereplataforma2020";
-	$dbname = "danifer1_grupos";
+    $username = "root";
+  	$password = "";
+	$dbname = "grupos";
 
 
 	$conn = new mysqli($servername, $username, $password, $dbname);

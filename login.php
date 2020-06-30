@@ -28,6 +28,8 @@ ob_start();
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 <!--===============================================================================================-->
 </head>
 <body>
@@ -130,26 +132,31 @@ Volver al Inicio
 	
 
 
-
+<form action="./usuarios/plataforma/clases/bachillerato/registra_fatc_nlo.php?<?php echo $_POST['url_redirect'] ?>&id=<?php echo $_POST['nombre_clase']; ?>" method="post">
 			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h5 class="modal-title" id="exampleModalCenterTitle">Continuar sin registrarse</h5>
+        
       </div>
       <div class="modal-body">
-        ...
-      </div>
+        <a class="font-weight-light text-muted text-lg">Para continuar sin registrarte, por favor, ingresa tu correo electronico.<br>Ten en cuenta que, este es el medio de contacto que tenemos
+	para continuar el proceso de compra del curso.	
+	</a><br><br>
+		<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">@</span>
+  </div>
+  <input type="email" class="form-control" placeholder="Correo electronico..." name="email_annon" required aria-label="Username" aria-describedby="basic-addon1">
+</div>
+	  </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-info">Continuar</button>
       </div>
     </div>
   </div>
 </div>						
-	
+	</form>
 </body>
 </html>
