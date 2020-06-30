@@ -14,25 +14,7 @@
  $nombreclase=$_GET['id'];
  $id_clase = $_GET['id2'];
  
- if(empty($_GET['session_status'])){
-  echo '<a style="float:right;">Identificando session...</a>';
-  
-  echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script>
-  $( document ).ready(function(){
-    setTimeout(function(){
-      document.getElementById("nologginredir").submit();
-    }, 3000);
-    
-});
-  </script>
-';
-  $url_out_session = $_SERVER['REQUEST_URI'];
-  echo '<form method="post" action="../../../../login.php" id="nologginredir">
-  <input type="hidden" value="'.$url_out_session.'" name="url_redirect">
-  </form>
-  ';
-}else {
+ 
   $id_user = $_POST['email_annon'];// obtenemos x GET el id del usuario
 
 
@@ -88,6 +70,6 @@
       echo "<script>location.href='index.php?ERROR1';</script>";
     }
 
-  }
+  
 
 ?>

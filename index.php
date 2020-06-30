@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Studere.uy test</title>
+    <title>Studere.uy</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Studere.uy es una plataforma de estudios online que intenta formar parte de la revolución tecnológica & educativa, Cualquier Persona puede acceder y estudiar al igual que en clase, pero en casa! Con la facilidad de estar en tu dispositivo, las 24 horas y en diferentes Formatos, como VideoPresentaciones, Archivos PDF, Presentaciones, Imágenes, VideoConferencias, Chats y Post.">
@@ -43,7 +43,7 @@
 									</li>
 									<li>
 										<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										<div>studerepletaforma@gmail.com</div>
+										<div>contacto@studere.uy</div>
 									</li>
 								</ul>
 								<div class="top_bar_login ml-auto">

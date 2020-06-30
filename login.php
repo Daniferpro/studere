@@ -132,7 +132,7 @@ Volver al Inicio
 	
 
 
-
+<form action="./usuarios/plataforma/clases/bachillerato/registra_fatc_nlo.php?<?php echo $_POST['url_redirect'] ?>&id=<?php echo $_POST['nombre_clase']; ?>" method="post">
 			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -148,15 +148,15 @@ Volver al Inicio
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">@</span>
   </div>
-  <input type="email" class="form-control" placeholder="Correo electronico..." required aria-label="Username" aria-describedby="basic-addon1">
+  <input type="email" class="form-control" placeholder="Correo electronico..." name="email_annon" required aria-label="Username" aria-describedby="basic-addon1">
 </div>
 	  </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-info">Continuar</button>
+        <button type="submit" class="btn btn-info">Continuar</button>
       </div>
     </div>
   </div>
 </div>						
-	
+	</form>
 </body>
 </html>

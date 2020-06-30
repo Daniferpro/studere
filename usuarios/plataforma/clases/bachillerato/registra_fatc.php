@@ -34,6 +34,7 @@
   $url_out_session = $_SERVER['REQUEST_URI'];
   echo '<form method="post" action="../../../../login.php" id="nologginredir">
   <input type="hidden" value="'.$url_out_session.'" name="url_redirect">
+  <input type="hidden" value="'.$nombreclase.'" name="nombre_clase">
   </form>
   ';
 }else {
