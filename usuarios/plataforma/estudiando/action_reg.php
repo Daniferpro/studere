@@ -1,25 +1,39 @@
+
 <?php
 //si enviaron el formulario y acepataron los terminos y condiciones ejecutamos la consulta a la bd.
 if(isset($_POST['checkbox']) && $_POST['checkbox'] == "on"){
+  ###### Requerimos el archivo api_wpp.php que contiene la funcion de enviar whatsapp ######
+
+  include_once "../../../includes/api_wpp.php"; #la funcion es: sendMensajeCurl($to, $msg);
+  
 
   $nombre = $_POST['nombre'];
   $apellido = $_POST['apellido'];
   $celular = $_POST['celular'];
   $email = $_POST['email'];
   $password = $_POST['password'];
-  $password1 = $_POST['password1'];
-  $pass_encrip = base64_encode($password);
-  $token2=base64_encode(uniqid(mt_rand(), true));//token para enviar por email para confirmacion de usuario..
+  $password1 = $_POST['confirm-password'];
+  $pass_encrip = hash("sha512", $password);
+  $token2=random_int(100000,999999);//token para enviar por email para confirmacion de usuario..
+  ##### variables para el envio de wpp #####
+  
+  $celular_wpp = strval($_POST['celular']);
+  $celular_wpp = substr($celular_wpp,-8);
+  $numero_destino = "598" . $celular_wpp;
+  $mensaje = "Hola *".$nombre." ".$apellido."* - Gracias por Registrarte en *studere.uy*, este es el Codigo de verificacion: *".$token2."*";
 
-    //comprobamos si las passwords ingresadas son iguales
-    if($password != $password1){
-      //mostrar mensaje (las passwords no coinciden).
-      
-      echo "<script> alert('Alerta: Los Passwords no Coinciden');</script>";
-      
+  #ahora llamamos la funcion send Mensaje curl con los datos anteriores $numero_destino & $mensaje
+  if($_POST['wpp'] == "on"){
+    if(sendMensajeCurl($numero_destino, $mensaje)){
+      $msg_usr = "SE HA ENVIADO EL MENSAJE CON ÉXITO al número :".$_POST['celular'];
     }else{
+      $msg_usr = "Upss!!! <br> No se ha podido enviar el Whatsapp con el Código";
+    }
+  }
+    //comprobamos si las passwords ingresadas son iguales
+    
     //Comprobamos si el email o numero de telefono ya existe en la bd.
-    include_once "procesos/conecciones.php";
+    require "./procesos/conecciones.php";
     $pregunta_email = consultarSQL("SELECT Email FROM usuario WHERE Email='$email'");
     $pregunta_celular = consultarSQL("SELECT Celular FROM usuario WHERE Celular='$celular'");
 
@@ -32,12 +46,12 @@ if(isset($_POST['checkbox']) && $_POST['checkbox'] == "on"){
         //si se guardaron exitosamente los datos mostrar mensaje de EXITO avisar de envio de email de confirmación.
       if($qry){ 
         echo "
-       <script type='text/javascript'>  window.location.replace('../../../../../usuarios/plataforma/estudiando/confirmacion_email.php?id=$email&&nombre=$nombre&&celular=$celular') </script>";
+       <script type='text/javascript'>  window.location.replace('./confirmacion_email.php?id=$email&&nombre=$nombre&&celular=$celular&msg_usr=$msg_usr') </script>";
         // require_once "./procesos/sms/aviso.php";
        
        
-      }
-    }elseif($pregunta_email->num_rows>= 1 || $pregunta_celular->num_rows>=1){
+      
+      if($pregunta_email->num_rows>= 1 || $pregunta_celular->num_rows>=1){
      
       if($pregunta_email){ $dato_email = mysqli_fetch_assoc($pregunta_email);}else{$dato_email['Email'] = " ";}
       if($pregunta_celular){$dato_celular = mysqli_fetch_assoc($pregunta_celular);}else{$dato_celular['Celular'] = " ";}
@@ -77,8 +91,10 @@ if(isset($_POST['checkbox']) && $_POST['checkbox'] == "on"){
       ';
       
       
+      }
     }
   }
+  
 }elseif(isset($_POST['checkbox']) && $_POST['checkbox'] == "off"){
   //si el usuario no acepta los términos mostar mensaje de alerta y negar la inscricion.
   //mensaje de alerta->>

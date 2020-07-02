@@ -44,7 +44,7 @@ ob_start();
 
 					<form action="" > 
 					<div class="wrap-input100 validate-input m-b-10" data-validate = "Usuario requerido">
-						<input class="input100" type="Email" name="email" placeholder="Email" value="<?php if(isset($_COOKIE['user'])){echo $_COOKIE['user'];}?>">
+						<input class="input100" type="Email" name="email" placeholder="<?php  if(isset($_GET['email'])){echo $_GET['email'];}else{ echo "Ingrese Email";}?>" value="<?php if(isset($_COOKIE['user'])){echo $_COOKIE['user'];} if(isset($_GET['email'])){echo $_GET['email'];}?>">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-user"></i>
@@ -131,7 +131,7 @@ Volver al Inicio
 	<script src="js/main.js"></script>
 	
 
-
+<?php if(isset($_POST['url_redirect'])): ?>
 <form action="./usuarios/plataforma/clases/bachillerato/registra_fatc_nlo.php?<?php echo $_POST['url_redirect'] ?>&id=<?php echo $_POST['nombre_clase']; ?>" method="post">
 			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -158,5 +158,6 @@ Volver al Inicio
   </div>
 </div>						
 	</form>
+	<?php endif; ?>
 </body>
 </html>

@@ -139,7 +139,7 @@ a[x-apple-data-detectors] {
                       <td align="center" style="padding:0;Margin:0;padding-bottom:5px;"><img src="https://i.ibb.co/5Rx4xGp/logo.jpg" alt="Logo" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" title="Logo" width="75" class="adapt-img"></td> 
                      </tr> 
                      <tr style="border-collapse:collapse;"> 
-                      <td align="center" style="padding:0;Margin:0;padding-top:15px;padding-bottom:15px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:"open sans", "helvetica neue", helvetica, arial, sans-serif;line-height:24px;color:#999999;">https://studere.com.uy</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:"open sans", "helvetica neue", helvetica, arial, sans-serif;line-height:24px;color:#999999;">plataforma de estudios online Tacuarembó Uruguay 2020</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:"open sans", "helvetica neue", helvetica, arial, sans-serif;line-height:24px;color:#999999;">studereplataforma@gmail.com Consultas Tecnicas o de funcionamiento al Whatsapp (+598) 096 635 675</p></td> 
+                      <td align="center" style="padding:0;Margin:0;padding-top:15px;padding-bottom:15px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:"open sans", "helvetica neue", helvetica, arial, sans-serif;line-height:24px;color:#999999;">https://studere.com.uy</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:"open sans", "helvetica neue", helvetica, arial, sans-serif;line-height:24px;color:#999999;">plataforma de estudios online Tacuarembó Uruguay 2020</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:"open sans", "helvetica neue", helvetica, arial, sans-serif;line-height:24px;color:#999999;">Por Consultas Tecnicas o de funcionamiento puedes escribir al Whatsapp (+598) 092 763 897 o a: daniel_ferreira@studere.uy</p></td> 
                      </tr> 
                    </table></td> 
                  </tr> 
@@ -180,7 +180,7 @@ $mail->Port = 465;
 $mail->SMTPSecure = 'ssl';
 $mail->SMTPAuth = true;
 $mail->Username = "daniferpro3@gmail.com";
-$mail->Password = "daniferpro2016";
+$mail->Password = "Daniferpro2020";
 $mail->setFrom('daniferpro3@gmail.com','Studere.uy');
 $mail->addAddress($destinatario);
 $mail->Subject = "Activacion de cuenta Studere.uy";

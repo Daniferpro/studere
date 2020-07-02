@@ -1,7 +1,7 @@
 <?php 
 
 $email=$_POST['email'];
-$contraseña=base64_encode($_POST['contraseña']);
+$contraseña= hash("sha512", $_POST['contraseña']);
 $token3="1";
 //obtenemos el usuario resgistrado
 $consulta="SELECT * FROM usuario WHERE Email='$email' AND Contraseña='$contraseña' AND token='$token3'";

@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="plugins/iCheck/square/blue.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+ 
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,61 +31,74 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+
+
 <body class="hold-transition register-page">
+  
 <div class="register-box">
+  
   <div class="register-logo">
     <a href="../../../"><b>STUDERE.UY</b></a>
   </div>
 
   <div class="register-box-body">
+    
     <p class="login-box-msg">Registro Nuevo</p>
+    
+<form name="registro" id="register-form" action="" method="post" role="form" >
+                 
+                  <div class="form-group has-feedback ">
+                    <input type="text" name="nombre" id="nombre" tabindex="1" class="form-control" placeholder="Nombre" value="">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                  </div>
+                  <div class="form-group has-feedback">
+                    <input type="text" name="apellido" id="apellido" tabindex="1" class="form-control" placeholder="Apellido" value="">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                  </div>
+                  <div class="form-group has-feedback">
+                  <input type="number" class="form-control" nim="091000001" max="099999999" required placeholder="Celular ej: 098765432" name="celular">
+                  <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                  <input type="email" class="form-control" required placeholder="Email" name="email">
+                  <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                  <div class="form-group has-feedback">
+                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Contraseña">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                  </div>
+                  <div class="form-group has-feedback">
+                    <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirmar Contraseña">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                  </div>
+                  <div class="row">
+                  <div class="col-xs-8">
+                    <div class="checkbox icheck">
+                      <label>
+                        <input type="checkbox" required name="checkbox"> Acepto los <a href="#"  data-toggle="modal" data-target="#exampleModalLong">terminos</a>
+                        <!-- Button trigger modal -->
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-xs-12">
+                    <div class="checkbox icheck">
+                      <label>
+                        <input type="checkbox" name="wpp"> Marque si desea recivir el código de verificación por Whatsapp</a>
+                        <!-- Button trigger modal -->
+                      </label>
+                    </div>
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-xs-12">
+                    <button type="submit" id="register-submit" class="btn btn-primary btn-block btn-flat ">Registrarme</button>
+                  </div>
+                  
+                </form>
 
-    <form action="" method="post">
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" required placeholder="Nombre" name="nombre">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control"  required placeholder="Apellido" name="apellido">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" required placeholder="Celular" name="celular">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="email" class="form-control" required placeholder="Email" name="email">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" required placeholder="Password" name="password">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" required placeholder="Repite password" name="password1">
-        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-      </div>
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <input type="checkbox" name="checkbox"> Acepto los <a href="#"  data-toggle="modal" data-target="#exampleModalLong">terminos</a>
-              <!-- Button trigger modal -->
-            </label>
-          </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Registrarme</button>
-        </div>
-        <!-- /.col -->
-      </div>
-    </form>
-
-    <div class="social-auth-links text-center">
+   
       
 
-    <a href="login.php" class="text-center">Ya soy Usuario</a>
+   
   </div>
   <!-- /.form-box -->
 </div>
@@ -319,26 +334,94 @@
     });
   });
 </script>
+
+<script type="text/javascript">
+    function validar_clave(e) {
+
+      var caract_invalido = " ";
+      var caract_longitud_min = 8;
+      var caract_longitud_max = 15;
+      var cla1 = $('#register-form #password').val();
+      var cla2 = $('#register-form #confirm-password').val();
+      if (cla1 == '' || cla2 == '') {
+        alert('Debes introducir tu clave en los dos campos.');
+        //document.registro
+        e.preventDefault();
+        return false;
+      }
+      if (cla1.length < caract_longitud_min) {
+        alert('Tu clave debe constar con minimo de ' + caract_longitud_min + ' carácteres.');
+        //document.registro
+        e.preventDefault();
+        return false;
+      }
+      
+      if (cla1.length > caract_longitud_max) {
+        alert('Tu clave debe constar con maximo des' + caract_longitud_max + ' carácteres.');
+        //document.registro
+        e.preventDefault();
+        return false;
+      }
+      if (cla1.indexOf(caract_invalido) > -1) {
+        alert("Las claves no pueden contener espacios");
+        //document.registro
+        e.preventDefault();
+        return false;
+      } else {
+        if (cla1 != cla2) {
+          alert("Las claves introducidas no son iguales");
+          //document.registro
+          e.preventDefault();
+          return false;
+        } else {
+          alert('Contraseña correcta Redireccionando');
+          //$('#register-form').trigger('submit');
+          return true;
+        }
+      }
+    }
+
+    $(function() {
+
+
+      $('#register-form').submit(function(e) {
+        validar_clave(e);
+      });
+    });
+  </script>
 <?php
 //si enviaron el formulario y acepataron los terminos y condiciones ejecutamos la consulta a la bd.
 if(isset($_POST['checkbox']) && $_POST['checkbox'] == "on"){
+  ###### Requerimos el archivo api_wpp.php que contiene la funcion de enviar whatsapp ######
+
+  include_once "../../../includes/api_wpp.php"; #la funcion es: sendMensajeCurl($to, $msg);
+  
 
   $nombre = $_POST['nombre'];
   $apellido = $_POST['apellido'];
   $celular = $_POST['celular'];
   $email = $_POST['email'];
   $password = $_POST['password'];
-  $password1 = $_POST['password1'];
-  $pass_encrip = base64_encode($password);
-  $token2=uniqid(mt_rand(000000,999999), true);//token para enviar por email para confirmacion de usuario..
+  $password1 = $_POST['confirm-password'];
+  $pass_encrip = hash("sha512", $password);
+  $token2=random_int(100000,999999);//token para enviar por email para confirmacion de usuario..
+  ##### variables para el envio de wpp #####
+  
+  $celular_wpp = strval($_POST['celular']);
+  $celular_wpp = substr($celular_wpp,-8);
+  $numero_destino = "598" . $celular_wpp;
+  $mensaje = "Hola *".$nombre." ".$apellido."* - Gracias por Registrarte en *studere.uy*, este es el Codigo de verificacion: *".$token2."*";
 
-    //comprobamos si las passwords ingresadas son iguales
-    if($password != $password1){
-      //mostrar mensaje (las passwords no coinciden).
-      
-      echo "<script> alert('Alerta: Los Passwords no Coinciden');</script>";
-      
+  #ahora llamamos la funcion send Mensaje curl con los datos anteriores $numero_destino & $mensaje
+  if($_POST['wpp'] == "on"){
+    if(sendMensajeCurl($numero_destino, $mensaje)){
+      $msg_usr = "SE HA ENVIADO EL MENSAJE CON ÉXITO al número :".$_POST['celular'];
     }else{
+      $msg_usr = "Upss!!! <br> No se ha podido enviar el Whatsapp con el Código";
+    }
+  }
+    //comprobamos si las passwords ingresadas son iguales
+    
     //Comprobamos si el email o numero de telefono ya existe en la bd.
     require "./procesos/conecciones.php";
     $pregunta_email = consultarSQL("SELECT Email FROM usuario WHERE Email='$email'");
@@ -353,12 +436,12 @@ if(isset($_POST['checkbox']) && $_POST['checkbox'] == "on"){
         //si se guardaron exitosamente los datos mostrar mensaje de EXITO avisar de envio de email de confirmación.
       if($qry){ 
         echo "
-       <script type='text/javascript'>  window.location.replace('./confirmacion_email.php?id=$email&&nombre=$nombre&&celular=$celular') </script>";
+       <script type='text/javascript'>  window.location.replace('./confirmacion_email.php?id=$email&&nombre=$nombre&&celular=$celular&msg_usr=$msg_usr') </script>";
         // require_once "./procesos/sms/aviso.php";
        
        
-      }
-    }elseif($pregunta_email->num_rows>= 1 || $pregunta_celular->num_rows>=1){
+      
+      if($pregunta_email->num_rows>= 1 || $pregunta_celular->num_rows>=1){
      
       if($pregunta_email){ $dato_email = mysqli_fetch_assoc($pregunta_email);}else{$dato_email['Email'] = " ";}
       if($pregunta_celular){$dato_celular = mysqli_fetch_assoc($pregunta_celular);}else{$dato_celular['Celular'] = " ";}
@@ -398,8 +481,10 @@ if(isset($_POST['checkbox']) && $_POST['checkbox'] == "on"){
       ';
       
       
+      }
     }
   }
+  
 }elseif(isset($_POST['checkbox']) && $_POST['checkbox'] == "off"){
   //si el usuario no acepta los términos mostar mensaje de alerta y negar la inscricion.
   //mensaje de alerta->>

@@ -5,13 +5,19 @@ include "./procesos/email/SMTP.php";
 include "./procesos/email/Exception.php";
 include "./procesos/email/OAuth.php";
 
-  require "./procesos/WhatsmsApi.php";
-  require "./procesos/conecciones.php"; //importamos la coneecion a la bd.
+
+ 
+  require "./procesos/conecciones.php";
+   //importamos la coneecion a la bd.
+   if(isset($_GET['id'])){
   $email = $_GET['id'];                 // email enviado por get
   $nombre = $_GET['nombre'];
   $query = "SELECT * FROM usuario WHERE Email = '$email' AND token != '1' "; // conslta a la bd con el email recivido
   $respuesta = consultarSQL($query); //guardamos la respuesta en una variable.
-  
+  $consulta = mysqli_fetch_assoc($respuesta);
+  $token = $consulta['token'];
+  }
+  $msg_usr = $_GET['msg_usr'];
 
   //condicionamos las acciones segun el envio del form.
   if(isset($_GET['token'])){
@@ -21,26 +27,38 @@ include "./procesos/email/OAuth.php";
     if($consulta['token'] == $_GET['token']){//si los token son iguales proedemos a actualiar permisos para acceso.
       $qry = "UPDATE usuario SET token = '1' WHERE Email = '$email' ";
       $consulta2 = consultarSQL($qry);
-      if($consulta2){ header('Location: login.php?email='.$email.'');}
 
-    }else{
-      echo '<div class="alert alert-danger" role="alert">
-      El código ingresado no es correcto!
+
       
-    </div>';
-    }    
-  }
-  if(isset($_POST['token_email']) && $respuesta ){ //si enviaron el formulario y la query a la bd es OK!.
 
-    $consulta = mysqli_fetch_assoc($respuesta); //guardamos en un array asociativo la respuesta de la query a la bd.
-    if($consulta['token'] == $_POST['token_email']){//si los token son iguales proedemos a actualiar permisos para acceso.
-      $qry = "UPDATE usuario SET token = '1' WHERE Email = '$email' ";
-      $consulta2 = consultarSQL($qry);
-      if($consulta2){ header('Location: login.php?email='.$email.'');}
+      if($consulta2){ header('Location: ../../../../../login.php?email='.$email.'');}
 
     }else{
       echo '<div class="alert alert-danger" role="alert">
       El código Ingresado no es correcto!
+      <form action="#" method="post">
+      <button class="btn btn-primary btn-block btn-flat" type="submit" name="reenviar" value="'.$token.'">Reenviar Código</button>
+      </form>
+    </div>';  
+    }    
+  }
+
+  
+
+  if(isset($_POST['token_email']) && $respuesta ){ //si enviaron el formulario y la query a la bd es OK!.
+
+   
+    if($consulta['token'] == $_POST['token_email']){//si los token son iguales proedemos a actualiar permisos para acceso.
+      $qry = "UPDATE usuario SET token = '1' WHERE Email = '$email' ";
+      $consulta2 = consultarSQL($qry);
+      if($consulta2){ header('Location: ../../../../../login.php?email='.$email.'');}
+
+    }else{
+      echo '<div class="alert alert-danger" role="alert">
+      El código Ingresado no es correcto!
+      <form action="#" method="post">
+      <button class="btn btn-primary btn-block btn-flat" type="submit" name="reenviar" value="'.$token.'">Reenviar Código</button>
+      </form>
     </div>';  
     }    
 
@@ -48,26 +66,18 @@ include "./procesos/email/OAuth.php";
  
 // incluimos al archivo mail.php de procesos llamando la funcion enviar_email
 
+ 
+  include "./procesos/email/envioDeEmailConfirmacion.php";
+  //accion de enviar mensaje  $mail->send()
 
-
-  
-
-  $obtener_token_bd = mysqli_fetch_assoc($respuesta);
-  $token = $obtener_token_bd['token'];
-include "./procesos/email/envioDeEmailConfirmacion.php";
-//accion de enviar mensaje  $mail->send()
-
-$mail->send();
-
+  if(isset($_GET['id']) && isset($_GET['celular']) && isset($_GET['nombre']) && !isset($_POST['token_email']) || isset($_POST['reenviar'])){
+  # $mail->send();
+  } 
 
 //comentamos para evitar el envio de wpp SOLO EN CASO DE DEBUG
   // envio de mensje de whatsapp
-  $whatsmsapi = new WhatsmsApi();
-  $celular ="$_GET[celular]";
-  $numero_destino ="+598" . $celular;
-  $mensaje_detino = "Hola ". " " . $nombre ." " . " este es tu código de activacion : $token";
-  $whatsmsapi->setApiKey("5da53cab6ca02");
-  $whatsmsapi->sendSms($numero_destino, $mensaje_detino);
+  
+
 
 
 
@@ -106,19 +116,19 @@ $mail->send();
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>Validación de Usuario</b></a>
+    <a href="#"><b>Validación de Usuario</b> <?php if(isset($msg_usr)){ echo $msg_usr; }?></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Pega el código que te enviamos a <?php print $email;?> para continuar</p>
 
-    <form action="#" method="post">
+    <form action="./confirmacion_email.php?id=<?php echo $_GET['id']; ?>&&nombre=<?php echo $_GET['nombre']; ?>&&celular=<?php echo $_GET['celular']; ?>" method="post">
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" name="email" placeholder="Email" value="<?php print $_GET['id']; ?>">
+        <input type="email" class="form-control" name="email" placeholder="Email" readonly value="<?php print $_GET['id']; ?>">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" name="token_email" placeholder="Código de Verificación" >
+        <input type="number" maxlength="6" class="form-control" name="token_email" placeholder="Ingresa el Código de 6 dígitos  " >
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
@@ -138,8 +148,7 @@ $mail->send();
     
     <!-- /.social-auth-links -->
 
-    <a href="#">Olvidé mi contraseña</a><br>
-    <a href="register.php" class="text-center">Registrarme!</a>
+    
 
   </div>
   <!-- /.login-box-body -->
