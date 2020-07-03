@@ -1,7 +1,5 @@
 <?php
 require_once '../conn/conn.php';
-include_once "../../../../../includes/seguro.php";
-
 include_once "../../../includes/coneccionbdclases.php";
 include " ../../../../../../../profe/includes/conecciones.php ";
 

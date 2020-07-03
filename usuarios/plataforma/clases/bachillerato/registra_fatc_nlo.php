@@ -5,7 +5,7 @@
 
 
  require_once './conn/conn.php';
- include " ../../../../../../admin/includes/conecciones.php ";
+ require_once '../../../../admin/includes/conecciones.php';
 
 
  
@@ -38,7 +38,7 @@
   $valor = formata($s);
   
    //Aqui creamos una referencia  (esta es enviada a mercado pago el cual nos devuelve la info con esta referencia)
-   $ref = rand(1,9999).md5($id_user); // Ex: 53801
+   $ref = rand(1,9999).time(); // Ex: 53801
   
   //Status recive Pendiente
   $status = "Pendiente";

@@ -7,8 +7,8 @@ if(empty($_GET['aprobado']) && empty($_GET['reference'])){
     include_once 'usuarios/plataforma/includes/coneccionbdclases.php';
     include_once "profe/includes/conecciones.php";
 
-    $servername = "localhost";
-$username = "root";
+  $servername = "localhost";
+  $username = "root";
   $password = "";
   $dbname = "parapruebas";
 
@@ -66,7 +66,7 @@ $clase = $info_fact['id_clase'];
                 $alumno = $datos['id_user'];
                 $materia_nueva=$materia;    
                 $permisonuevo="INSERT INTO clases (Nombre_clase, Profesor, Año, fecha_inicio, fecha_fin, Alumno, materia, estado, ref, id_clase)
-                VALUES ('$clasenueva', '$profesor', '$año', '$fecha_inicio', '$fecha_fin', '$alumno', '$materia_nueva', 'activo', '$clases_2[id]', '$clase')";
+                VALUES ('$clasenueva', '$profesor', '$año', '$fecha_inicio', '$fecha_fin', '$alumno', '$materia_nueva', 'activo', '$ref', '$clase')";
                 $update2 = consultarSQL($permisonuevo);
                         if($update2){
                             include_once 'usuarios/plataforma/estudiando/register-include.php';

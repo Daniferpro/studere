@@ -23,13 +23,15 @@ if(isset($_POST['checkbox']) && $_POST['checkbox'] == "on"){
   $mensaje = "Hola *".$nombre." ".$apellido."* - Gracias por Registrarte en *studere.uy*, este es el Codigo de verificacion: *".$token2."*";
 
   #ahora llamamos la funcion send Mensaje curl con los datos anteriores $numero_destino & $mensaje
-  if($_POST['wpp'] == "on"){
+  if(isset($_POST['wpp'])){
+    if($_POST['wpp'] == "on"){
     if(sendMensajeCurl($numero_destino, $mensaje)){
       $msg_usr = "SE HA ENVIADO EL MENSAJE CON ÉXITO al número :".$_POST['celular'];
     }else{
       $msg_usr = "Upss!!! <br> No se ha podido enviar el Whatsapp con el Código";
     }
   }
+}
     //comprobamos si las passwords ingresadas son iguales
     
     //Comprobamos si el email o numero de telefono ya existe en la bd.
@@ -38,7 +40,7 @@ if(isset($_POST['checkbox']) && $_POST['checkbox'] == "on"){
     $pregunta_celular = consultarSQL("SELECT Celular FROM usuario WHERE Celular='$celular'");
 
     //si el celular y el email no existen en la bd guardamos el usuario nuevo en la bd.
-    if($pregunta_celular->num_rows < 1 && $pregunta_email->num_rows < 1){ 
+    if($pregunta_celular->num_rows == 0 && $pregunta_email->num_rows == 0){ 
 
       $qry = "INSERT INTO usuario (Email, Nombre, Apellido, Celular, Contraseña, Token, materias, pago, estado) 
               VALUES ('$email', '$nombre', '$apellido', '$celular', '$pass_encrip', '$token2', '', '', 'offline' )";

@@ -71,7 +71,7 @@ include "./procesos/email/OAuth.php";
   //accion de enviar mensaje  $mail->send()
 
   if(isset($_GET['id']) && isset($_GET['celular']) && isset($_GET['nombre']) && !isset($_POST['token_email']) || isset($_POST['reenviar'])){
-  # $mail->send();
+      $mail->send();
   } 
 
 //comentamos para evitar el envio de wpp SOLO EN CASO DE DEBUG
