@@ -1,6 +1,6 @@
 <?php 
 $email=$_POST['email'];
-$contraseña=md5($_POST['contraseña']);
+$contraseña=hash("sah512", $_POST['contraseña']);
 $token2=$_POST['token2'];
 $consulta="SELECT * FROM usuario WHERE email='$email' AND contraseña='$contraseña' AND token='$token2' ";
 $consulta2=consultarSQL($consulta);

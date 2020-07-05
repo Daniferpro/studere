@@ -1,3 +1,31 @@
+<?php 
+if(isset($_POST['email']) && isset($_POST['contraseña'])){
+
+  if(!empty($_POST['email']) && !empty($_POST['contraseña'])){
+    include_once "./includes/conectar.php";
+    include_once "./includes/login.php";
+  }
+}
+
+// Verificamos la existencia de cookies necesarias para crear el usuario objeto 
+if(isset($_COOKIE['status'])){
+    if($_COOKIE['status'] == 'online'){
+        if(isset($_COOKIE['id'])){
+            if(!empty($_COOKIE['id'])){
+                
+                include_once "./includes/conectar.php";
+                include_once "./admin/includes/usuarios_objeto.php";
+                $id = $_COOKIE['id'];
+                $User = new Usuario($id); 
+    
+            }
+        }
+        
+    }
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,9 +73,27 @@
 										<i class="fa fa-envelope-o" aria-hidden="true"></i>
 										<div>contacto@studere.uy</div>
 									</li>
-								</ul>
-								<div class="top_bar_login ml-auto">
-									<div class="login_button"><a href="./login.php">Iniciar sesión </a></div>
+								
+								
+                                    <?php if(isset($User)): ?>
+                                    
+                                    <li>
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <div><?php echo $User->nombre . " " . $User->apellido;?></div>
+                                    </li>
+                                    </ul>
+                                    <div class="top_bar_login ml-auto">
+                                        <div class="login_button"><a href="./logout.php?tk=<?php echo $User->tk;?>">Cerrar Session</a></div>
+                                   
+                                    
+                                    <?php else:?>
+                                        </ul>
+                                        <div class="top_bar_login ml-auto">
+                                        <div class="login_button"><a data-toggle="modal" data-target="#exampleModalCenter" href="">Iniciar Sesión </a></div>
+                                   
+                                  
+
+                                    <?php endif;?>
 								</div>
                                 
 							</div>
@@ -80,7 +126,7 @@
 
 								<!-- Hamburger -->
 
-								
+                                <div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
 								<div class="hamburger menu_mm">
 									<i class="fa fa-bars menu_mm" aria-hidden="true"></i>
 								</div>
@@ -125,7 +171,8 @@
 		</div>
 		<nav class="menu_nav">
 			<ul class="menu_mm">
-				<li class="menu_mm"><a href="./login.php">Iniciar Sesion</a></li>
+     
+				<li class="menu_mm"><a data-toggle="modal" data-target="#exampleModalCenter" href="">Iniciar Sesión </a></li>
 				<li class="menu_mm"><a href="./contact.php">Eres docente? clic aquí</a></li>
 				<li class="menu_mm"><a href="./usuarios/plataforma/buscar-curso.php">Cursos</a></li>
 				<li class="menu_mm"><a href="./usuarios/plataforma/estudiando/register.php?nuevo_registro">Registrarse!</a></li>
@@ -233,6 +280,51 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
+                    <!-- <h2 class="section_title text-center" >Busca tu clase Ideal!!!</h2>
+                    <div class="home_slider_form_container" >
+                    <form action="#" id="formtest" method="post" autocomplete="off" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
+							<input type="search" class="courses_search_input caja_busqueda" name="caja_busqueda" id="caja_busqueda" placeholder="Buscar Clase o Tema" required="required">
+							<select id="courses_search_select" name="seleccion" class="courses_search_select courses_search_input caja_busqueda">
+									
+									<option  selected="selected" value="" disabled>Selecciona la asignatura</option>
+									<option value="historia">Historia</option>
+									<option value="matematica">Matemática</option>
+									<option value="matematica1">Matemática</option>
+									<option value="fisica">Física</option>
+									<option value="derecho">Derecho</option> 
+									<option value="quimica">Química</option>
+									<option value="geografia">Geografía</option>
+									<option value="ingles">Inglés</option>
+                                    <option value="espanol">Id.Español</option>
+									<option value="visual">Ed.Visual</option>
+									<option value="musical">Ed.Musical</option>
+									<option value="biologia">Biología</option>
+                                    <option value="literatura">Literatura</option>
+                                    <option value="civica">Ed.Cívica</option> 
+									
+								
+							</select>
+							<button action="submit" class="courses_search_button ml-auto">Buscar Ahora</button>
+						</form>
+						<div id="mostrarquery"></div> -->
+		 				
+                                            <!-- <form action="#" id="home_search_form_1" class="home_search_form d-flex flex-lg-row flex-column align-items-center justify-content-between">
+                                                <div class="d-flex flex-row align-items-center justify-content-start">
+                                                    <input type="search" class="home_search_input" placeholder="Keyword Search" required="required">
+                                                    <select class="dropdown_item_select home_search_input">
+													<option>Category Courses</option>
+													<option>Category</option>
+													<option>Category</option>
+												</select>
+                                                    <select class="dropdown_item_select home_search_input">
+													<option>Select Price Type</option>
+													<option>Price Type</option>
+													<option>Price Type</option>
+												</select>
+                                                </div>
+                                                <button type="submit" class="home_search_button">search</button>
+                                            </form> 
+                                        </div> <br> <br>-->
                         <div class="section_title_container text-center">
                             <h2 class="section_title">Bienvenido a studere.uy</h2>
                             <div class="section_subtitle">
@@ -292,7 +384,24 @@
                 </div>
             </div>
         </div>
-
+         <!-- Modal login -->
+         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            
+            <div class="modal-body">
+                <?php 
+                    #####     Incluimos el archivo que contiene el form de login    #####
+                    include_once "./usuarios/plataforma/estudiando/login_modal.php";
+                ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+               
+            </div>
+            </div>
+        </div>
+        </div>
         <!-- Popular Courses -->
 
         <div class="courses">
@@ -602,6 +711,36 @@
     <script src="plugins/easing/easing.js"></script>
     <script src="plugins/parallax-js-master/parallax.min.js"></script>
     <script src="js/custom.js"></script>
+    
+<script>
+$(buscar_datos());
+
+function buscar_datos(consulta){
+	$.ajax({
+		url: '../../includes/buscador-ajax-dev.php' ,
+		type: 'POST' ,
+		dataType: 'html',
+		data: $("#formtest").serialize(),
+	})
+	.done(function(respuesta){
+		$("#mostrarquery").html(respuesta);
+	})
+	.fail(function(){
+		console.log("error en el query de AJAX");
+	});
+}
+
+
+$(document).on('keyup','#caja_busqueda', function(){
+	var valor = $(this).val();
+	if (valor != "") {
+		buscar_datos(valor);
+	}else{
+		buscar_datos();
+	}
+});
+</script>
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
     
 
 </body>

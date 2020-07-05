@@ -28,8 +28,11 @@ class Usuario{
         $this->estado = $dato['estado'];
         $this->pass = $dato['Contraseña'];
         $this->token = $dato['token'];
-        
-        
+        session_start();
+        $_SESSION['token'] = md5(uniqid(mt_rand(), true));
+        $this->tk = $_SESSION['token'];
+        $_SESSION['email'] = $this->email;
+               
     }
 
    
@@ -53,6 +56,10 @@ class Usuario{
     public function actualizar($campo, $valor){
 
         $id = $this->identificador;
+
+        if($campo == 'Contraseña'){
+            $valor = hash("sah512", $valor);
+        }
         consultarSQL("UPDATE usuario SET $campo='$valor' WHERE id='$id'");
 
        
@@ -71,6 +78,7 @@ class Usuario{
 
 
     }
+
 
 
 }

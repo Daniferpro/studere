@@ -10,12 +10,11 @@ $consulta2=consultarSQL($consulta);
 $usuario=mysqli_fetch_assoc($consulta2);
 // $consulta3=mysqli_fetch_assoc($consulta);
 if($consulta2->num_rows>=1){
-    session_start();
-    $_SESSION['token']=md5(uniqid(mt_rand(), true));
-    $_SESSION['email']=$email ;
-
+    include_once "./admin/includes/usuarios_objeto.php";
+    $User = new Usuario($usuario['id']);
     //seteamos cookie para estado cullo valor sera online una vez inicie sesion.
-    setcookie('status', 'online', time() + 365 * 24 * 60 * 60);
+    setcookie('status', 'online', time() + 3600); #
+    setcookie('id', $User->identificador, time() + 3600); #eteamos el numero de id del usuario en esta cookie
     if(isset($_COOKIE['contador']))
     { 
       // Caduca en un año   
