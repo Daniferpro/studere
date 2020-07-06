@@ -82,7 +82,7 @@ if(isset($_POST['email']) && isset($_POST['contraseña'])){
     <!-- /.social-auth-links -->
 
     <a href="#">Olvidé mi contraseña</a><br>
-    <a href="register.php" class="text-center">Registrarme!</a>
+    <a href="./usuarios/plataforma/estudiando/register.php" class="text-center">Registrarme!</a>
 
   </div>
   <!-- /.login-box-body -->
