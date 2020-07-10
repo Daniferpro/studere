@@ -2,9 +2,8 @@
 
 $email=$_POST['email'];
 $contraseña= hash("sha512", $_POST['contraseña']);
-$token3="1";
 //obtenemos el usuario resgistrado
-$consulta="SELECT * FROM usuario WHERE Email='$email' AND Contraseña='$contraseña' AND token='$token3'";
+$consulta="SELECT * FROM usuario WHERE Email='$email' AND Contraseña='$contraseña' AND token='1'";
 $consulta2=consultarSQL($consulta);
 
 $usuario=mysqli_fetch_assoc($consulta2);
@@ -28,6 +27,7 @@ if($consulta2->num_rows>=1){
       $mensaje = 'Bienvenido a Plataforma Studere'; 
     } 
     $materia = $usuario['materias'];
+    session_start();
     $_SESSION['email'] = $email;
     $_SESSION['materia'] = $materia;
     $vacio = "";

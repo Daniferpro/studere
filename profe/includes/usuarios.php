@@ -1,57 +1,69 @@
 <?php
-// include "./conecciones.php";
+// include "./conecciones.php"; 
+include_once './includes/usuarios_objeto.php';
 $materia = $usuario['materias'];
-$consulta1= consultarSQL(" SELECT * FROM clases WHERE Profesor='$id'");
-while($alumno = mysqli_fetch_assoc($consulta1)):
+$alumno_consulta= consultarSQL(" SELECT DISTINCT Alumno FROM clases WHERE Profesor='$id' ");#obtenemos un array de alumnos de esta materia
+
+while($alumno = mysqli_fetch_assoc($alumno_consulta)):
     
     $id_alumno = $alumno['Alumno'];
-    $query = consultarSQL(" SELECT * FROM usuario WHERE id=$id_alumno ORDER BY id DESC ");
+    $datos_alumno_user = consultarSQL(" SELECT * FROM usuario WHERE id=$id_alumno ORDER BY id DESC ");
 
 
-    while ($usuario = mysqli_fetch_assoc($query)):
+    while ($usuario = mysqli_fetch_assoc($datos_alumno_user)):
 
-        $consulta2= consultarSQL("SELECT * FROM fatura WHERE id_user='$id_alumno' AND materia='$materia'  ");
-        $alumno_factura  = mysqli_fetch_assoc($consulta2);
-        $precio_clase_alumno = $alumno_factura['valor'];
-        $precio_clase_alumno = $precio_clase_alumno . 0;
-
-        $materia_alumno = $alumno_factura['materia'];
-      
-        $consulta3 = gruposSQL("SELECT * FROM $materia WHERE Precio=$precio_clase_alumno");
-              
-
-        $tipo_clase = mysqli_fetch_assoc($consulta3);
-        $tipo_clase = $tipo_clase['Nombre'];
-        
-
+        $consulta2= consultarSQL("SELECT * FROM clases WHERE Alumno='$id_alumno' AND materia='$materia'");
     ?>
 
     <html>
 
         <tr>
         
-        <td><a href="./detalle_usuario.php?id=<?php echo $id . "&userid=" . $usuario['id']; ?>"><?php echo $usuario['Nombre'] . " " . $usuario['Apellido'] ;?></a></td>
+        <td><a href="#"><?php echo $usuario['Nombre'] . " " . $usuario['Apellido'] ;?></a></td>
 
-        <td><?php if($usuario['token'] == 1){ echo '<span class="label label-success">' . "VERIFICADO" . '</span>';}else{  echo '<span class="label label-danger">' . "PENDIENTE" . '</span>';} ?></td>
+        
+        <!-- aqui imprimimos la segunda tabla dentro de la proimera con los datos de cada clsae de cada alumno -->
         <td>
-            <div class="sparkbar" data-color="#00a65a" data-height="20"><?php echo $alumno['fecha_inicio']; ?></div>
-        </td>
-        <td>
-            <div class="sparkbar" data-color="#00a65a" data-height="20">
-
-            <?php  
-                    
-                    echo $tipo_clase;
-                    
-
-                    // if($usuario['materias'] == "admin"){
-                    //     echo "Admin";
-                    // }elseif($usuario['materias'] == ""){
-                    //     echo "Estud";
-                    // }else{echo "Profe";}
-            ?>
             
-            </div>
+        <table class="table table-striped">
+  <thead>
+    <tr>
+     
+      <th scope="col">Nombre_clase</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Fecha Inicio</th>
+      <th scope="col">Fecha Fin</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+  
+<!-- colocar inicio tabla 2 con el tbody debajo -->
+                  <?php 
+                  #imprimimos la segunda tabla co un while iterando en cada clase del alumno
+
+                  while($course_2 = mysqli_fetch_assoc($consulta2)):
+                    $id_clase = $course_2['id_clase'];
+                    $consulta3 = gruposSQL("SELECT * FROM $materia WHERE id=$id_clase");
+
+                  ?>
+                  
+                    <tr>
+                        
+                        <td><?php echo $course_2['Nombre_clase'];?></td>
+                        <td  style="text-align: center;"  class="success"><?php echo $course_2['estado'];?></td>
+                        <td><?php echo $course_2['fecha_inicio'];?></td>
+                        <td><?php echo $course_2['fecha_fin'];?></td>
+                    </tr>
+                            
+                    
+                  <?php endwhile;?>
+                    
+  </tbody>
+</table>
+                 
+                   <!-- colocar fin de la tabla 2 -->
+            
         </td>
         </tr>
 
@@ -59,3 +71,4 @@ while($alumno = mysqli_fetch_assoc($consulta1)):
 
     <?php endwhile;
             endwhile;?>
+

@@ -5,10 +5,10 @@ $id_profe = $_GET['id'];
 
 $materia_profe = mysqli_fetch_assoc(consultarSQL("SELECT * FROM usuario WHERE id='$id_profe' "));
 $materia_profe = $materia_profe['materias'];
-$lista = consultarSQL("SELECT * FROM clases WHERE Profesor='$id_profe' ");
+$lista = consultarSQL("SELECT DISTINCT Alumno FROM clases WHERE Profesor='$id_profe' ");
 $lista_alumnos = [];
 $mensajes = 0;
-$nombre_prof = $usuario['Nombre']. " " .$usuario['Apellido'];
+$nombre_prof =$User->nombre . " " . $User->apellido;
 
 while($clase = mysqli_fetch_assoc($lista)){
 

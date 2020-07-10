@@ -28,27 +28,37 @@ class Usuario{
         $this->estado = $dato['estado'];
         $this->pass = $dato['Contraseña'];
         $this->token = $dato['token'];
+        $this->clases = [];
+        $this->clases_num = 0;
         
         
     }
 
    
-
+ 
 
 
 
     public function clasesUser(){
+        $clases = $this->clases;
         $id = $this->identificador;
+        $cantidad = $this->clases_num;
         $clase = consultarSQL(" SELECT * FROM clases WHERE Alumno=$id");
         while($course = mysqli_fetch_assoc($clase)){
+
+            $clases[] = $course['Nombre_clase'];
             
         }
+        $cantidad = $clase->num_rows;
+        return $this->clases_num;
+        return $cantidad;
 
-
-
-
-
+        
 }
+
+#agregamos algunas variables luego de estas funciones;
+
+    
 
     public function actualizar($campo, $valor){
 

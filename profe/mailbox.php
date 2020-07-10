@@ -2,12 +2,9 @@
 //incluimos conecciones a las ases ded datos  
 include "../admin/includes/conecciones.php";
 include "../admin/includes/seguridad.php";
+include "./includes/usuarios_objeto.php";
 $id = $_GET['id'];
-$email = $_SESSION['email']; 
-
-$consulta = "SELECT * FROM usuario WHERE id='$id' ";
-$usuario = mysqli_fetch_assoc( consultarSQL($consulta) );
-
+$User = new Usuario($id);
 //contamos los usuarios en línea
 $usuariosEnLinea = consultarSQL("SELECT * FROM usuario WHERE estado='online' ") ->num_rows;
 $usuariosEnLinea += 1;
@@ -36,7 +33,7 @@ if($consulta1->num_rows >=1){
 if(isset($_POST['eliminar_alumno'])){
   $id_al = $_POST['eliminar_alumno'];
 
-  consultachatSQL("DROP TABLE `$id_al`");
+  consultachatSQL("DELETE FROM `$id_al` WHERE `$id_al`.`materia` = '$User->materia'");
   }
 
 ?>
@@ -299,7 +296,7 @@ if(isset($_POST['eliminar_alumno'])){
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php  echo $usuario['Nombre'] . " " . $usuario['Apellido']; ?></span>
+              <span class="hidden-xs"><?php  echo $User->nombre . " " . $User->apellido;?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -307,8 +304,8 @@ if(isset($_POST['eliminar_alumno'])){
                 <img src="../admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                <?php  echo $usuario['Nombre'] . " " . $usuario['Apellido'] . " - " . $usuario['materias']; ?>
-                  <small><?php  echo $usuario['Celular']; ?></small>
+                <?php  echo $User->nombre . " " . $User->apellido . " " . strtoupper($User->materia); ?>
+                  <small><?php  echo $User->email; ?></small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -355,7 +352,7 @@ if(isset($_POST['eliminar_alumno'])){
           <img src="../admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><?php echo $usuario['Nombre'] . " " . $usuario['Apellido']; ?></p>
+          <p><?php echo $User->nombre . " " . $User->apellido;?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -492,7 +489,7 @@ if(isset($_POST['eliminar_alumno'])){
           <ul class="treeview-menu">
             
             <li class="treeview">
-              <a href="#"><i class="fa fa-circle-o"></i> <?php echo $usuario['Nombre']. " " . $usuario['Apellido']  ?>
+              <a href="#"><i class="fa fa-circle-o"></i> <?php echo $User->nombre . " " . $User->apellido;  ?>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -554,7 +551,7 @@ if(isset($_POST['eliminar_alumno'])){
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-          <a href="" class="btn btn-primary btn-block margin-bottom">Crear Nuevo Mensaje</a>
+          <a href="" class="btn btn-primary btn-block margin-bottom">Mensajes</a>
 
           <div class="box box-solid">
             <div class="box-header with-border">

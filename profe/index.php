@@ -1,9 +1,10 @@
 <?php
+
 //incluimos conecciones a las ases ded datos  
 include "../admin/includes/conecciones.php";
-include "../admin/includes/seguridad.php";
+include_once "../profe/includes/seguridad.php";
+
 $id = $_GET['id'];
-$email = $_SESSION['email'];
 
 $consulta = "SELECT * FROM usuario WHERE id='$id' ";
 $usuario = mysqli_fetch_assoc( consultarSQL($consulta) );
@@ -14,7 +15,7 @@ $usuariosEnLinea += 1;
 
 //cuenta de usuarios registrados
 
-$registros_totales = consultarSQL(" SELECT * FROM clases WHERE Profesor='$id' ") ->num_rows;
+$registros_totales = consultarSQL(" SELECT DISTINCT Alumno FROM clases WHERE Profesor='$id' ") ->num_rows;
 
 //cuenta de ventas totales exitosas
 
@@ -325,7 +326,7 @@ if($consulta1->num_rows >=1){
                   <a href="../usuarios/plataforma/" class="btn btn-default btn-flat">Ver como Alumno</a>
                 </div>
                 <div class="pull-right">
-                  <a href="../admin/includes/logout.php?tk=<?php echo $_SESSION['token']?>" class="btn btn-default btn-flat">Cerrar Sesion</a>
+                  <a href="../admin/includes/logout.php?tk=<?php echo $User->token;?>" class="btn btn-default btn-flat">Cerrar Sesion</a>
                 </div>
               </li>
             </ul>

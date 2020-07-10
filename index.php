@@ -44,6 +44,7 @@ if(isset($_COOKIE['status'])){
     <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
     <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script charset="UTF-8" src="//web.webpushs.com/js/push/72a2679820c89b10df008462554e3abb_1.js" async></script>
 
 </head>
@@ -184,10 +185,12 @@ if(isset($_COOKIE['status'])){
 	<!-- Home -->
 
         <div class="home">
+            
             <div class="home_slider_container">
-
+            
                 <!-- Home Slider -->
                 <div class="owl-carousel owl-theme home_slider">
+                    
 
                     <!-- Home Slider Item -->
                     <div class="owl-item">
@@ -278,6 +281,7 @@ if(isset($_COOKIE['status'])){
 
         <div class="features">
             <div class="container">
+                
                 <div class="row">
                     <div class="col">
                     <!-- <h2 class="section_title text-center" >Busca tu clase Ideal!!!</h2>
@@ -740,7 +744,47 @@ $(document).on('keyup','#caja_busqueda', function(){
 	}
 });
 </script>
+
 <script type="text/javascript" src="../../js/jquery.min.js"></script>
+<!-- scripts para uso de toastr -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous">
+</script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<?php 
+
+if(isset($_GET['mensaje'])): ?>
+
+
+<!-- codigo de los mensajes de toatsr -->
+<script>
+Command: toastr["warning"]("Su session a caducado, Por favor vuleva a iniciar session", "INICIE SESSION")
+
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
+</script>
+<?php endif;?>
     
 
 </body>

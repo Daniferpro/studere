@@ -3,9 +3,9 @@ $id_profe = $_GET['id'];
 
 $materia_profe = mysqli_fetch_assoc(consultarSQL("SELECT * FROM usuario WHERE id='$id_profe' "));
 $materia_profe = $materia_profe['materias'];
-$lista = consultarSQL("SELECT * FROM clases WHERE Profesor='$id_profe' ");
+$lista = consultarSQL("SELECT DISTINCT Alumno FROM clases WHERE Profesor='$id_profe' ");
 $lista_alumnos = [];
-$nombre_prof = $usuario['Nombre']. " " .$usuario['Apellido'];
+$nombre_prof = $User->nombre . " " . $User->apellido;
 
 while($clase = mysqli_fetch_assoc($lista)){
 
@@ -19,7 +19,7 @@ $numero = count($lista_alumnos);
 while($numero > $i){
    
     $id_alumno = $lista_alumnos[$i]; # seleccionar de la lista_alumnos
-
+    $Alumno =new Usuario($id_alumno);
     $chats = consultachatSQL(" SELECT * FROM `$id_alumno` WHERE materia='$materia_profe'"); #0 el no leido 1 es leido
    
     
@@ -38,8 +38,8 @@ while($numero > $i){
                 $mensaje_del_sistema = '<td class="mailbox-subject"><b>Usted Tiene: </b> '.$msg_2.' mensajes sin leer.';
             }
         }
-        $nombre_alumno = mysqli_fetch_assoc(consultarSQL("SELECT * FROM usuario WHERE id='$id_alumno' "));
-        $nombre_alumno = $nombre_alumno['Nombre'] . " " . $nombre_alumno['Apellido'];
+       
+        $nombre_alumno = $Alumno->nombre ." ". $Alumno->apellido; 
         echo
 
         '<html>

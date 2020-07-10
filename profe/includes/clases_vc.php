@@ -8,7 +8,7 @@
 
         ?>
 
-        <html>
+        <html> 
 
             <tr>
             <td><?php echo $clases['id'];?></td> 

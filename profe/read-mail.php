@@ -2,7 +2,9 @@
 //incluimos conecciones a las ases ded datos  
 include "../admin/includes/conecciones.php";
 include "../admin/includes/seguridad.php"; 
+include "./includes/usuarios_objeto.php";
 $id = $_GET['id'];
+$User = new Usuario($id);
 $email = $_SESSION['email'];
 
 $consulta = "SELECT * FROM usuario WHERE id='$id' ";
@@ -561,7 +563,7 @@ if($consulta1->num_rows >=1){
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-          <a href="" class="btn btn-primary btn-block margin-bottom">Crear Mensajes</a>
+          <a href="./mailbox.php?id=<?php echo $User->identificador; ?>&materia=<?php echo $User->materia; ?>" class="btn btn-primary btn-block margin-bottom"><i class="fa fa-reply"> </i> Volver Atrás</a>
 
           <div class="box box-solid">
             <div class="box-header with-border">

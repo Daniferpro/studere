@@ -15,14 +15,14 @@ $usuariosEnLinea += 1;
 //cuenta de usuarios registrados
 
 
-$registros_totales = consultarSQL(" SELECT * FROM clases WHERE Profesor='$id' ") ->num_rows;
+$registros_totales = consultarSQL(" SELECT DISTINCT Alumno FROM clases WHERE Profesor='$id' ") ->num_rows;
 
 //cuenta de ventas totales exitosas
 
 $numeroVentasTotales = consultarSQL(" SELECT * FROM fatura WHERE status='Aprovado' AND data='$id'") ->num_rows;
 
 $numeroVentasIntento = consultarSQL(" SELECT * FROM fatura WHERE status!='Aprovado' ") ->num_rows; #cambiar por dinero generado
-$consulta1 = consultarSQL("SELECT * FROM fatura WHERE data='$id' ");
+$consulta1 = consultarSQL("SELECT * FROM fatura WHERE data='$id' AND status='Aprovado' or status='accredited'");
 
 $dinero_generado_hasta_hoy_bruto = 0;
 
@@ -87,27 +87,6 @@ if($email == "danielferreira@studere.com.uy"){
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <script type="text/javascript">
-		function comentarios(){
-			var req = new XMLHttpRequest();
-
-			req.onreadystatechange = function(){
-				if (req.readyState == 4 && req.status == 200) {
-					document.getElementById('comentarios').innerHTML = req.responseText;
-					
-				}
-			}
-
-			req.open('GET', './includes/comentarios.php', true);
-			req.send();
-		}
-
-			//linea que hace que se refreseque la pagina cada segundo
-		setInterval(function(){comentarios();}, 60000);	
-
-		
-	</script>
-
-<script type="text/javascript">
 		function usuarios(){
 			var req = new XMLHttpRequest();
 
@@ -127,7 +106,7 @@ if($email == "danielferreira@studere.com.uy"){
 
 		
 	</script>
-<body class="hold-transition skin-blue sidebar-mini" onload="comentarios();" onload="usuarios();">
+<body class="hold-transition skin-blue sidebar-mini"  onload="usuarios();">
 <div class="wrapper">
 
   <header class="main-header">
@@ -668,7 +647,7 @@ if($email == "danielferreira@studere.com.uy"){
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
+        <section class="col-lg-12 connectedSortable">
          <!-- TABLE: LATEST ORDERS -->
          <div class="box box-info">
             <div class="box-header with-border">
@@ -688,9 +667,7 @@ if($email == "danielferreira@studere.com.uy"){
                   <tr>
                     
                     <th>Nombre</th>
-                    <th>Pago</th>
-                    <th>Inicia Clases</th>
-                    <th>Tipo</th>
+                    <th>Clases</th>
                     
                   </tr>
                   </thead>
@@ -698,7 +675,7 @@ if($email == "danielferreira@studere.com.uy"){
                   
                  <?php include "./includes/usuarios.php";
 
-                 echo $alumno['Alumno'];  ?>
+                 ?>
                    </tbody>
                 </table>
               </div>
@@ -721,81 +698,7 @@ if($email == "danielferreira@studere.com.uy"){
         </section>
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-5 connectedSortable">
-
-          <!-- /.box -->
-
-          <!-- Calendar -->
-          <div class="box box-solid bg-green-gradient">
-            <div class="box-header">
-              <i class="fa fa-calendar"></i>
-
-              <h3 class="box-title">Calendario</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <!-- button with a dropdown -->
-                <div class="btn-group">
-                  
-                </div>
-                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                </button>
-              </div>
-              <!-- /. tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <!--The calendar -->
-              <div id="calendar" style="width: 100%"></div>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer text-black">
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- Progress bars -->
-                  <div class="clearfix">
-                    <span class="pull-left">Tecnología</span>
-                    <small class="pull-right">90%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
-                  </div>
-
-                  <div class="clearfix">
-                    <span class="pull-left">Ventas</span>
-                    <small class="pull-right">70%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-6">
-                  <div class="clearfix">
-                    <span class="pull-left">Publicidad</span>
-                    <small class="pull-right">60%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                  </div>
-
-                  <div class="clearfix">
-                    <span class="pull-left">Registros</span>
-                    <small class="pull-right">40%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-            </div>
-          </div>
-          <!-- /.box -->
-
-        </section>
+        
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->

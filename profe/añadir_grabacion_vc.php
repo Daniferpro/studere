@@ -1,6 +1,6 @@
 <?php
 //incluimos conecciones a las ases ded datos  
-include "./includes/conecciones.php";
+include_once "./includes/conecciones.php";
 include "../admin/includes/seguridad.php";
 include "./includes/objetos.php";
 
@@ -90,47 +90,9 @@ $Grupo = New Grupo($id_grupo,$materia);
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<script type="text/javascript">
-		function comentarios(){
-			var req = new XMLHttpRequest();
 
-			req.onreadystatechange = function(){
-				if (req.readyState == 4 && req.status == 200) {
-					document.getElementById('comentarios').innerHTML = req.responseText;
-					
-				}
-			}
 
-			req.open('GET', './includes/comentarios.php', true);
-			req.send();
-		}
 
-			//linea que hace que se refreseque la pagina cada segundo
-		setInterval(function(){comentarios();}, 60000);	
-
-		
-	</script>
-
-<script type="text/javascript">
-		function usuarios(){
-			var req = new XMLHttpRequest();
-
-			req.onreadystatechange = function(){
-				if (req.readyState == 4 && req.status == 200) {
-					document.getElementById('usuarios_total').innerHTML = req.responseText;
-					
-				}
-			}
-
-			req.open('GET', './includes/usuarios.php', true);
-			req.send();
-		}
-
-			//linea que hace que se refreseque la pagina cada segundo
-		setInterval(function(){usuarios();}, 1000);	
-
-		
-	</script>
 <body class="hold-transition skin-blue sidebar-mini" onload="comentarios();" onload="usuarios();">
 <div class="wrapper">
 
