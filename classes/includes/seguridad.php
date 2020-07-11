@@ -1,4 +1,5 @@
 <?php
+session_set_cookie_params(3600,'/','.studere.uy');
 session_start();
 if(!isset($_COOKIE['id']) || !isset($_SESSION['email'])){# si no existe la cookie id o la variable de session email 
     session_destroy();                                   # se destruye la sessionn
