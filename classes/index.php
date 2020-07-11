@@ -3,11 +3,6 @@
 include_once 'includes/objetos.php';
 include_once 'includes/conecciones.php';
 include_once 'includes/seguridad.php';
-if(isset($_GET['page'])){
-    $page = $_GET['page'];
-}else{
-    $page = 'inicio';
-}
 $id_alumno = $_COOKIE['id'];
 $Msj_hour = new Mensajes_plataforma;
 $Alumno = new Alumno($id_alumno);

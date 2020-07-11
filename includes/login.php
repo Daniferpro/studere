@@ -27,7 +27,9 @@ if($consulta2->num_rows>=1){
       $mensaje = 'Bienvenido a Plataforma Studere'; 
     } 
     $materia = $usuario['materias'];
+    ini_set('session.cookie_domain', '.studere.uy' );
     session_start();
+    $_SESSION['id'] = $User->identificador;
     $_SESSION['email'] = $email;
     $_SESSION['materia'] = $materia;
     $vacio = "";
