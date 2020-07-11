@@ -1,8 +1,8 @@
 <?php
 
 include_once 'includes/objetos.php';
-include_once '../admin/includes/conecciones.php';
-include_once '../profe/includes/seguridad.php';
+include_once 'includes/conecciones.php';
+include_once 'includes/seguridad.php';
 if(isset($_GET['page'])){
     $page = $_GET['page'];
 }else{
@@ -23,18 +23,19 @@ $Alumno = new Alumno($id_alumno);
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="../admin/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../admin/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="../admin/bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="./bower_components/Ionicons/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../admin/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="./dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="../admin/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="./dist/css/skins/_all-skins.min.css">
     
-  <link rel="stylesheet" href="../admin/plugins/pace/pace.min.css">
+  <link rel="stylesheet" href="./plugins/pace/pace.min.css">
+  
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -45,10 +46,29 @@ $Alumno = new Alumno($id_alumno);
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+   
+<script type="text/javascript">
+		function Inicio(){
+			var req = new XMLHttpRequest();
+
+			req.onreadystatechange = function(){
+				if (req.readyState == 4 && req.status == 200) {
+					document.getElementById('contenido_php').innerHTML = req.responseText;
+					
+				}
+			}
+
+			req.open('GET', 'contents/inicio.php', true);
+			req.send();
+		}
+		
+	</script>
+
+
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 
-<body class="hold-transition skin-blue layout-top-nav">
+<body class="hold-transition skin-blue layout-top-nav" onload="Inicio();">
     <div class="wrapper">
 
         <header class="main-header">
@@ -106,7 +126,7 @@ $Alumno = new Alumno($id_alumno);
                                                 <a href="#">
                                                     <div class="pull-left">
                                                         <!-- User Image -->
-                                                        <img src="../admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                                        <img src="./dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                                     </div>
                                                     <!-- Message title and timestamp -->
                                                     <h4>
@@ -192,14 +212,14 @@ $Alumno = new Alumno($id_alumno);
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="../admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                    <img src="./dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs"><?php echo($Alumno->nombre." ".$Alumno->apellido);?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="../admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                        <img src="./dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                         <p>
                                         <?php echo($Alumno->nombre." ".$Alumno->apellido);?>
@@ -227,7 +247,7 @@ $Alumno = new Alumno($id_alumno);
                                             <a href="#" class="btn btn-default btn-flat" >Mi Perfil</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="../logout.php" class="btn btn-default btn-flat">Cerrar Sessión</a>
+                                            <a href="includes/logout.php" class="btn btn-default btn-flat">Cerrar Sessión</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -293,26 +313,27 @@ $Alumno = new Alumno($id_alumno);
     <!-- ./wrapper -->
 
     <!-- jQuery 3 -->
-    <script src="../admin/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap 3.3.7 -->
-    <script src="../admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- PACE -->
-    <script src="../admin/bower_components/PACE/pace.min.js"></script>
+    <script src="./bower_components/PACE/pace.min.js"></script>
     <!-- SlimScroll -->
-    <script src="../admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="./bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
-    <script src="../admin/bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="./bower_components/fastclick/lib/fastclick.js"></script>
     <!-- AdminLTE App -->
-    <script src="../admin/dist/js/adminlte.min.js"></script>
+    <script src="./dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="../admin/dist/js/demo.js"></script>
+    <script src="./dist/js/demo.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    
     <script>
         $(document).ready(function(){			
 			$("#inicio").on("click", function(e){
                 Pace.restart();
 				e.preventDefault();
-				$("#contenido_php").load("./contents/inicio.php?page=inicio");
+				$("#contenido_php").load("./contents/inicio.php");
                 $("#inicio_li").addClass("active");
                 $("#ciclo_basico").removeClass("active");
                 $("#bachillerato_li").removeClass("active");

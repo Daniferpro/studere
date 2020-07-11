@@ -1,8 +1,8 @@
 <?php
 
 include_once '../includes/objetos.php';
-include_once '../../admin/includes/conecciones.php';
-include_once '../../profe/includes/seguridad.php';
+include_once '../includes/conecciones.php';
+include_once '../includes/seguridad.php';
 
 $id_alumno = $_COOKIE['id'];
 $Msj_hour = new Mensajes_plataforma;
