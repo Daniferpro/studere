@@ -77,22 +77,22 @@ public function mostrarMensajeSegunHora($userName){
             echo "Buenas Tardes ".$userName;
             break;
         case '19':
-            echo "Buenos Tardes ".$userName;
+            echo "Buenas Tardes ".$userName;
             break;
         // Fin Buenas Tardes Usuario
         // Inicio Buenas Noches Usuario
         case '20':
-            echo "Buenos Noches ".$userName;
+            echo "Buenas Noches ".$userName;
             break;
         case '21':
-            echo "Buenos Noches ".$userName;
+            echo "Buenas Noches ".$userName;
             break;
         case '22':
-            echo "Buenos Noches ".$userName;
+            echo "Buenas Noches ".$userName;
             break;
         case '23':
-            echo "Buenos Noches ".$userName;
-                    
+            echo "Buenas Noches ".$userName;
+            break; 
         default:
             echo "Bienvenid@ ".$userName;
             break;

@@ -3,9 +3,9 @@
 include_once 'includes/objetos.php';
 include_once 'includes/conecciones.php';
 include_once 'includes/seguridad.php';
-$id_alumno = $_COOKIE['id'];
+
 $Msj_hour = new Mensajes_plataforma;
-$Alumno = new Alumno($id_alumno);
+$Alumno = new Alumno($_SESSION['id']);
 
 ?>
 <!DOCTYPE html>
@@ -28,6 +28,7 @@ $Alumno = new Alumno($id_alumno);
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="./dist/css/skins/_all-skins.min.css">
+   
     
   <link rel="stylesheet" href="./plugins/pace/pace.min.css">
   
@@ -139,9 +140,7 @@ $Alumno = new Alumno($id_alumno);
                                     <li class="footer"><a href="#">See All Messages</a></li>
                                 </ul>
                             </li>
-                            <!-- /.messages-menu -->
-
-                            <!-- Notifications Menu -->
+                           
                             <li class="dropdown notifications-menu">
                                 <!-- Menu toggle button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -165,7 +164,7 @@ $Alumno = new Alumno($id_alumno);
                                     <li class="footer"><a href="#">View all</a></li>
                                 </ul>
                             </li>
-                            <!-- Tasks Menu -->
+                          
                             <li class="dropdown tasks-menu">
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -289,7 +288,28 @@ $Alumno = new Alumno($id_alumno);
         
 
         ?>
+  
+                    <div class="box-footer">
+                        <!-- Content Header (Page header) -->
+                        
+        
+                        <!-- Main content -->
+                        
+                        <div class="alert alert-info alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-info"></i> Info!</h4>
+                            Estamos Actualizando la Plataforma de estudios para mejorar el servicio que ofrecemos,
+                            sepa disculparnos si alguna página presenta errores o no puede ingresar a ella. <br> Muchas Gracias.
+                      </div>
+                           
+                            <!-- /.box -->
+                        
+                        <!-- /.content -->
+                    </div>
+                    <!-- /.container -->
+        
         <div id="contenido_php">
+            
 
         </div>
 
@@ -321,6 +341,7 @@ $Alumno = new Alumno($id_alumno);
     <script src="./dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="./dist/js/demo.js"></script>
+   
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     
     <script>
@@ -330,7 +351,7 @@ $Alumno = new Alumno($id_alumno);
 				e.preventDefault();
 				$("#contenido_php").load("./contents/inicio.php");
                 $("#inicio_li").addClass("active");
-                $("#ciclo_basico").removeClass("active");
+                $("#ciclo_basico_li").removeClass("active");
                 $("#bachillerato_li").removeClass("active");
                 $("#otros_li").removeClass("active");
                 $("#mis_compras_li").removeClass("active");
@@ -346,7 +367,7 @@ $Alumno = new Alumno($id_alumno);
 				e.preventDefault();
 				$("#contenido_php").load("./contents/ciclo_basico.php");
                 $("#inicio_li").removeClass("active");
-                $("#ciclo_basico").addClass("active");
+                $("#ciclo_basico_li").addClass("active");
                 $("#bachillerato_li").removeClass("active");
                 $("#otros_li").removeClass("active");
                 $("#mis_compras_li").removeClass("active");
@@ -361,7 +382,7 @@ $Alumno = new Alumno($id_alumno);
 				e.preventDefault();
 				$("#contenido_php").load("./contents/bachillerato.php");
                 $("#inicio_li").removeClass("active");
-                $("#ciclo_basico").removeClass("active");
+                $("#ciclo_basico_li").removeClass("active");
                 $("#bachillerato_li").addClass("active");
                 $("#otros_li").removeClass("active");
                 $("#mis_compras_li").removeClass("active");
@@ -377,7 +398,7 @@ $Alumno = new Alumno($id_alumno);
 				e.preventDefault();
 				$("#contenido_php").load("./contents/otros.php");
                 $("#inicio_li").removeClass("active");
-                $("#ciclo_basico").removeClass("active");
+                $("#ciclo_basico_li").removeClass("active");
                 $("#bachillerato_li").removeClass("active");
                 $("#otros_li").addClass("active");
                 $("#mis_compras_li").removeClass("active");
@@ -393,7 +414,7 @@ $Alumno = new Alumno($id_alumno);
 				e.preventDefault();
 				$("#contenido_php").load("./contents/mis_compras.php");
                 $("#inicio_li").removeClass("active");
-                $("#ciclo_basico").removeClass("active");
+                $("#ciclo_basico_li").removeClass("active");
                 $("#bachillerato_li").removeClass("active");
                 $("#otros_li").removeClass("active");
                 $("#mis_compras_li").addClass("active");
@@ -409,7 +430,7 @@ $Alumno = new Alumno($id_alumno);
 				e.preventDefault();
 				$("#contenido_php").load("./contents/nuestros_profesores.php");
                 $("#inicio_li").removeClass("active");
-                $("#ciclo_basico").removeClass("active");
+                $("#ciclo_basico_li").removeClass("active");
                 $("#bachillerato_li").removeClass("active");
                 $("#otros_li").removeClass("active");
                 $("#mis_compras_li").removeClass("active");
