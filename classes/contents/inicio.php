@@ -3,9 +3,10 @@
 include_once '../includes/objetos.php';
 include_once '../includes/conecciones.php';
 include_once '../includes/seguridad.php';
-
-$id_alumno = $_COOKIE['id']; 
-$_SESSION['id'] = $id_alumno;
+if(!isset($_SESSION['id'])){
+  header("Location: ./");
+  }
+$id_alumno = $_SESSION['id'];
 $Msj_hour = new Mensajes_plataforma;
 $Alumno = new Alumno($id_alumno);
 ?>
@@ -26,7 +27,7 @@ $Alumno = new Alumno($id_alumno);
         <!-- Main content -->
         
         <section class="content">
-            ​<div class="col-sm-12">
+            ​<div class="col-l-12">
                 <img class="img-responsive" src="img/1.jpg" alt="Photo">
                 
             </div>
@@ -35,7 +36,8 @@ $Alumno = new Alumno($id_alumno);
                 <!-- agregar un while por cada materia que exista -->
                 
                 <!-- fin del while -->
-                <div class="col-md-12">
+               
+                <div class="col-l-12">
           <div class="box box-solid">
             <div class="box-header with-border">
               <h3 class="box-title">Explora Los cursos & materias disponibles hasta la fecha</h3>
@@ -53,9 +55,9 @@ $Alumno = new Alumno($id_alumno);
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
-        </div>
-              
+        </div>  
         </section>
+        
 
      
         <!-- Left col -->
@@ -67,6 +69,7 @@ $Alumno = new Alumno($id_alumno);
       
          <!-- /.content -->
     </div>
+    
     <!-- /.container -->
 </div>
 

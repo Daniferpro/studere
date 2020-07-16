@@ -1,12 +1,33 @@
 <?php
+if(isset($_POST['email']) && isset($_POST['contraseña'])){
 
-include_once 'includes/objetos.php';
+    if(!empty($_POST['email']) && !empty($_POST['contraseña'])){
+      include_once "./includes/conecciones.php";
+      include_once "./includes/login.php";
+    }
+  }
+  
+
+
 include_once 'includes/conecciones.php';
-include_once 'includes/seguridad.php';
+include_once 'includes/objetos.php';
+if(!isset($_POST['email'])){
+    include_once 'includes/seguridad.php';
+}
 
-$Msj_hour = new Mensajes_plataforma;
-$Alumno = new Alumno($_SESSION['id']);
 
+if(isset($_SESSION['id'])){
+
+    $Msj_hour = new Mensajes_plataforma;
+    $Alumno = new Alumno($_SESSION['id']);
+    if(isset($_SESSION['msg'])){
+        if($_SESSION['msg'] == 2){
+            $_SESSION['msg'] =  "visto";
+        }
+    }
+}
+
+  
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,12 +80,29 @@ $Alumno = new Alumno($_SESSION['id']);
 		}
 		
 	</script>
+    
+<script type="text/javascript">
+		function login(){
+			var req = new XMLHttpRequest();
+
+			req.onreadystatechange = function(){
+				if (req.readyState == 4 && req.status == 200) {
+					document.getElementById('contenido_php').innerHTML = req.responseText;
+					
+				}
+			}
+
+			req.open('GET', 'contents/login_auth.php', true);
+			req.send();
+		}
+		
+	</script>
 
 
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 
-<body class="hold-transition skin-blue layout-top-nav" onload="Inicio();">
+<body class="hold-transition skin-blue layout-top-nav" <?php if(isset($_SESSION['id'])){ echo 'onload="Inicio();"';}else{ echo 'onload="login();"';} ?>>
     <div class="wrapper">
 
         <header class="main-header">
@@ -76,7 +114,9 @@ $Alumno = new Alumno($_SESSION['id']);
             <i class="fa fa-bars"></i>
           </button>
                     </div>
-
+                    <?php 
+                        if(isset($_SESSION['id'])):
+                    ?>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">
@@ -101,11 +141,15 @@ $Alumno = new Alumno($_SESSION['id']);
                             </div>
                         </form>
                     </div>
+                        <?php endif;?>
                     <!-- /.navbar-collapse -->
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
                             <!-- Messages: style can be found in dropdown.less-->
+                            <?php 
+                                if(isset($_SESSION['id'])):
+                            ?>
                             <li class="dropdown messages-menu">
                                 <!-- Menu toggle button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -201,6 +245,7 @@ $Alumno = new Alumno($_SESSION['id']);
                                     </li>
                                 </ul>
                             </li>
+                                <?php endif; ?>
                             <!-- User Account Menu -->
                             <li class="dropdown user user-menu">
                                 <!-- Menu Toggle Button -->
@@ -208,7 +253,15 @@ $Alumno = new Alumno($_SESSION['id']);
                                     <!-- The user image in the navbar-->
                                     <img src="./dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <span class="hidden-xs"><?php echo($Alumno->nombre." ".$Alumno->apellido);?></span>
+                                    <span class="hidden-xs"><?php 
+                                                if(isset($_SESSION['id'])){
+                                                echo($Alumno->nombre." ".$Alumno->apellido);
+                                                }else{
+                                                    echo "invitado";
+                                                }
+                                                ?>
+                                                
+                                                </span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
@@ -216,8 +269,20 @@ $Alumno = new Alumno($_SESSION['id']);
                                         <img src="./dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                         <p>
-                                        <?php echo($Alumno->nombre." ".$Alumno->apellido);?>
-                                            <small><?php echo($Alumno->email);?></small>
+                                        <?php 
+                                                if(isset($_SESSION['id'])){
+                                                echo($Alumno->nombre." ".$Alumno->apellido);
+                                                }else{
+                                                    echo "invitado";
+                                                }
+                                                ?>
+                                            <small><?php 
+                                                if(isset($_SESSION['id'])){
+                                                echo($Alumno->email);
+                                                }else{
+                                                    echo "invitado@studere.uy";
+                                                }
+                                                ?></small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
@@ -236,14 +301,25 @@ $Alumno = new Alumno($_SESSION['id']);
                                         
                                     </li> -->
                                     <!-- Menu Footer-->
-                                    <li class="user-footer">
-                                        <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat" >Mi Perfil</a>
-                                        </div>
-                                        <div class="pull-right">
-                                            <a href="includes/logout.php" class="btn btn-default btn-flat">Cerrar Sessión</a>
-                                        </div>
-                                    </li>
+                                    <?php 
+                                        if(isset($_SESSION['id'])):
+                                    ?>
+                                        <li class="user-footer">
+                                            <div class="pull-left">
+                                                <a href="#" class="btn btn-default btn-flat" >Mi Perfil</a>
+                                            </div>
+                                            <div class="pull-right">
+                                                <a href="includes/logout.php" class="btn btn-default btn-flat">Cerrar Sessión</a>
+                                            </div>
+                                        </li>
+                                    <?php else: ?>
+                                        <li class="user-footer">
+                                            
+                                            <div class="pull-right">
+                                                <a href="https://studere.uy" class="btn btn-default btn-flat">Volver</a>
+                                            </div>
+                                        </li>
+                                    <?php endif; ?>
                                 </ul>
                             </li>
                         </ul>
@@ -289,23 +365,42 @@ $Alumno = new Alumno($_SESSION['id']);
 
         ?>
   
-                    <div class="box-footer">
-                        <!-- Content Header (Page header) -->
+                   <?php 
+                        $msg_Str = '
                         
-        
-                        <!-- Main content -->
+                                        <div class="box-footer">
+                                        <!-- Content Header (Page header) -->
+                                        
                         
-                        <div class="alert alert-info alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h4><i class="icon fa fa-info"></i> Info!</h4>
-                            Estamos Actualizando la Plataforma de estudios para mejorar el servicio que ofrecemos,
-                            sepa disculparnos si alguna página presenta errores o no puede ingresar a ella. <br> Muchas Gracias.
-                      </div>
-                           
-                            <!-- /.box -->
-                        
-                        <!-- /.content -->
-                    </div>
+                                        <!-- Main content -->
+                                        
+                                        <div class="alert alert-info alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <h4><i class="icon fa fa-info"></i> Info!</h4>
+                                            Estamos Actualizando la Plataforma de estudios para mejorar el servicio que ofrecemos,
+                                            sepa disculparnos si alguna página presenta errores o no puede ingresar a ella. <br> Muchas Gracias.
+                                    </div>
+                                        
+                                            <!-- /.box -->
+                                        
+                                        <!-- /.content -->
+                                    </div>';
+
+                        if(isset($_SESSION['msg'])){
+                            if($_SESSION['msg'] == 1){
+                                echo $msg_Str;
+                                $_SESSION['msg'] += $_SESSION['msg'];
+                            }
+                        }else{
+                            echo $msg_Str;
+                            if(isset($_SESSION)){
+                                $_SESSION['msg'] = 1;
+                            }
+                            
+                        }
+                                
+                          
+                    ?>
                     <!-- /.container -->
         
         <div id="contenido_php">

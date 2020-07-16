@@ -140,22 +140,53 @@ class Alumno{
     }
 
 
-    public function clasesUser(){
+    public function clasesUser_num(){
         $clases = $this->clases;
+        
+        $id = $this->identificador;
+        $cantidad = $this->clases_num;
+        $clase = consultarSQL(" SELECT * FROM clases WHERE Alumno=$id");
+        $cantidad = $clase->num_rows;
+        
+        return $cantidad;
+
+        
+    }
+    public function clasesUser_list_id($num){
+        $clases = $this->clases;
+        
         $id = $this->identificador;
         $cantidad = $this->clases_num;
         $clase = consultarSQL(" SELECT * FROM clases WHERE Alumno=$id");
         while($course = mysqli_fetch_assoc($clase)){
 
-            $clases[] = $course['Nombre_clase'];
+            $clases[] = $course['id_clase'];
             
         }
-        $cantidad = $clase->num_rows;
-        return $this->clases_num;
-        return $cantidad;
+        ;
+        
+        return $clases[$num];
 
         
-}
+    }
+
+    public function clasesUser_list_materia($num){
+        $clases = $this->clases;
+        
+        $id = $this->identificador; 
+        $cantidad = $this->clases_num;
+        $clase = consultarSQL(" SELECT * FROM clases WHERE Alumno=$id");
+        while($course = mysqli_fetch_assoc($clase)){
+
+            $clases[] = $course['materia'];
+            
+        }
+        ;
+        
+        return $clases[$num];
+
+        
+    }
 
 #agregamos algunas variables luego de estas funciones;
 
@@ -171,6 +202,39 @@ class Alumno{
         consultarSQL("UPDATE usuario SET $campo='$valor' WHERE id='$id_alumno'");
 
     }
+
+
+}
+
+
+class Curso{
+
+    //atributos
+
+    public $id;
+    public $nombre;
+    public $materia;
+    public $profe;
+    public $fecha_fin;
+    public $fecha_inicio;
+    public $estado;
+    
+    
+    //construc
+    public function __construct($id_clase){
+       
+        $clase = mysqli_fetch_assoc(consultarSQL("SELECT * FROM clases WHERE id_clase='$id_clase' "));
+        $this->id = $clase['id'];
+        $this->nombre = $clase['Nombre_clase'];
+        $this->materia = $clase['materia'];
+        $this->profe = $clase['Profesor'];
+        $this->fecha_fin = $clase['fecha_fin'];
+        $this->fecha_inicio = $clase['fecha_inicio'];
+        $this->estado = $clase['estado'];
+        
+    }
+
+
 
 
 }

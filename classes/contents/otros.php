@@ -1,13 +1,14 @@
+
 <?php
 
+
+include_once '../includes/conecciones.php';
 include_once '../includes/objetos.php';
-include_once '../../admin/includes/conecciones.php';
 include_once '../../profe/includes/seguridad.php';
 
-$id_alumno = $_COOKIE['id'];
-$Msj_hour = new Mensajes_plataforma;
+$id_alumno = $_SESSION['id'];
+    $Msj_hour = new Mensajes_plataforma;
 $Alumno = new Alumno($id_alumno);
-$page="ciclo_basico";
 ?>
 <html>
 
@@ -30,8 +31,19 @@ $page="ciclo_basico";
                     <div class="callout callout-info">
                         <h4>Tip!</h4>
 
-                        <p>OTROS CURSOS<br> Muchas Gracias.
+                       <?php 
+                       
+                            echo "Actualente tienes ".$Alumno->clasesUser_num() ." Cursos e tu lista";
+                            for ($i=0; $i < $Alumno->clasesUser_num(); $i++) { 
+                                $id_clase = $Alumno->clasesUser_list_id($i);
+                                $Curso = new Curso($id_clase);
+                                echo "<li>" . $Curso->nombre . " " . $Curso->fecha_fin . " Materia: " .strtoupper($Curso->materia). "</li>";
+                            }
+                            $materia = $Alumno->clasesUser_list_materia(1);
+
+                       ?>
                         </p>
+                        <?php include '../includes/materiales_lista.php';?>
                     </div>
                     <!-- /.box -->
                 </section>

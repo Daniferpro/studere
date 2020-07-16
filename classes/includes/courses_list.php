@@ -49,10 +49,10 @@ for ($i=0; $i <$cantidad_materias ; $i++) {
                         <!-- Add the bg color to the header using any of the bg-* classes -->
                         <div class="widget-user-header bg-'.$bg_color[$i].'">
                         <div class="widget-user-image">
-                            <img class="img-circle" src="https://studere.uy/images/teacher.jpg" alt="User Avatar">
+                            <img class="img-circle" src="https://studere.uy/images/images/logoterminado.png" alt="User Avatar">
                         </div>
                         <!-- /.widget-user-image -->
-                        <h4 class="widget-user-username">'.$clase['Nombre'].'</h4>
+                        <h4 class="widget-user-desc">'.$clase['Nombre'].'</h4>
                         <h5 class="widget-user-desc">'.$profesor['Nombre']. " " . $profesor['Apellido'].'</h5>
                         </div>
                         <div class="box-footer no-padding">

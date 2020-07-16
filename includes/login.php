@@ -45,6 +45,27 @@ if($consulta2->num_rows>=1){
       switch ($materia) {
         case $vacio:
           header ("Location: ./usuarios/plataforma/index.php");
+    //       echo '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    //       <div style="margin: 15% 50%;width:300px;" class="center">
+            
+    //         </div>';
+            
+    //         echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    //         <script>
+    //         $( document ).ready(function(){
+    //           setTimeout(function(){
+    //             document.getElementById("nologginredir").submit();
+    //           }, 0);
+              
+    //       });
+    //         </script>
+    //       ';
+    
+    // echo '<form method="post" action="./classes/" id="nologginredir">
+        
+    //       <input type="hidden" value="'.$User->identificador.'" name="id">
+    //       </form>';
+
           break;
       
         case $admin:
