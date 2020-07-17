@@ -39,11 +39,11 @@ $Alumno = new Alumno($id_alumno);
                                 $Curso = new Curso($id_clase);
                                 echo "<li>" . $Curso->nombre . " " . $Curso->fecha_fin . " Materia: " .strtoupper($Curso->materia). "</li>";
                             }
-                            $materia = $Alumno->clasesUser_list_materia(1);
+                            // $materia = $Alumno->clasesUser_list_materia(1);
 
                        ?>
                         </p>
-                        <?php include '../includes/materiales_lista.php';?>
+                        <?php # include '../includes/materiales_lista.php';?>
                     </div>
                     <!-- /.box -->
                 </section>
