@@ -1,13 +1,13 @@
 
 <?php
-
-
 include_once '../includes/conecciones.php';
 include_once '../includes/objetos.php';
 include_once '../../profe/includes/seguridad.php';
-
+if(!isset($_SESSION)){
+    session_start();
+}
 $id_alumno = $_SESSION['id'];
-    $Msj_hour = new Mensajes_plataforma;
+$Msj_hour = new Mensajes_plataforma;
 $Alumno = new Alumno($id_alumno);
 ?>
 <html>
