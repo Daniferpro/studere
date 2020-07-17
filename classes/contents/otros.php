@@ -2,7 +2,7 @@
 <?php
 include_once '../includes/conecciones.php';
 include_once '../includes/objetos.php';
-include_once '../../profe/includes/seguridad.php';
+include_once '../includes/seguridad.php';
 if(!isset($_SESSION)){
     session_start();
 }
