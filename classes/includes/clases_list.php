@@ -14,7 +14,8 @@ function listarClasesAlumno($id_alumno){
                 $color +=1;
                 $materia1 = $materia;
             }
-            
+                    # link de la clase
+                    # http://localhost/usuarios/plataforma/estudiando/index.php?materia=$materia&tema=$nombre_de_la_clase&id_clase=$id_de_la_clase
                    
                     echo '
                     
@@ -29,7 +30,7 @@ function listarClasesAlumno($id_alumno){
                             <img class="img-circle" src="https://studere.uy/images/images/logoterminado.png" alt="User Avatar">
                         </div>
                         <!-- /.widget-user-image -->
-                        <a href="#" class="cambioColor"><h4 class="widget-user-desc">'.$clase['Nombre_clase'].'</h4></a>
+                        <a href="./panel/?materia='.$materia.'&tema='.$clase['Nombre_clase'].'&id_clase='.$clase['id_clase'].'" class="cambioColor"><h4 class="widget-user-desc">'.$clase['Nombre_clase'].'</h4></a>
                         
                         </div>
                         <div class="box-footer no-padding">

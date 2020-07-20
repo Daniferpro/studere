@@ -15,7 +15,7 @@ $Alumno = new Alumno($id_alumno);
 /* Definimos el color inicial */
 .cambioColor {color:white;}
 /* Definimos el color al pasar el mouse por encima */
-.cambioColor:hover {color:violet;}
+.cambioColor:hover {color:blue;}
 </style>
 <div class="content-wrapper">
             <div class="container">
