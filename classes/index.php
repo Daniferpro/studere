@@ -7,12 +7,11 @@ if(isset($_POST['email']) && isset($_POST['contraseña'])){
     }
   }
   
-
-
 include_once 'includes/conecciones.php';
-include_once 'includes/objetos.php';
+include_once 'includes/objetos.php'; 
+
 if(!isset($_POST['email'])){
-    include_once 'includes/seguridad.php';
+    include_once 'includes/seguridad_index.php';
 }
 
 
@@ -49,6 +48,7 @@ if(isset($_SESSION['id'])){
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="./dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
    
     
   <link rel="stylesheet" href="./plugins/pace/pace.min.css">
@@ -150,38 +150,20 @@ if(isset($_SESSION['id'])){
                             <?php 
                                 if(isset($_SESSION['id'])):
                             ?>
-                            <li class="dropdown messages-menu">
-                                <!-- Menu toggle button -->
+                           <li class="dropdown notifications-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-envelope-o"></i>
-                                    <span class="label label-success">4</span>
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="label label-danger"><?php $Alumno->numeroMensajesNuevos();?></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="header">You have 4 messages</li>
-                                    <li>
-                                        <!-- inner menu: contains the messages -->
-                                        <ul class="menu">
-                                            <li>
-                                                <!-- start message -->
-                                                <a href="#">
-                                                    <div class="pull-left">
-                                                        <!-- User Image -->
-                                                        <img src="./dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                                                    </div>
-                                                    <!-- Message title and timestamp -->
-                                                    <h4>
-                                                        Support Team
-                                                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                                    </h4>
-                                                    <!-- The message -->
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                            <!-- end message -->
-                                        </ul>
-                                        <!-- /.menu -->
-                                    </li>
-                                    <li class="footer"><a href="#">See All Messages</a></li>
+                                <li class="header">Mensajes Nuevos</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                    <?php include "./includes/mensajes_alumnos.php";?>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="./panel/mailbox.php?id=<?php $Alumno->identificador;?>">Ir a mensajes</a></li>
                                 </ul>
                             </li>
                            
@@ -533,6 +515,40 @@ if(isset($_SESSION['id'])){
 			});
 		});
     </script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<?php 
+
+if(isset($_GET['mensaje'])): ?>
+
+
+<!-- codigo de los mensajes de toatsr -->
+<script>
+Command: toastr["warning"]("Su session a caducado, Por favor vuleva a iniciar session", "INICIE SESSION")
+
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
+</script>
+<?php endif;?>
+    
 </body>
 
 </html>

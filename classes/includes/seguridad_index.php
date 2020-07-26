@@ -35,14 +35,10 @@ if(isset($_POST['id'])){
 if(!isset($_SESSION)){
     session_start();
 }
-if(!isset($_SESSION['id'])){
-    header("Location: ../?mensaje");
-}
 if(!isset($_COOKIE['id']) || !isset($_SESSION['id'])){ # si no existe la cookie id o la variable de session id
     if(isset($_SESSION)){
         $_SESSION = array();          
         session_destroy();
-        header("Location: ../?mensaje");
         
     }         
     

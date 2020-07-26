@@ -135,10 +135,23 @@ class Alumno{
         $this->token = $dato['token'];
         $this->clases = [];
         $this->clases_num = 0;
+       
         
         
     }
 
+    public function enviarMensaje($id_destino, $msg){
+        $id = $this->identificador;
+        
+
+        consultachatSQL("INSERT INTO `$id` (`id`, `Nombre`, `mensaje`, `destinatario`, `fecha`, `estado` ) 
+                      VALUES (NULL, '$id ', '$msg', '$id_destino', current_timestamp(), '1')");
+
+                      
+        consultachatSQL("INSERT INTO `$id_destino` (`id`, `Nombre`, `mensaje`, `destinatario`, `fecha`, `estado` ) 
+        VALUES (NULL, '$id ', '$msg', '$id_destino', current_timestamp(), '0')");
+
+    }
 
     public function clasesUser_num(){
         $clases = $this->clases;
@@ -203,6 +216,31 @@ class Alumno{
 
     }
 
+    public function numeroMensajesNuevos(){
+        
+        # AQUI OBTENEMOS EL NUMERO DE MENSAJES NO LEIDOS        
+        $id_alumno = $this->identificador;
+        $nombre = $this->nombre;
+        $apellido = $this->apellido;
+       
+        $list = consultaChatSQL("SELECT * FROM `$id_alumno` WHERE destinatario='$id_alumno' AND estado=0 AND Nombre!='$id_alumno' ");#lista de mensajes 
+        
+        if($list){
+            if($list->num_rows == 0){
+                $mensajes = NULL;
+            }else{
+                $mensajes = $list->num_rows;
+            }
+
+        }else{
+            $mensajes = NULL;
+        }
+
+        echo $mensajes;
+        
+    }
+    
+   
 
 }
 

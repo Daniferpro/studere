@@ -23,7 +23,7 @@ if(isset($_GET['materia'])){
 $materia = $_GET['materia'];
 $clase = $_GET['tema'];
 $id_clase = $_GET['id_clase'];
-}else{ header("Location: ../miscursos.php?error=Sin Permisos Para Acceder al Curso.");}
+}else{ header("Location: ../?error=Sin Permisos Para Acceder al Curso.");}
 
 
 // $qry_tema = "SELECT * FROM $materia WHERE nombre_clase = '$clase'";
@@ -249,7 +249,7 @@ $id_clase = $_GET['id_clase'];
           </a>
           <ul class="treeview-menu">
             <li class="active"><a href="#"><i class="fa fa-circle-o"></i> <?php print $clase ;?></a></li>
-            <li><a href="../../clases/1bc/materias/<?php echo $materia;?>/"><i class="fa fa-circle-o"></i> <?php print "Ver más clases de " . $materia ;?></a></li>
+            <li><a href="../"><i class="fa fa-circle-o"></i> <?php print "Ver más clases de " . $materia ;?></a></li>
           </ul>
         </li>
         
@@ -276,9 +276,10 @@ $id_clase = $_GET['id_clase'];
           while( $consulta_clases_resultado = mysqli_fetch_assoc($consulta_clases_ejecuta)):
             $nombre_clase_resultado = $consulta_clases_resultado['Nombre_clase'];
             $materia_clase_resultado = $consulta_clases_resultado['materia'];
+          
           ?>
           
-            <li><a href="../index.php?materia=<?php print $materia_clase_resultado. '&tema='.$nombre_clase_resultado .'&id_clase='.$id_clase;?>"><i class="fa fa-circle-o"></i> <?php print $nombre_clase_resultado;?></a></li>
+            <li><a href="./?materia=<?php print $materia_clase_resultado. '&tema='.$nombre_clase_resultado .'&id_clase='.$id_clase;?>"><i class="fa fa-circle-o"></i> <?php print $nombre_clase_resultado;?></a></li>
 
           <?php endwhile;?>
           </ul>
