@@ -10,8 +10,11 @@ $id_alumno = $_SESSION['id'];
 $Msj_hour = new Mensajes_plataforma;
 $Alumno = new Alumno($id_alumno);
 ?>
-<html>
-
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+          <title>Inicio</title>
+          <meta content="text/html; charset=utf-8" />
 <div class="content-wrapper">
     <div class="container">
         <!-- Content Header (Page header) -->

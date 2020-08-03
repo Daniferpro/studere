@@ -11,7 +11,7 @@ $nombre_alumno_destino = $Alumno_destino->nombre . " " . $Alumno_destino->apelli
 
 # aqui actualizaremos los mensajes enviados de los alumnos de no leidos a leidos.
 
-$mensajes_alumno = consultachatSQL("SELECT * FROM `$id` WHERE Nombre='$nombre_alumno_destino' AND estado = 0 ");
+$mensajes_alumno = consultachatSQL("SELECT * FROM `$id` WHERE Nombre='$chat_id' AND estado = 0 ");
 if($mensajes_alumno){
 while($mensaje = mysqli_fetch_assoc($mensajes_alumno)){    
 
@@ -610,11 +610,7 @@ if($consulta1->num_rows >=1){
               <span id="chat"></span>
              
             </div> 
-                <table class="table table-hover table-striped">
-                  <tbody id="mensajeria">
-                 
-                  </tbody>
-                </table>
+                
                 <div class="form-horizontal">
               <form action="#" method="post">
                 

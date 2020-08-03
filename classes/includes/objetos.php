@@ -220,9 +220,7 @@ class Alumno{
         
         # AQUI OBTENEMOS EL NUMERO DE MENSAJES NO LEIDOS        
         $id_alumno = $this->identificador;
-        $nombre = $this->nombre;
-        $apellido = $this->apellido;
-       
+        
         $list = consultaChatSQL("SELECT * FROM `$id_alumno` WHERE destinatario='$id_alumno' AND estado=0 AND Nombre!='$id_alumno' ");#lista de mensajes 
         
         if($list){

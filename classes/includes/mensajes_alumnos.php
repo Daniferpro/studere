@@ -1,30 +1,28 @@
 <?php
-
 $user_id = $_SESSION['id'];
-$nombre_alumno = $Alumno->nombre . " " . $Alumno->apellido;
-$lista = consultachatSQL("SELECT DISTINCT Nombre, materia FROM `$user_id` WHERE estado=0 AND Nombre!='$nombre_alumno' ");
+$lista = consultachatSQL("SELECT DISTINCT Nombre FROM `$user_id` WHERE estado=0 AND Nombre!='$user_id' ");
 $lista_personas = [];
 
 if($lista){
     while($persona = mysqli_fetch_assoc($lista)){
 
-        $lista_personas [] = [$persona['Nombre'],$persona['materia']];
+        $lista_personas [] = $persona['Nombre'];
 
     }
 }
 
-$i = 0;
+$i = 0;  
 $numero = count($lista_personas);
 
 while($numero > $i){
-    $person = $lista_personas[$i][0];
-    $person_materia = $lista_personas[$i][1];
+    $person = $lista_personas[$i];
+    
     $msg = consultachatSQL(" SELECT Nombre FROM `$user_id` WHERE Nombre='$person' AND estado = 0"); #0 el no leido 1 es leido
     
     if($msg){
         $n_msg = $msg->num_rows;
         $mensaje = mysqli_fetch_assoc($msg);
-        $usuario = mysqli_fetch_assoc(consultarSQL("SELECT id FROM usuario WHERE materias='$person_materia'")); 
+        $UserMsg = new Alumno($mensaje['Nombre']);
                
             
                if($n_msg == 1){
@@ -33,8 +31,8 @@ while($numero > $i){
                 '<html>
                 
                     <li>
-                    <a href="./panel/read-mail.php?id_alumno='.$usuario['id'].'">
-                        <i class="fa fa-user  text-aqua"></i>'. $n_msg .' Mensaje Nuevo de '. $mensaje['Nombre'].'
+                    <a href="./panel/read-mail.php?id='.$user_id.'&id_alumno='.$UserMsg->identificador.'">
+                        <i class="fa fa-user  text-aqua"></i>'. $n_msg .' Mensaje Nuevo de '. $UserMsg->nombre. " " . $UserMsg->apellido .'
                     </a>
                     </li>
 
@@ -46,8 +44,8 @@ while($numero > $i){
                 '<html>
                 
                     <li>
-                    <a href="./panel/read-mail.php?id_alumno='.$usuario['id'].'">
-                        <i class="fa fa-user  text-aqua"></i>'. $n_msg .' Mensajes Nuevos de '. $mensaje['Nombre'].'
+                    <a href="./panel/read-mail.php?id='.$user_id.'&id_alumno='.$UserMsg->identificador.'">
+                        <i class="fa fa-user  text-aqua"></i>'. $n_msg .' Mensajes Nuevos de '. $UserMsg->nombre. " " . $UserMsg->apellido .'
                     </a>
                     </li>
 
