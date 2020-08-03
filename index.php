@@ -121,7 +121,8 @@ if(isset($_COOKIE['status'])){
 									<li><a href="./contact.php">Eres Docente? clic aquí</a></li>
 									<li><a href="./usuarios/plataforma/buscar-curso.php">Cursos</a></li>
 									<li><a href="./usuarios/plataforma/estudiando/register.php?nuevo_registro">Registrarse</a></li>
-									<li><a href="./contact.php">Contacto</a></li>
+                                    <li><a href="./contact.php">Contacto</a></li>
+                                    <li><a href="./webinar">WEBINARS</a></li>
 								</ul>
 								<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 
@@ -177,7 +178,8 @@ if(isset($_COOKIE['status'])){
 				<li class="menu_mm"><a href="./contact.php">Eres docente? clic aquí</a></li>
 				<li class="menu_mm"><a href="./usuarios/plataforma/buscar-curso.php">Cursos</a></li>
 				<li class="menu_mm"><a href="./usuarios/plataforma/estudiando/register.php?nuevo_registro">Registrarse!</a></li>
-				<li class="menu_mm"><a href="./cotact.php">Contacto</a></li>
+                <li class="menu_mm"><a href="./cotact.php">Contacto</a></li>
+                <li><a href="./webinar">WEBINARS</a></li>
 			</ul>
 		</nav>
 	</div>
