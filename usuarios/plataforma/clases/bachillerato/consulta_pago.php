@@ -1,5 +1,4 @@
 <?php
-include_once "../../../../includes/seguro.php";
 include_once "../../../../includes/conectar.php";
 
 

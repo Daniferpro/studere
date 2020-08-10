@@ -40,7 +40,7 @@
 									<div class="footer_contact_info">
 										<ul>
 											<li>Email: contacto@studere.uy</li>
-											<li>Celular:  +(598) 97 014 192</li>
+											<li>Celular:  +(598) 092 763 897</li>
 											<li>Tacuarembó, Tacuarembó , Uruguay</li>
 										</ul>
 									</div>

@@ -228,7 +228,7 @@ else
 									<option  selected="selected" value="" disabled>Selecciona la asignatura</option>
 									<option value="historia">Historia</option>
 									<option value="matematica">Matemática</option>
-									<option value="matematica1">Matemática</option>
+									<option value="matematica1">Matemática 1</option>
 									<option value="fisica">Física</option>
 									<option value="derecho">Derecho</option> 
 									<option value="quimica">Química</option>
@@ -243,7 +243,7 @@ else
 									
 								
 							</select>
-							<button action="submit" class="courses_search_button ml-auto">Buscar Ahora</button>
+							
 						</form>
 						<div id="mostrarquery"></div>
 		 				<?php 

@@ -1,11 +1,13 @@
 <?php
-include_once "../../../../includes/seguro.php";
+
 include_once "../../../../includes/conectar.php";
 include_once "../bachillerato/consulta_pago.php";
+if(isset($_SESSION)){
 $hola=$_SESSION['email'];
 $query="SELECT * FROM usuario WHERE email='$hola' ";
 $consulta=consultarSQL($query);
 $a=mysqli_fetch_assoc($consulta);
+}
 ?>
 
 
@@ -45,7 +47,7 @@ $a=mysqli_fetch_assoc($consulta);
 						<div class="col">
 							<div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
 								<ul class="top_bar_contact_list">
-									<li><div class="question">Bienvenido : <?php  echo $a['Nombre']." ".$a['Apellido']; ?> </div></li>
+									<li><div class="question">Bienvenido : <?php  if(isset($_SESSION)){echo $a['Nombre']." ".$a['Apellido']; }else{ echo 'Invitad@';}?> </div></li>
 									
 									
 								</ul>
@@ -65,18 +67,25 @@ $a=mysqli_fetch_assoc($consulta);
 						<div class="header_content d-flex flex-row align-items-center justify-content-start">
 							<div class="logo_container">
 								<a href="../../index.php">
-									<div class="logo_text">Alumno <span><?php echo $a['Nombre']; ?></span></div>
+									<div class="logo_text"><?php if(isset($_SESSION)){
+										echo 'Alumno <span>'. $a['Nombre'];}else{echo 'Bienvendo <span> Invitado';}?></span></div>
 								</a>
 							</div>
 							<nav class="main_nav_contaner ml-auto">
 								<ul class="main_nav">
-									
-									<li><a href="../../index.php">Inicio</a></li>
-									<li><a href="../../miscursos.php">Mis Cursos</a></li>
-									<li><a href="../../perfil.php">Editar Perfil</a></li>
-									<li><div class="top_bar_login ml-auto">
-									<a href="../../../../logout.php?tk=<?php echo $_SESSION['token']?>">Cerrar Sesion</a></div>
-								</li>
+									<?php 
+									if(isset($_SESSION)):
+									?>
+										<li><a href="../../index.php">Inicio</a></li>
+										<li><a href="../../miscursos.php">Mis Cursos</a></li>
+										<li><a href="../../perfil.php">Editar Perfil</a></li>
+										<li><div class="top_bar_login ml-auto">
+										<a href="../../../../logout.php">Cerrar Sesion</a></div>
+										</li>
+									<?php else:?>
+										<li><a href="../../../../index.php">Inicio</a></li>
+										<li><a href="../../../../login.php">Iniciar Sesión</a></li>
+									<?php endif; ?>
 								</ul>
 																
 								<!-- Hamburger -->
@@ -114,7 +123,7 @@ $a=mysqli_fetch_assoc($consulta);
 				<li class="menu_mm"><a href="../../index.php">Inicio</a></li>
 				<li class="menu_mm"><a href="#">Mis Cursos</a></li>
 				<li class="menu_mm"><a href="../../perfil.php">Editar Perfil</a></li>
-	  			<li class="menu_mm"><a href="../../../../logout.php?tk=<?php echo $_SESSION['token']?>">Cerrar Sesión</a></li>
+	  			<li class="menu_mm"><a href="../../../../logout.php">Cerrar Sesión</a></li>
 			</ul>
 			
 			<div></div>
@@ -164,7 +173,7 @@ $a=mysqli_fetch_assoc($consulta);
 				<li class="menu_mm"><a href="../../miscursos.php">Mis Cursos</a></li>
 				<li class="menu_mm"><a href="../../perfil.php">Editar Perfil</a></li>
 				<li><div class="top_bar_login ml-auto">
-									<a href="../../../../logout.php?tk=<?php echo $_SESSION['token']?>">Cerrar Sesion</a></div>
+									<a href="../../../../logout.php">Cerrar Sesion</a></div>
 								</li>
 				
 			</ul>
@@ -247,8 +256,8 @@ $a=mysqli_fetch_assoc($consulta);
 						</div>
 
 						<!-- Latest Course -->
-						<iframe src="https://www.mercadopago.com.uy/descuentos?campaign_id=59410&show_legals_link=true&dont_show_legals=true&iframe=true" width="100%" height="400" seamless="" frameborder="0" scrolling="no"></iframe>
-					
+						<!-- <iframe src="https://www.mercadopago.com.uy/descuentos?campaign_id=59410&show_legals_link=true&dont_show_legals=true&iframe=true" width="100%" height="400" seamless="" frameborder="0" scrolling="no"></iframe>
+					 -->
 
 						<!-- Tags -->
 						<div class="sidebar_section">
@@ -259,7 +268,7 @@ $a=mysqli_fetch_assoc($consulta);
 									<li><a href="#">Examen</a></li>
 									<li><a href="#">Parcial</a></li>
 									<li><a href="#">ideas</a></li>
-									<li><a href="#">4°Año</a></li>
+									<li><a href="#">Ciclo Básico</a></li>
 									<li><a href="#">Ejercicios</a></li>
 								</ul>
 							</div>
@@ -309,7 +318,7 @@ $a=mysqli_fetch_assoc($consulta);
 	<!-- Footer -->
 
 	<footer class="footer">
-		<?php require ('./procesos/footer.php'); ?>
+		<?php require '../bachillerato/procesos/footer.php'; ?>
 	</footer>
 </div>
 

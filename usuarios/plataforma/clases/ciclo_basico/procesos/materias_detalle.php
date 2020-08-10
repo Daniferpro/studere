@@ -3,6 +3,9 @@
 include "../bachillerato/conn/conecciones.php";
 include "../bachillerato/conn/objetos.php";
 $materia = $_GET['id'];
+if(!isset($_SESSION)){
+$a['id'] = 0;
+}
 $sql = gruposSQL("SELECT * FROM $materia");
 while($clase = mysqli_fetch_assoc($sql)){
 	
